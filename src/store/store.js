@@ -29,6 +29,6 @@ const createStoreWithFirebase = compose(
 )(createStore)
 
 
-// Create store with reducers and initial state
+// Create store with reducers and initial state .
 const initialState = {}
 export const store = createStoreWithFirebase(rootReducer, initialState)
