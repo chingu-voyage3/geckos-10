@@ -1,15 +1,34 @@
-import * as Redux from 'redux';
-import thunk from 'redux-thunk';
-import { reducer } from '../reducers';
 
-export const configure = (initialState = {}) => {
-  // Set up Redux devtools
-  const composeEnhancers =
-    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || Redux.compose;
+import { createStore, compose } from 'redux'
+import { reactReduxFirebase } from 'react-redux-firebase'
+import firebase from 'firebase'
+import { rootReducer } from '../reducers/index';
 
-  const enhancer = composeEnhancers(Redux.applyMiddleware(thunk));
+const firebaseConfig = {
+  apiKey: "AIzaSyA6smUss1Pst2Asvk1idmVOTBArTnv4GiM",
+  authDomain: "geckos-10-tab.firebaseapp.com",
+  databaseURL: "https://geckos-10-tab.firebaseio.com",
+  projectId: "geckos-10-tab",
+  storageBucket: "",
+  messagingSenderId: "893868351541"
+}
 
-  const store = Redux.createStore(reducer, initialState, enhancer);
+// react-redux-firebase config
+const config = {
+  userProfile: 'users',
+  enableLogging: false,
+}
 
-  return store;
-};
+// initialize firebase instance
+firebase.initializeApp(config)
+
+
+// Add reduxReduxFirebase enhancer when making store creator
+const createStoreWithFirebase = compose(
+  reactReduxFirebase(firebaseConfig, config), // firebase instance as first argument
+)(createStore)
+
+
+// Create store with reducers and initial state
+const initialState = {}
+export const store = createStoreWithFirebase(rootReducer, initialState)
