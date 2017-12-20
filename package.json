@@ -2,6 +2,7 @@
   "name": "geckos-10-app",
   "version": "0.1.0",
   "private": true,
+  "homepage": ".",
   "dependencies": {
     "firebase": "^4.8.1",
     "node-sass-chokidar": "0.0.3",
