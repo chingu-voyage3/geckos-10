@@ -9,9 +9,9 @@ const firebaseConfig = {
   authDomain: "geckos-10-tab.firebaseapp.com",
   databaseURL: "https://geckos-10-tab.firebaseio.com",
   projectId: "geckos-10-tab",
-  storageBucket: "",
+  storageBucket: "geckos-10-tab.appspot.com",
   messagingSenderId: "893868351541"
-}
+};
 
 // react-redux-firebase config
 const config = {
@@ -20,7 +20,7 @@ const config = {
 }
 
 // initialize firebase instance
-firebase.initializeApp(config)
+const app = firebase.initializeApp(firebaseConfig)
 
 
 // Add reduxReduxFirebase enhancer when making store creator
@@ -28,7 +28,12 @@ const createStoreWithFirebase = compose(
   reactReduxFirebase(firebaseConfig, config), // firebase instance as first argument
 )(createStore)
 
+const googleProvider = new firebase.auth.GoogleAuthProvider();
+const firebaseRef = firebase.database().ref();
+
 
 // Create store with reducers and initial state .
 const initialState = {}
-export const store = createStoreWithFirebase(rootReducer, initialState)
+const store = createStoreWithFirebase(rootReducer, initialState)
+
+export { app, googleProvider, store, firebaseRef }

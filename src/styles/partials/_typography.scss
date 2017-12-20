@@ -46,15 +46,8 @@ p {
 
 .app {
   display: grid;
-  grid-template-rows: 1fr 200px;
+  grid-template-rows: 5vh 1fr 200px;
   height: 100%;
 }
 
-.appFooter {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-}
 
-.appFooter .navItem {
-  margin: auto;
-}
