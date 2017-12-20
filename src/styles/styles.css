@@ -418,7 +418,10 @@ html {
 
 body {
   font-size: 1.5rem;
-  color: #303030; }
+  color: #303030;
+  position: absolute;
+  height: 100%;
+  width: 100%; }
 
 h1,
 h2,
@@ -441,3 +444,21 @@ p a {
 p {
   line-height: 2;
   font-size: 1.6rem; }
+
+#root {
+  height: 100%; }
+
+.active {
+  color: #93ff00; }
+
+.app {
+  display: grid;
+  grid-template-rows: 1fr 200px;
+  height: 100%; }
+
+.appFooter {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); }
+
+.appFooter .navItem {
+  margin: auto; }
