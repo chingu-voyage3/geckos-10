@@ -8,6 +8,8 @@ import Logout from './components/Logout';
 import Header from './components/Header';
 import Footer from './components/Footer';
 
+import SocialMedia from './components/SocialMedia'
+
 class App extends Component {
   constructor() {
     super();
@@ -56,7 +58,7 @@ class App extends Component {
           <div>
             <Switch>
               <Route exact path="/todo" component="" />
-              <Route path="/social" component="" />
+              <Route path="/social" component={SocialMedia} />
               <Route path="/calendar" component="" />
               <Route path="/weather" component="" />
               <Route exact path="/login" component={Login} />
