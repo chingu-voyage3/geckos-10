@@ -29,6 +29,7 @@ const createStoreWithFirebase = compose(
 )(createStore)
 
 const googleProvider = new firebase.auth.GoogleAuthProvider();
+const facebookProvider = new firebase.auth.FacebookAuthProvider();
 const firebaseRef = firebase.database().ref();
 
 
@@ -36,4 +37,4 @@ const firebaseRef = firebase.database().ref();
 const initialState = {}
 const store = createStoreWithFirebase(rootReducer, initialState)
 
-export { app, googleProvider, store, firebaseRef }
+export { app, googleProvider, facebookProvider, store, firebaseRef }
