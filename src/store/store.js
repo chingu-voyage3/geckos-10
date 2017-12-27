@@ -4,6 +4,8 @@ import { reactReduxFirebase } from 'react-redux-firebase'
 import firebase from 'firebase'
 import { rootReducer } from '../reducers/index';
 
+import todos from "../data/todoSampleData"
+
 const firebaseConfig = {
   apiKey: "AIzaSyA6smUss1Pst2Asvk1idmVOTBArTnv4GiM",
   authDomain: "geckos-10-tab.firebaseapp.com",
@@ -33,7 +35,9 @@ const firebaseRef = firebase.database().ref();
 
 
 // Create store with reducers and initial state .
-const initialState = {}
+const initialState = {
+  todos: { nextTodoID: 0, lists: todos }
+}
 const store = createStoreWithFirebase(rootReducer, initialState)
 
 export { app, googleProvider, store, firebaseRef }

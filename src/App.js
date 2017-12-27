@@ -7,6 +7,7 @@ import Login from './components/Login';
 import Logout from './components/Logout';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import TodoApp from "./components/TodoApp";
 
 class App extends Component {
   constructor() {
@@ -55,7 +56,7 @@ class App extends Component {
           <Header {...this.state} />
           <div>
             <Switch>
-              <Route exact path="/todo" component="" />
+              <Route exact path="/todo" component={TodoApp} />
               <Route path="/social" component="" />
               <Route path="/calendar" component="" />
               <Route path="/weather" component="" />
