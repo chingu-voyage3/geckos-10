@@ -1,10 +1,25 @@
 ﻿import React, { Component } from "react";
 
-class AddTodo extends Component {
+class EditTodo extends Component {
+  constructor(props) {
+    super(props);
+    this.value = props.value;
+  }
   handleSubmit = event => {
     event.preventDefault();
-    this.props.addTodo(this.props.displayName, this.input.value);
-    this.input.value = "";
+    if (this.props.editing) {
+      this.props.editTodo(
+        this.props.displayName,
+        this.props.id,
+        this.input.value
+      );
+    } else {
+      this.props.addTodo(this.props.displayName, this.input.value);
+    }
+  };
+
+  componentDidMount = () => {
+    this.input.value = this.props.value;
   };
 
   render() {
@@ -14,7 +29,7 @@ class AddTodo extends Component {
           <input
             type="text"
             ref={input => (this.input = input)}
-            placeholder="Test Value"
+            onBlur={this.handleSubmit}
           />
           <input type="submit" hidden />
         </form>
@@ -23,4 +38,4 @@ class AddTodo extends Component {
   }
 }
 
-export default AddTodo;
+export default EditTodo;

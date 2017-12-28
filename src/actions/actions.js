@@ -26,9 +26,10 @@ export function moveTodo(id, target) {
 }
 
 // edit todo
-export function editTodo(id, newValue) {
+export function editTodo(list, id, newValue) {
   return {
     type: "EDIT_TODO",
+    list: list,
     id: id,
     value: newValue
   };

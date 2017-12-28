@@ -2,27 +2,14 @@
   switch (action.type) {
     case "ADD_TODO":
       return [...state, { id: state.nextTodoID, value: action.value }];
-      break;
     case "EDIT_TODO":
-      return [...state];
-      //return Object.assign({}, ...state, {
-      //  items: {
-      //    ...state.items,
-      //    [action.todoID]: todoList(state.items[action.todoID], action)
-      //  }
-      //});
-      //var i = 0;
-      //return Object.assign({}, ...state, {
-      //  items: [
-      //    ...state.items.slice(0, i),
-      //    { ...state.items[i], value: action.value },
-      //    ...state.items.slice(i + 1)
-      //  ]
-      //});
-      break;
+      var i = state.findIndex((element) => { return element.id === action.id});
+      return [...state.slice(0, i),
+          { id: action.id, value: action.value },
+          ...state.slice(i + 1)
+      ];
     case "REMOVE_TODO":
       return state;
-      break;
     default:
       return state;
   }
@@ -34,7 +21,7 @@ function todos(state = [], action) {
       ...state,
       lists: Object.assign(
         ...Object.entries(state.lists).map(([key, value]) => {
-          if (key == action.list) {
+          if (key === action.list) {
             return { [key]: todoList(value, action) };
           } else {
             return { [key]: value };
@@ -46,7 +33,7 @@ function todos(state = [], action) {
   return state;
 }
 
-function todoApp(state = [], action) {
+export function todoAppReducer(state = [], action) {
   return {
     nextTodoID: state.nextTodoID,
     lists: todos(state.lists, action)

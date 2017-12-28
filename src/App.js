@@ -57,9 +57,9 @@ class App extends Component {
           <div>
             <Switch>
               <Route exact path="/todo" component={TodoApp} />
-              <Route path="/social" component="" />
-              <Route path="/calendar" component="" />
-              <Route path="/weather" component="" />
+              {false && <Route path="/social" component="" />}
+              {false && <Route path="/calendar" component="" />}
+              {false && <Route path="/weather" component="" />}
               <Route exact path="/login" component={Login} />
               <Route exact path="/logout" component={Logout} />
             </Switch>
