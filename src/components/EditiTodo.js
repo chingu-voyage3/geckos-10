@@ -1,4 +1,5 @@
 ﻿import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 class EditTodo extends Component {
   handleSubmit = event => {
@@ -10,7 +11,7 @@ class EditTodo extends Component {
           this.props.id,
           this.input.value
         );
-      } else if (this.input.value !== "" && this.input.value.length < 5) {
+      } else if (this.input.value !== "" || this.input.value.length < 5) {
         this.message.textContent = "Less than 5 characters";
       }
     } else {
@@ -20,6 +21,9 @@ class EditTodo extends Component {
         this.message.textContent = "";
       } else if (this.input.value !== "" && this.input.value.length < 5) {
         this.message.textContent = "Less than 5 characters";
+      }
+      else {
+        this.message.textContent = "";
       }
     }
   };
@@ -47,5 +51,15 @@ class EditTodo extends Component {
     );
   }
 }
+
+EditTodo.propTypes = {
+  value: PropTypes.string,
+  displayName: PropTypes.string,
+  editing: PropTypes.bool,
+  addNewTodo: PropTypes.bool,
+  addTodo: PropTypes.func,
+  editTodo: PropTypes.funct,
+  id: PropTypes.number
+};
 
 export default EditTodo;

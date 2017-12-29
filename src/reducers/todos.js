@@ -1,10 +1,9 @@
 ﻿function todoList(state = [], action) {
-  console.log(action.id);
   switch (action.type) {
     case "ADD_TODO":
       return [...state, { id: action.id, value: action.value }];
-    case "EDIT_TODO":
-      var i = state.findIndex(element => {
+    case "EDIT_TODO": {
+      let i = state.findIndex(element => {
         return element.id === action.id;
       });
       return [
@@ -12,14 +11,13 @@
         { id: action.id, value: action.value },
         ...state.slice(i + 1)
       ];
-    case "REMOVE_TODO":
-      var i = state.findIndex(element => {
+    }
+    case "REMOVE_TODO": {
+      let i = state.findIndex(element => {
         return element.id === action.id;
       });
-      return [
-        ...state.slice(0, i),
-        ...state.slice(i + 1)
-      ];
+      return [...state.slice(0, i), ...state.slice(i + 1)];
+    }
     default:
       return state;
   }

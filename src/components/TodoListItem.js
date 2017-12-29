@@ -1,4 +1,5 @@
 ﻿import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 import EditTodo from "./EditiTodo";
 
@@ -53,5 +54,14 @@ class TodoListItem extends Component {
     );
   }
 }
+
+TodoListItem.propTypes = {
+  displayName: PropTypes.string,
+  value: PropTypes.string,
+  editing: PropTypes.bool,
+  beginEditTodo: PropTypes.func,
+  removeTodo: PropTypes.func,
+  id: PropTypes.number
+};
 
 export default TodoListItem;
