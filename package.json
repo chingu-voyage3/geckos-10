@@ -4,10 +4,12 @@
   "private": true,
   "homepage": ".",
   "dependencies": {
+    "@blueprintjs/core": "^1.35.0",
     "firebase": "^4.8.1",
     "node-sass-chokidar": "0.0.3",
     "npm-run-all": "^4.1.2",
     "react": "^16.2.0",
+    "react-addons-css-transition-group": "^15.6.2",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.6",
     "react-redux-firebase": "^1.5.1",
