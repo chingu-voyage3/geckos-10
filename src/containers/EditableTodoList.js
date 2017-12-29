@@ -6,7 +6,8 @@ import TodoList from "../components/TodoList";
 const mapStateToProps = state => {
   return {
     lists: state.todos.lists,
-    nextTodoID: state.todos.nextTodoID
+    nextTodoID: state.todos.nextTodoID,
+    editingTodoID: state.todos.editingTodoID
   };
 };
 

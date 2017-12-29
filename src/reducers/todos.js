@@ -1,21 +1,34 @@
 ﻿function todoList(state = [], action) {
+  console.log(action.id);
   switch (action.type) {
     case "ADD_TODO":
-      return [...state, { id: state.nextTodoID, value: action.value }];
+      return [...state, { id: action.id, value: action.value }];
     case "EDIT_TODO":
-      var i = state.findIndex((element) => { return element.id === action.id});
-      return [...state.slice(0, i),
-          { id: action.id, value: action.value },
-          ...state.slice(i + 1)
+      var i = state.findIndex(element => {
+        return element.id === action.id;
+      });
+      return [
+        ...state.slice(0, i),
+        { id: action.id, value: action.value },
+        ...state.slice(i + 1)
       ];
     case "REMOVE_TODO":
-      return state;
+      var i = state.findIndex(element => {
+        return element.id === action.id;
+      });
+      return [
+        ...state.slice(0, i),
+        ...state.slice(i + 1)
+      ];
     default:
       return state;
   }
 }
 
 function todos(state = [], action) {
+  if (action.type === "ADD_TODO") {
+    action.id = state.nextTodoID;
+  }
   if (state.lists) {
     return {
       ...state,
@@ -27,7 +40,9 @@ function todos(state = [], action) {
             return { [key]: value };
           }
         })
-      )
+      ),
+      nextTodoID: action.type === "ADD_TODO" ? action.id + 1 : state.nextTodoID,
+      editingTodoID: action.type === "BEGIN_EDIT_TODO" ? action.id : 0
     };
   }
   return state;

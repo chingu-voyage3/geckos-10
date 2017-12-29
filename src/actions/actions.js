@@ -34,3 +34,12 @@ export function editTodo(list, id, newValue) {
     value: newValue
   };
 }
+
+
+export function beginEditTodo(list, id) {
+  return {
+    type: "BEGIN_EDIT_TODO",
+    list: list,
+    id: id,
+  };
+}
