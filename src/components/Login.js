@@ -34,8 +34,6 @@ class Login extends Component {
   }
 
   authWithFacebook() {
-    //can't log in with facebook, when already logged into different provider with same email.
-    //change error catching method to use app.auth().fetchProvidersForEmail
     app.auth().signInWithPopup(facebookProvider).then((result, error) => {
       if (error) {
         this.toaster.show({ intent: Intent.DANGER, message: error.message })

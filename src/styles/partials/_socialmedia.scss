@@ -1,0 +1,16 @@
+#facebook {
+    margin: 30px;
+}
+
+#facebookContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+    grid-auto-rows: minmax(200px, auto-fit);
+    grid-auto-flow: dense;
+}
+
+.FBfeedItem {
+    border: black solid 1px;
+    margin: 5px;
+    padding: 10px;
+}
