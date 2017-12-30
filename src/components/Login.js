@@ -22,7 +22,10 @@ class Login extends Component {
       } else {
         // const token = result.credential.accessToken;
         // let user = result.user;
-        // console.log(user);
+        // let key = result.user.G;
+        // console.log(result);
+        // let calendarKey = result.credential.idToken;
+        // console.log(calendarKey);
 
 
         this.setState({

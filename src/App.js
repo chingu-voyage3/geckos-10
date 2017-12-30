@@ -3,10 +3,14 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { app } from './store/store';
 import { Spinner } from '@blueprintjs/core';
 
+
+
 import Login from './components/Login';
 import Logout from './components/Logout';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import Calendar from './components/Calendar';
+
 
 class App extends Component {
   constructor() {
@@ -16,16 +20,24 @@ class App extends Component {
       loading: true,
       email: '',
       name: '',
+      events: [],
+      token: '',
+      calendarKey: '',
     }
   }
+
+
+
 
   componentWillMount() {
     this.removeAuthListener = app.auth().onAuthStateChanged((user) => {
       if (user) {
+        console.log(user);
         this.setState({
           authenticated: true,
           loading: false,
           name: user.email,
+          token: user.G,
         })
       } else {
         this.setState({
@@ -34,6 +46,7 @@ class App extends Component {
         })
       }
     })
+
   }
 
   componentWillUnMount() {
@@ -57,7 +70,9 @@ class App extends Component {
             <Switch>
               <Route exact path="/todo" component="" />
               <Route path="/social" component="" />
-              <Route path="/calendar" component="" />
+              <Route path="/calendar" render={() => (
+                <Calendar {...this.state} />
+              )} />
               <Route path="/weather" component="" />
               <Route exact path="/login" component={Login} />
               <Route exact path="/logout" component={Logout} />
