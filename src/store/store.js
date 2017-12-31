@@ -6,7 +6,7 @@ import { rootReducer } from "../reducers/index";
 import todos from "../data/todoSampleData";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyA6smUss1Pst2Asvk1idmVOTBArTnv4GiM",
+  apiKey: "AIzaSyBJlE_NH1WuT-7lrGNpoE-3snfzV_BCaIU",
   authDomain: "geckos-10-tab.firebaseapp.com",
   databaseURL: "https://geckos-10-tab.firebaseio.com",
   projectId: "geckos-10-tab",
