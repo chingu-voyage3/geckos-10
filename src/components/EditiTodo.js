@@ -21,8 +21,7 @@ class EditTodo extends Component {
         this.message.textContent = "";
       } else if (this.input.value !== "" && this.input.value.length < 5) {
         this.message.textContent = "Less than 5 characters";
-      }
-      else {
+      } else {
         this.message.textContent = "";
       }
     }

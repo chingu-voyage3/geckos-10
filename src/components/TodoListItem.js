@@ -8,6 +8,11 @@ class TodoListItem extends Component {
     event.preventDefault();
     this.props.beginEditTodo(this.props.displayName, this.props.id);
   };
+  handleMove = event => {
+    event.preventDefault();
+    let target = this.props.displayName === "Not Done" ? "Done" : "Not Done";
+    this.props.moveTodo(target, this.props.id, this.props.value);
+  };
   handleDelete = event => {
     event.preventDefault();
     this.props.removeTodo(this.props.displayName, this.props.id);
@@ -45,11 +50,27 @@ class TodoListItem extends Component {
       </button>
       : false;
 
+    var moveButton = (
+      <button
+        onClick={this.handleMove}
+        style={{
+          background: "transparent",
+          border: "none",
+          cursor: "pointer",
+          outline: "none",
+          float: "right"
+        }}
+      >
+        {this.props.displayName === "Not Done" ? "\u21E8" : "\u21E6"}
+      </button>
+    );
+
     return (
       <section className="todoListItem">
         {editButton}
         {commentTxt}
         {deleteButton}
+        {!this.props.editing && moveButton}
       </section>
     );
   }
@@ -61,6 +82,7 @@ TodoListItem.propTypes = {
   editing: PropTypes.bool,
   beginEditTodo: PropTypes.func,
   removeTodo: PropTypes.func,
+  moveTodo: PropTypes.func,
   id: PropTypes.number
 };
 

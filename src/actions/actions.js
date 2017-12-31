@@ -17,10 +17,11 @@ export function removeTodo(list, id) {
 }
 
 // move todo
-export function moveTodo(id, target) {
+export function moveTodo(target, id, value) {
   return {
     type: "MOVE_TODO",
     id: id,
+    value: value,
     target: target
   };
 }
@@ -35,11 +36,10 @@ export function editTodo(list, id, newValue) {
   };
 }
 
-
 export function beginEditTodo(list, id) {
   return {
     type: "BEGIN_EDIT_TODO",
     list: list,
-    id: id,
+    id: id
   };
 }

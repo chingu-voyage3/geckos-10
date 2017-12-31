@@ -32,10 +32,29 @@ function todos(state = [], action) {
       ...state,
       lists: Object.assign(
         ...Object.entries(state.lists).map(([key, value]) => {
-          if (key === action.list) {
-            return { [key]: todoList(value, action) };
+          if (action.type === "MOVE_TODO") {
+            if (key === action.target) {
+              return {
+                [key]: todoList(value, {
+                  type: "ADD_TODO",
+                  id: action.id,
+                  value: action.value
+                })
+              };
+            } else {
+              return {
+                [key]: todoList(value, {
+                  type: "REMOVE_TODO",
+                  id: action.id
+                })
+              };
+            }
           } else {
-            return { [key]: value };
+            if (key === action.list) {
+              return { [key]: todoList(value, action) };
+            } else {
+              return { [key]: value };
+            }
           }
         })
       ),
