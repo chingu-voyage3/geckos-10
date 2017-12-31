@@ -9,12 +9,9 @@ import Login from './components/Login';
 import Logout from './components/Logout';
 import Header from './components/Header';
 import Footer from './components/Footer';
-<<<<<<< HEAD
 import Calendar from './components/Calendar';
 
-=======
 import TodoApp from "./components/TodoApp";
->>>>>>> 04890983bf8b6857d32a1b3915a4bf1fc3331501
 
 class App extends Component {
   constructor() {
@@ -72,19 +69,12 @@ class App extends Component {
           <Header {...this.state} />
           <div>
             <Switch>
-<<<<<<< HEAD
-              <Route exact path="/todo" component="" />
               <Route path="/social" component="" />
               <Route path="/calendar" render={() => (
                 <Calendar {...this.state} />
               )} />
               <Route path="/weather" component="" />
-=======
               <Route exact path="/todo" component={TodoApp} />
-              {false && <Route path="/social" component="" />}
-              {false && <Route path="/calendar" component="" />}
-              {false && <Route path="/weather" component="" />}
->>>>>>> 04890983bf8b6857d32a1b3915a4bf1fc3331501
               <Route exact path="/login" component={Login} />
               <Route exact path="/logout" component={Logout} />
             </Switch>

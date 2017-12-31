@@ -502,12 +502,11 @@ p {
   top: 25%;
   left: 50%; }
 
-<<<<<<< HEAD
 .google-cal {
   border: 0;
   width: 800px;
   height: 600px; }
-=======
+
 .todoTab {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -534,4 +533,3 @@ p {
   padding: 10px 0 0 15px;
   margin-left: 20px;
   margin-right: 20px; }
->>>>>>> 04890983bf8b6857d32a1b3915a4bf1fc3331501

@@ -1,7 +1,5 @@
-<<<<<<< HEAD
 // import { firebaseRef } from "../store/store";
 
-=======
 // add todo
 export function addTodo(list, value) {
   return {
@@ -47,4 +45,3 @@ export function beginEditTodo(list, id) {
     id: id
   };
 }
->>>>>>> 04890983bf8b6857d32a1b3915a4bf1fc3331501
