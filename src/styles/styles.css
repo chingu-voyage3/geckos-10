@@ -502,7 +502,36 @@ p {
   top: 25%;
   left: 50%; }
 
+<<<<<<< HEAD
 .google-cal {
   border: 0;
   width: 800px;
   height: 600px; }
+=======
+.todoTab {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  width: 100%;
+  height: 100%;
+  padding: 35px;
+  grid-column-gap: 35px; }
+
+.todoList {
+  line-height: 1.5;
+  font-weight: bold;
+  display: grid;
+  grid-template-rows: 40px repeat(10, 1fr);
+  border: 1px solid lightgray;
+  background: darkgray; }
+
+.todoList header {
+  padding: 10px 0 0 15px; }
+
+.todoList .todoListItem {
+  border: 1px solid lightgray;
+  border-bottom: 1px solid darkgray;
+  background: white;
+  padding: 10px 0 0 15px;
+  margin-left: 20px;
+  margin-right: 20px; }
+>>>>>>> 04890983bf8b6857d32a1b3915a4bf1fc3331501
