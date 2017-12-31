@@ -8,14 +8,16 @@ class TodoList extends Component {
     return (
       <div className="todoList">
         <header>{this.props.displayName}</header>
-        {this.props.lists[this.props.displayName].map((todo, index) =>
-          <TodoListItem
-            key={index}
-            editing={this.props.editingTodoID === todo.id}
-            {...todo}
-            {...this.props}
-          />
-        )}
+        {this.props.lists[this.props.displayName].map((todo, index) => {
+          return (
+            <TodoListItem
+              key={index}
+              editing={this.props.editingTodoID === todo.id}
+              {...todo}
+              {...this.props}
+            />
+          );
+        })}
         <TodoListItem editing addNewTodo {...this.props} />
       </div>
     );
@@ -24,9 +26,8 @@ class TodoList extends Component {
 
 TodoList.propTypes = {
   displayName: PropTypes.string,
-  lists: PropTypes.array,
-  editingTodoID: PropTypes.number,
-  editTodo: PropTypes.funct
+  lists: PropTypes.object,
+  editingTodoID: PropTypes.number
 };
 
 export default TodoList;

@@ -58,7 +58,7 @@ EditTodo.propTypes = {
   editing: PropTypes.bool,
   addNewTodo: PropTypes.bool,
   addTodo: PropTypes.func,
-  editTodo: PropTypes.funct,
+  editTodo: PropTypes.func,
   id: PropTypes.number
 };
 
