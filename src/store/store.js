@@ -34,7 +34,7 @@ const firebaseRef = firebase.database().ref();
 
 // Create store with reducers and initial state .
 const initialState = {
-  todos: { nextTodoID: 0, lists: todos }
+  todos: { nextTodoID: 100, lists: todos }
 }
 const store = createStoreWithFirebase(rootReducer, initialState)
 
