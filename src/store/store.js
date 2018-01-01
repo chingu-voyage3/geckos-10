@@ -30,8 +30,11 @@ const createStoreWithFirebase = compose(
 
 const googleProvider = new firebase.auth.GoogleAuthProvider();
 const facebookProvider = new firebase.auth.FacebookAuthProvider();
+//ask for additional permissions
 facebookProvider.addScope('user_posts');
-//facebookProvider.addScope('publish_actions');
+facebookProvider.addScope('user_photos');
+facebookProvider.addScope('publish_actions');
+
 const firebaseRef = firebase.database().ref();
 
 

@@ -502,10 +502,15 @@ p {
   top: 25%;
   left: 50%; }
 
+#SocialMedia {
+  margin-top: 50px; }
+
 #facebook {
   margin: 30px; }
+  #facebook h1, #facebook h2, #facebook h3 {
+    color: #39518F; }
 
-#facebookContainer {
+#facebookFeedContainer {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   grid-auto-rows: minmax(200px, auto-fit);
@@ -514,4 +519,20 @@ p {
 .FBfeedItem {
   border: black solid 1px;
   margin: 5px;
-  padding: 10px; }
+  padding: 10px;
+  border-radius: 5px; }
+
+.postDate {
+  color: #7E828A;
+  font-size: 11px;
+  font-style: italic;
+  margin: 10px 0 10px 0; }
+
+.postMessage {
+  margin: 5px; }
+
+.FBbtn {
+  background-color: #39518F;
+  color: white;
+  margin: 5px;
+  padding: 3px; }
