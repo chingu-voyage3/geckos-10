@@ -9,7 +9,8 @@ import Login from './components/Login';
 import Logout from './components/Logout';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import Calendar from './components/Calendar';
+import AddEvent from './components/AddEventForm';
+import EventList from './containers/EventList';
 
 import TodoApp from "./components/TodoApp";
 
@@ -21,24 +22,21 @@ class App extends Component {
       loading: true,
       email: '',
       name: '',
-      events: [],
-      token: '',
-      calendarKey: '',
+      uid: '',
     }
   }
-
 
 
 
   componentWillMount() {
     this.removeAuthListener = app.auth().onAuthStateChanged((user) => {
       if (user) {
-        console.log(user);
+        console.log(user.uid);
         this.setState({
           authenticated: true,
           loading: false,
           name: user.email,
-          token: user.G,
+          uid: user.uid
         })
       } else {
         this.setState({
@@ -70,9 +68,13 @@ class App extends Component {
           <div>
             <Switch>
               <Route path="/social" component="" />
-              <Route path="/calendar" render={() => (
-                <Calendar {...this.state} />
+              <Route exact path="/calendar" render={() => (
+                <EventList {...this.state} />
               )} />
+              <Route path="/calendar/new" render={() => (
+                <AddEvent {...this.state} />
+              )} />
+
               <Route path="/weather" component="" />
               <Route exact path="/todo" component={TodoApp} />
               <Route exact path="/login" component={Login} />
@@ -85,5 +87,6 @@ class App extends Component {
     );
   }
 }
+
 
 export default App;

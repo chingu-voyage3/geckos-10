@@ -24,12 +24,11 @@ class Login extends Component {
         //console.log(error);
       } else {
         // const token = result.credential.accessToken;
-        // let user = result.user;
+        // let UID = result.user.uid;
         // let key = result.user.G;
-        // console.log(result);
+        // console.log(UID);
         // let calendarKey = result.credential.idToken;
         // console.log(calendarKey);
-
         this.setState({
           redirect: true
         });
