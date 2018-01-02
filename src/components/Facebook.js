@@ -2,11 +2,8 @@
 //can also reference FB as window.FB
 
 /*ISSUES
-* Add indictor that refresh is working if there are no new posts.
-* How to get photos associated with posts
 * Handle instances when user is not logged into facebook (?)
-* Works even after I logged out of facebook and into different account
-* find user's locality for date
+* find user's locality for date, currently using en-us
 
 */
 
@@ -16,17 +13,17 @@ Some of the permissions below have not been approved for use by Facebook.
 Submit for review now or learn more. */
 
 import React, { Component } from 'react';
+import TimeAgo from 'react-timeago';
 
 
 class FBfeedItem extends Component {
     render () {
-        var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour:'2-digit', minute:'2-digit'};
         var postDate = new Date(this.props.date);
 
         return(
             <div className="FBfeedItem">
                 <div className="postStory">{this.props.story}</div>
-                <div className="postDate">{postDate.toLocaleDateString("en-US",options)}</div>
+                <div className="postDate">{postDate.toLocaleDateString(this.props.locale,this.props.timeFormat)}</div>
                 <div className="postMessage">{this.props.message}</div>
             </div>
         );
@@ -63,7 +60,10 @@ class FacebookFeed extends Component {
             FBauthenticated: this.props.FBauthenticated,
             FBfeed: [], //stores fb post info
             refresh: true, //indicates whether app should make an api call to get post data
-        }
+            refreshTimeStamp: '',
+        };
+        this.timeFormat = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour:'2-digit', minute:'2-digit'};
+        this.locale = 'en-US';
     }
 
     renderFBfeed() {
@@ -76,6 +76,8 @@ class FacebookFeed extends Component {
                         date={FBitem.created_time}
                         message={FBitem.message}
                         story={FBitem.story}
+                        timeFormat={this.timeFormat}
+                        locale={this.locale}
                     />
                 )}
             </div>
@@ -86,14 +88,15 @@ class FacebookFeed extends Component {
         //run only if the FB feed needs to be refreshed
         if (this.state.refresh){
             FB.api(
-                "/"+ this.state.FBuid +"/feed",
+                "/me/feed",
                 function (response) {
                 if (response && !response.error) {
                     
-                    console.log(response.data);
+                    console.log(response);
                     this.setState({
                         FBfeed: response.data,
                         refresh: false,
+                        refreshTimeStamp: new Date().getTime(),
                     });
     
                 }
@@ -122,13 +125,19 @@ class FacebookFeed extends Component {
                 {this.state.FBauthenticated ? 
                     //If authenticated
                     <div id="facebook">
-                    <h2>Facebook Feed</h2>
-                    <PostToFB />
-                    <button className="FBbtn"
-                            onClick={this.refreshFeed}>
-                            Refresh Feed
-                    </button>
-                    {this.renderFBfeed()}
+                        <h2>Facebook Feed</h2>
+                        <PostToFB />
+                        <button className="FBbtn"
+                                onClick={this.refreshFeed}>
+                                Refresh Feed
+                        </button>
+                        <p className='postDate'>Updated {' '}  
+                            <TimeAgo 
+                                date={this.state.refreshTimeStamp}
+                                //The minimum number of seconds that the component should wait before updating 
+                                minPeriod='5' />
+                        </p>
+                        {this.renderFBfeed()}
                     </div>
                 :
                 //if not authenticated
