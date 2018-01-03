@@ -7,6 +7,7 @@ import Login from './components/Login';
 import Logout from './components/Logout';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import Weather from './components/Weather';
 
 class App extends Component {
   constructor() {
@@ -58,7 +59,7 @@ class App extends Component {
               <Route exact path="/todo" component="" />
               <Route path="/social" component="" />
               <Route path="/calendar" component="" />
-              <Route path="/weather" component="" />
+              <Route path="/weather" component={Weather} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/logout" component={Logout} />
             </Switch>
