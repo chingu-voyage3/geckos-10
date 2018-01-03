@@ -6,6 +6,13 @@ const calendarEvents = [{
   'description': 'Does this work?',
 },
 {
+  'title': 'Hello',
+  'allDay': true,
+  'start': new Date(2018, 2, 1),
+  'end': new Date(2018, 2, 3),
+  'description': 'Does this work?',
+},
+{
   'title': 'Test 2',
   'allDay': true,
   'start': new Date(2018, 1, 5),

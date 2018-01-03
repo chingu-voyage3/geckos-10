@@ -40,18 +40,14 @@ class AddEvent extends Component {
         <div>
           <label className='pt-label'>Start
           </label>
-          <Field className='pt-input' name='start' component={renderInput} type='datetime-local' />
+          <Field className='pt-input' name='startDate' component={renderInput} type='date' />
+          <Field className='pt-input' name='startTime' component={renderInput} type='time' />
         </div>
         <div>
           <label className='pt-label'>End
           </label>
-          <Field className='pt-input' name='end' component={renderInput} type='datetime-local' />
-          {/* <Field className='pt-input' name='end' component={renderInput} type='time' /> */}
-        </div>
-        <div>
-          <label className='pt-label'>All Day?
-          </label>
-          <Field className='pt-input' name='allDay' component={renderInput} type='checkbox' />
+          <Field className='pt-input' name='endDate' component={renderInput} type='date' />
+          <Field className='pt-input' name='endTime' component={renderInput} type='time' />
         </div>
         <button type='submit' className='pt-button pt-intent-primary'>Submit</button>
       </Form>

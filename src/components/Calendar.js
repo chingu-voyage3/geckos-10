@@ -4,6 +4,7 @@ import BigCalendar from 'react-big-calendar';
 import { Link } from 'react-router-dom';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import { dbRefEvents } from '../store/store';
+import calendarEvents from '../data/calendarEventsSampleData';
 
 BigCalendar.momentLocalizer(moment);
 
@@ -14,15 +15,32 @@ class Calendar extends Component {
     this.state = {
       events: [],
     };
+    this.handleSelectEvent = this.handleSelectEvent.bind(this);
   }
+
+  handleSelectEvent(event) {
+    console.log('it works!');
+    console.log(event);
+  }
+
   componentDidMount() {
 
     const snapshotToArray = snapshot => {
       let eventsArr = [];
       snapshot.forEach(childSnapshot => {
         let item = childSnapshot.val();
+        console.log(item);
         item.key = childSnapshot.key;
-        eventsArr.push(item);
+
+        let modEvent = {
+          title: item.title,
+          description: item.description,
+          location: item.location,
+          start: new Date(`${item.startDate}  ${item.startTime}`),
+          end: new Date(`${item.endDate}  ${item.endTime}`),
+        }
+        console.log(modEvent);
+        eventsArr.push(modEvent);
       });
       this.setState({
         events: eventsArr,
@@ -42,7 +60,7 @@ class Calendar extends Component {
       <div>
         <div>
 
-          <BigCalendar style={{ height: '420px', marginTop: '10vh', marginRight: '5vh', marginLeft: '5vh' }} events={this.state.events} views={allViews} selectable={true} />
+          <BigCalendar style={{ height: '420px', marginTop: '10vh', marginRight: '5vh', marginLeft: '5vh' }} events={this.state.events} views={allViews} selectable={true} onSelectEvent={(event) => this.handleSelectEvent(event)} />
 
           <Link to='/calendar/new'>Add Event</Link>
           <button>Update Event</button>

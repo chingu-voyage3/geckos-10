@@ -19,7 +19,10 @@ export const getEvents = () => {
 
 //add event
 export function addCalendarEvent(event) {
-  return dispatch => dbRefEvents.push(event);
+  return dispatch => {
+    console.log(event);
+    dbRefEvents.push(event);
+  }
 }
 
 //remove event
