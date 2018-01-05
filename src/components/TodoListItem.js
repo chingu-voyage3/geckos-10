@@ -83,7 +83,7 @@ TodoListItem.propTypes = {
   beginEditTodo: PropTypes.func,
   removeTodo: PropTypes.func,
   moveTodo: PropTypes.func,
-  id: PropTypes.number
+  id: PropTypes.string
 };
 
 export default TodoListItem;
