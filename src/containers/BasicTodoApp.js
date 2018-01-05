@@ -1,12 +1,11 @@
 ﻿import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as actionCreators from "../actions/actions";
-import TodoList from "../components/TodoList";
+import TodoApp from "../components/TodoApp";
 
 const mapStateToProps = state => {
   return {
-    lists: state.todos.lists,
-    nextTodoID: state.todos.nextTodoID,
+    todoList: state.todos.todoList, // Not used, but left in for future use
     editingTodoID: state.todos.editingTodoID
   };
 };
@@ -15,6 +14,6 @@ const mapDispatchToProps = dispatch => {
   return bindActionCreators(actionCreators, dispatch);
 };
 
-const EditableTodoList = connect(mapStateToProps, mapDispatchToProps)(TodoList);
+const BasicTodoApp = connect(mapStateToProps, mapDispatchToProps)(TodoApp);
 
-export default EditableTodoList;
+export default BasicTodoApp;

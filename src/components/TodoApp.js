@@ -1,12 +1,24 @@
 ﻿import React, { Component } from "react";
-import EditableTodoList from "../containers/EditableTodoList";
+import { Redirect } from "react-router-dom";
+import TodoList from "./TodoList";
 
 class TodoApp extends Component {
   render() {
+    if (!firebase.auth().currentUser) {
+      return <Redirect to="/login" />;
+    }
     return (
       <div className="todoTab">
-        <EditableTodoList name="not-done" displayName="Not Done" />
-        <EditableTodoList name="done" displayName="Done" />
+        <TodoList
+          name="not-done"
+          displayName="Not Done"
+          {...this.props}
+        />
+        <TodoList
+          name="done"
+          displayName="Done"
+          {...this.props}
+        />
       </div>
     );
   }

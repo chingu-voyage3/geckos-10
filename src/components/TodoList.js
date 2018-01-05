@@ -27,7 +27,7 @@ class TodoList extends Component {
 TodoList.propTypes = {
   displayName: PropTypes.string,
   lists: PropTypes.object,
-  editingTodoID: PropTypes.number
+  editingTodoID: PropTypes.string,
 };
 
 export default TodoList;
