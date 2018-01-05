@@ -5,12 +5,11 @@ import { reducer as formReducer } from 'redux-form'
 import {
 } from '../actions/actions'
 
-import calendarEventsReducer from "./calendarEvents";
 import todoAppReducer from "./todosReducer";
 
 export const rootReducer = combineReducers({
   //TODO: Add reducers here
   todos: todoAppReducer,
+  form: formReducer,
   firebase: firebaseStateReducer,
-  calendarEvents: calendarEventsReducer,
 });

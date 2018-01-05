@@ -5,8 +5,6 @@ import { rootReducer } from "../reducers/index";
 import thunk from 'redux-thunk';
 
 
-import todos from "../data/todoSampleData";
-
 export const firebaseConfig = {
   apiKey: "AIzaSyBJlE_NH1WuT-7lrGNpoE-3snfzV_BCaIU",
   authDomain: "geckos-10-tab.firebaseapp.com",
