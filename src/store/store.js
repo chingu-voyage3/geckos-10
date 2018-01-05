@@ -34,16 +34,13 @@ const createStoreWithFirebase = compose(
 const googleProvider = new firebase.auth.GoogleAuthProvider();
 googleProvider.addScope('https://www.googleapis.com/auth/calendar')
 const firebaseRef = firebase.database().ref();
-const dbRefUsers = firebaseRef.child(`users`);
-const dbRefEvents = dbRefUsers.child('events');
 
 
 
 // Create store with reducers and initial state .
 const initialState = {
   todos: { nextTodoID: 100, lists: todos },
-  // calendarEvents: dbRefEvents,
 }
 const store = createStoreWithFirebase(rootReducer, initialState, applyMiddleware(thunk));
 
-export { app, googleProvider, store, firebaseRef, dbRefEvents }
+export { app, googleProvider, store, firebaseRef }

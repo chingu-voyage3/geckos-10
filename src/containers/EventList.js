@@ -6,7 +6,7 @@ import Calendar from '../components/Calendar';
 
 function mapStateToProps(state) {
   return {
-    calendarEvents: state.calendarEvents,
+    events: state.calendarEvents,
   }
 }
 

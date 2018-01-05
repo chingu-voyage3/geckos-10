@@ -1,43 +1,33 @@
 // import axios from 'axios';
-import { dbRefEvents } from '../store/store';
+import firebase from 'firebase';
 
 
 
-// get events
-export const GET_EVENTS = 'GET_EVENTS';
-export const getEvents = () => {
-  return dispatch => {
-    dbRefEvents
-      .on('value', snapshot => {
-        dispatch({
-          type: GET_EVENTS,
-          payload: snapshot.val()
-        });
-      });
-  };
-}
 
 //add event
 export function addCalendarEvent(event) {
   return dispatch => {
     console.log(event);
-    dbRefEvents.push(event);
+    firebase
+      .database()
+      .ref(`users/events/${firebase.auth().currentUser.uid}`)
+      .push(event);
   }
 }
 
 //remove event
 export function removeCalendarEvent(key) {
-  return dispatch => dbRefEvents.child(key).remove();
+  return dispatch => firebase.database().ref(`users/events/${firebase.auth().currentUser.uid}`).child(key).remove();
 }
 
-//edit event
-export const EDIT_EVENT = 'EDIT_EVENT';
-export function editEvent(eventId) {
-  return {
-    type: EDIT_EVENT,
-    eventId,
-  }
-}
+// //edit event
+// export const EDIT_EVENT = 'EDIT_EVENT';
+// export function editEvent(eventId) {
+//   return {
+//     type: EDIT_EVENT,
+//     eventId,
+//   }
+// }
 
 // add todo
 export function addTodo(list, value) {
