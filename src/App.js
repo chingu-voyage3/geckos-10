@@ -11,8 +11,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import AddEvent from './components/AddEventForm';
 import EventList from './containers/EventList';
-
-import TodoApp from "./components/TodoApp";
+import BasicTodoApp from "./containers/BasicTodoApp";
 
 class App extends Component {
   constructor() {
@@ -76,7 +75,7 @@ class App extends Component {
               )} />
 
               <Route path="/weather" component="" />
-              <Route exact path="/todo" component={TodoApp} />
+              <Route exact path="/todo" component={BasicTodoApp} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/logout" component={Logout} />
             </Switch>

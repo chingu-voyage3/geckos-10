@@ -42,17 +42,15 @@ export function addTodo(list, value) {
 export function removeTodo(list, id) {
   return {
     type: "REMOVE_TODO",
-    list: list,
     id: id
   };
 }
 
 // move todo
-export function moveTodo(target, id, value) {
+export function moveTodo(target, id) {
   return {
     type: "MOVE_TODO",
     id: id,
-    value: value,
     target: target
   };
 }
@@ -61,7 +59,6 @@ export function moveTodo(target, id, value) {
 export function editTodo(list, id, newValue) {
   return {
     type: "EDIT_TODO",
-    list: list,
     id: id,
     value: newValue
   };
@@ -70,7 +67,6 @@ export function editTodo(list, id, newValue) {
 export function beginEditTodo(list, id) {
   return {
     type: "BEGIN_EDIT_TODO",
-    list: list,
     id: id
   };
 }

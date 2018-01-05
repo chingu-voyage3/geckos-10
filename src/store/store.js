@@ -23,13 +23,12 @@ const config = {
 };
 
 // initialize firebase instance
-const app = firebase.initializeApp(firebaseConfig)
-
+const app = firebase.initializeApp(firebaseConfig);
 
 // Add reduxReduxFirebase enhancer when making store creator
 const createStoreWithFirebase = compose(
-  reactReduxFirebase(firebaseConfig, config), // firebase instance as first argument
-)(createStore)
+  reactReduxFirebase(firebaseConfig, config) // firebase instance as first argument
+)(createStore);
 
 const googleProvider = new firebase.auth.GoogleAuthProvider();
 googleProvider.addScope('https://www.googleapis.com/auth/calendar')
@@ -38,9 +37,7 @@ const firebaseRef = firebase.database().ref();
 
 
 // Create store with reducers and initial state .
-const initialState = {
-  todos: { nextTodoID: 100, lists: todos },
-}
+const initialState = {};
 const store = createStoreWithFirebase(rootReducer, initialState, applyMiddleware(thunk));
 
-export { app, googleProvider, store, firebaseRef }
+export { app, googleProvider, store, firebaseRef };
