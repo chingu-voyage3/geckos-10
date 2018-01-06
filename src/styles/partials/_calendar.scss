@@ -1,5 +1,24 @@
-.google-cal {
-  border: 0;
-  width: 800px;
-  height: 600px;
+.calendarComponent button a {
+  color: $white;
+}
+
+.calendarComponent .bigCalendar {
+  height: 420px;
+  margin-top: 10vh;
+  margin-right: $five;
+  margin-left: $five;
+}
+
+.calendarComponent .add-event {
+  margin-left: $five;
+  margin-top: $two;
+}
+
+.calendarComponent .popover {
+  margin-top: $two;
+  margin-left: 1vw;
+}
+
+.pt-popover-content .pt-button .remove-button {
+  margin-left: $two;
 }

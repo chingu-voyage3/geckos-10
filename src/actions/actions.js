@@ -1,33 +1,28 @@
 // import axios from 'axios';
 import firebase from 'firebase';
-
-
+import { Redirect } from 'react-router-dom';
+import React from 'react';
 
 
 //add event
 export function addCalendarEvent(event) {
   return dispatch => {
     console.log(event);
-    firebase
+    let eventPost = firebase
       .database()
       .ref(`users/events/${firebase.auth().currentUser.uid}`)
       .push(event);
+    let postId = eventPost.key;
+    console.log(postId);
+    <Redirect to='/calendar' />
   }
 }
 
 //remove event
 export function removeCalendarEvent(key) {
+  console.log('hi from actions');
   return dispatch => firebase.database().ref(`users/events/${firebase.auth().currentUser.uid}`).child(key).remove();
 }
-
-// //edit event
-// export const EDIT_EVENT = 'EDIT_EVENT';
-// export function editEvent(eventId) {
-//   return {
-//     type: EDIT_EVENT,
-//     eventId,
-//   }
-// }
 
 // add todo
 export function addTodo(list, value) {

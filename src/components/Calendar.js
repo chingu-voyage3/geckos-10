@@ -3,11 +3,11 @@ import moment from 'moment'
 import BigCalendar from 'react-big-calendar';
 import { Link, Redirect } from 'react-router-dom';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
-// import { dbRefEvents } from '../store/store';
-// import calendarEvents from '../data/calendarEventsSampleData';
 import { firebase } from '@firebase/app';
+import PopoverModal from './Popover';
 
 BigCalendar.momentLocalizer(moment);
+
 
 
 class Calendar extends Component {
@@ -15,20 +15,26 @@ class Calendar extends Component {
     super(props)
     this.state = {
       events: [],
+      isSelected: false,
+      currentEvent: {},
     };
     this.handleSelectEvent = this.handleSelectEvent.bind(this);
   }
 
+
   handleSelectEvent(event) {
     console.log('it works!');
-    console.log(event);
+    let currentEvent = event;
+    this.setState({ currentEvent: currentEvent, isSelected: true });
+    console.log(this.state.currentEvent);
+
   }
 
   componentDidMount() {
     if (firebase.auth().currentUser) {
       let userEventsRef = firebase
         .database()
-        .ref(`users/events/${firebase.auth().currentUser.uid}`);
+        .ref(`users/events/${firebase.auth().currentUser.uid}/`);
 
 
       const snapshotToArray = snapshot => {
@@ -37,12 +43,16 @@ class Calendar extends Component {
           let item = childSnapshot.val();
           console.log(item);
           let modEvent = {
+            id: snapshot.node_.children_.root_.key,
             title: item.title,
             description: item.description,
             location: item.location,
             start: new Date(`${item.startDate}  ${item.startTime}`),
             end: new Date(`${item.endDate}  ${item.endTime}`),
-            id: `_${Math.random().toString(36).substr(2, 9)}`,
+            startDate: item.startDate,
+            startTime: item.startTime,
+            endDate: item.endDate,
+            endTime: item.endTime,
           }
           console.log(modEvent);
           eventsArr.push(modEvent);
@@ -64,13 +74,17 @@ class Calendar extends Component {
       return <Redirect to='/login' />;
     }
     let allViews = Object.keys(BigCalendar.Views).map(k => BigCalendar.Views[k]);
+
     return (
-      <div>
+      <div className='calendarComponent'>
         <div>
 
-          <BigCalendar style={{ height: '420px', marginTop: '10vh', marginRight: '5vh', marginLeft: '5vh' }} events={this.state.events} views={allViews} selectable={true} onSelectEvent={(event) => this.handleSelectEvent(event)} />
-
-          <Link to='/calendar/new'>Add Event</Link>
+          <BigCalendar className='bigCalendar'
+            events={this.state.events}
+            views={allViews} selectable={true}
+            onSelectEvent={this.handleSelectEvent} />
+          <button type='button' className='add-event pt-button pt-intent-primary'><Link to='/calendar/new'>Add Event</Link></button>
+          <PopoverModal {...this.state } />
         </div >
       </div>
     )

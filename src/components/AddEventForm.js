@@ -20,6 +20,8 @@ class AddEvent extends Component {
   componentDidMount() {
     console.log(firebase.auth().currentUser.uid);
   }
+
+
   render() {
 
     const { handleSubmit } = this.props;
