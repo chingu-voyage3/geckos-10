@@ -10,9 +10,7 @@ class SocialMedia extends Component {
     render () {
         return (
             <div id="SocialMedia">
-                <FacebookFeed   FBuid={this.props.FBuid}
-                                FBaccessToken={this.props.FBaccessToken}
-                                FBauthenticated={this.props.FBauthenticated} />
+                <FacebookFeed   {...this.props} />
             </div>
         );
     }

@@ -4,7 +4,6 @@
 /*ISSUES
 * Handle instances when user is not logged into facebook (?)
 * find user's locality for date, currently using en-us
-
 */
 
 /*After asking for post permission:
@@ -13,39 +12,11 @@ Some of the permissions below have not been approved for use by Facebook.
 Submit for review now or learn more. */
 
 import React, { Component } from 'react';
+import FBfeedItem from './FBfeedItem';
+import PostToFB from './PostToFB';
 import TimeAgo from 'react-timeago';
 
 
-class FBfeedItem extends Component {
-    render () {
-        var postDate = new Date(this.props.date);
-
-        return(
-            <div className="FBfeedItem">
-                <div className="postStory">{this.props.story}</div>
-                <div className="postDate">{postDate.toLocaleDateString(this.props.locale,this.props.timeFormat)}</div>
-                <div className="postMessage">{this.props.message}</div>
-            </div>
-        );
-    }
-}
-
-class PostToFB extends Component {
-    //incomplete
-    constructor(props) {
-        super(props)
-        this.state = {
-
-        }
-    }
-    render () {
-        return (
-            <div>
-                <button className="FBbtn">Post to Facebook</button>
-            </div>
-        );
-    }
-}
 
 class FacebookFeed extends Component {
 
@@ -73,9 +44,7 @@ class FacebookFeed extends Component {
                 {this.state.FBfeed.map( (FBitem, index) =>
                     <FBfeedItem  
                         key={FBitem.id}
-                        date={FBitem.created_time}
-                        message={FBitem.message}
-                        story={FBitem.story}
+                        FBitem={FBitem}
                         timeFormat={this.timeFormat}
                         locale={this.locale}
                     />
@@ -88,7 +57,7 @@ class FacebookFeed extends Component {
         //run only if the FB feed needs to be refreshed
         if (this.state.refresh){
             FB.api(
-                "/me/feed",
+                "/me/feed?fields=permalink_url,message,story,created_time,description,icon,picture",
                 function (response) {
                 if (response && !response.error) {
                     
@@ -99,6 +68,9 @@ class FacebookFeed extends Component {
                         refreshTimeStamp: new Date().getTime(),
                     });
     
+                }
+                else {
+                    console.log(response.error)
                 }
                 //The callback is made in a different context. You need to bind to this  
                 //in order to have access to this.setState inside the callback

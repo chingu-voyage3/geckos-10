@@ -50,7 +50,6 @@ class App extends Component {
             // the user's ID, a valid access token, a signed
             // request, and the time the access token 
             // and signed request each expire
-            console.log("FBID: "+response.authResponse.userID);
             this.setState({
                 FBuid: response.authResponse.userID,
                 FBaccessToken: response.authResponse.accessToken,
@@ -111,6 +110,7 @@ class App extends Component {
         </div>
       )
     }
+    
     return (
       <BrowserRouter>
         <div className="app">
@@ -118,9 +118,7 @@ class App extends Component {
           <div>
             <Switch>
               <Route exact path="/todo" component="" />
-              <Route path="/social" component={() => <SocialMedia FBuid={this.state.FBuid}
-                                                                  FBaccessToken={this.state.FBaccessToken}
-                                                                  FBauthenticated={this.state.FBauthenticated} />} />
+              <Route path="/social" component={() => <SocialMedia {...this.state} />} />
               <Route path="/calendar" component="" />
               <Route path="/weather" component="" />
               <Route exact path="/login" component={Login} />
