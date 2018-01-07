@@ -8,10 +8,18 @@ class PostToFB extends Component {
 
         }
     }
+
+    makePost(){
+        console.log("make post");
+    }
+
     render () {
         return (
             <div>
-                <button className="FBbtn">Post to Facebook</button>
+                <button className="FBbtn"
+                        onClick={this.makePost}>
+                    Post to Facebook
+                </button>
             </div>
         );
     }

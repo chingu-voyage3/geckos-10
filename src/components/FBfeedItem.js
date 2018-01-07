@@ -6,7 +6,7 @@ class FBfeedItem extends Component {
 
         return(
             <div className="FBfeedItem">
-                {
+                {//If the story exists
                     this.props.FBitem.story ?
                     <div className="postStory">{this.props.FBitem.story}</div>
                     :
@@ -18,11 +18,21 @@ class FBfeedItem extends Component {
                         {postDate.toLocaleDateString(this.props.locale,this.props.timeFormat)}
                     </a>
                 </div>
-                {
+                {//if the post has commentary from the poster
                     this.props.FBitem.message ? 
                     <div className="postMessage">{this.props.FBitem.message}</div> 
                     : 
                     "" 
+                }
+                {//if the link has a name
+                    this.props.FBitem.name ?
+                    <div>
+                        <a href={this.props.FBitem.link} target="_blank">
+                            {this.props.FBitem.name}
+                        </a>
+                    </div>
+                    :
+                    ""
                 }
                 {
                     this.props.FBitem.picture ?

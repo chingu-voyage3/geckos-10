@@ -15,6 +15,7 @@ import React, { Component } from 'react';
 import FBfeedItem from './FBfeedItem';
 import PostToFB from './PostToFB';
 import TimeAgo from 'react-timeago';
+import GetOlderPosts from './GetOlderPosts';
 
 
 
@@ -24,6 +25,7 @@ class FacebookFeed extends Component {
         super(props)
         this.getFBPosts = this.getFBPosts.bind(this);
         this.refreshFeed = this.refreshFeed.bind(this);
+        this.getOlderPosts = this.getOlderPosts.bind(this);
         this.state = {
             //login info passed down from app through socialmedia component
             FBaccessToken: this.props.FBaccessToken,
@@ -32,6 +34,8 @@ class FacebookFeed extends Component {
             FBfeed: [], //stores fb post info
             refresh: true, //indicates whether app should make an api call to get post data
             refreshTimeStamp: '',
+            pagePrev: '',
+            pageNext: '',
         };
         this.timeFormat = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour:'2-digit', minute:'2-digit'};
         this.locale = 'en-US';
@@ -57,7 +61,7 @@ class FacebookFeed extends Component {
         //run only if the FB feed needs to be refreshed
         if (this.state.refresh){
             FB.api(
-                "/me/feed?fields=permalink_url,message,story,created_time,description,icon,picture",
+                "/me/feed?fields=permalink_url,message,story,created_time,description,picture,link,name,status_type",
                 function (response) {
                 if (response && !response.error) {
                     
@@ -66,6 +70,8 @@ class FacebookFeed extends Component {
                         FBfeed: response.data,
                         refresh: false,
                         refreshTimeStamp: new Date().getTime(),
+                        pagePrev: response.paging.previous,
+                        pageNext: response.paging.next,
                     });
     
                 }
@@ -78,6 +84,31 @@ class FacebookFeed extends Component {
             );
         }
  
+    }
+
+
+    getOlderPosts(){
+        console.log("older posts");
+        FB.api(
+            this.state.pageNext,
+            function (response) {
+            if (response && !response.error) {
+                
+                console.log(response);
+                this.setState({
+                    FBfeed: this.state.FBfeed.concat(response.data),
+                    pagePrev: response.paging.previous,
+                    pageNext: response.paging.next,
+                });
+
+            }
+            else {
+                console.log(response.error)
+            }
+            //The callback is made in a different context. You need to bind to this  
+            //in order to have access to this.setState inside the callback
+            }.bind(this)
+        );
     }
 
     refreshFeed(){
@@ -98,7 +129,7 @@ class FacebookFeed extends Component {
                     //If authenticated
                     <div id="facebook">
                         <h2>Facebook Feed</h2>
-                        <PostToFB />
+                        <PostToFB {...this.state} />
                         <button className="FBbtn"
                                 onClick={this.refreshFeed}>
                                 Refresh Feed
@@ -110,6 +141,10 @@ class FacebookFeed extends Component {
                                 minPeriod='5' />
                         </p>
                         {this.renderFBfeed()}
+                        <button className="FBbtn"
+                                onClick={this.getOlderPosts}>
+                            See Older Posts
+                        </button>
                     </div>
                 :
                 //if not authenticated
