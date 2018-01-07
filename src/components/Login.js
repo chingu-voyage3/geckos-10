@@ -21,11 +21,6 @@ class Login extends Component {
         this.toaster.show({ intent: Intent.DANGER, message: "Unable to sign in with Google" })
         console.log(error);
       } else {
-        // const token = result.credential.accessToken;
-        // let user = result.user;
-        // console.log(user);
-
-
         this.setState({
           redirect: true,
         })
@@ -83,19 +78,19 @@ class Login extends Component {
     return (
       <div className='loginStyles' >
         <Toaster ref={(element) => { this.toaster = element }} />
-        < button 
-          className="pt-button pt-intent-primary" 
-          onClick={() => (this.authWithGoogle())}>   
+        < button
+          className="pt-button pt-intent-primary"
+          onClick={() => (this.authWithGoogle())}>
           Log In with Google
         </button >
-        < button 
-          className="pt-button pt-intent-primary" 
-          onClick={() => (this.authWithFacebook())}> 
+        < button
+          className="pt-button pt-intent-primary"
+          onClick={() => (this.authWithFacebook())}>
           Log In with Facebook
         </button >
         <hr className="login-form-hr" />
-        <form 
-          onSubmit={(event) => { this.authWithEmailPassword(event) }} 
+        <form
+          onSubmit={(event) => { this.authWithEmailPassword(event) }}
           ref={(form) => { this.loginForm = form }}>
           <div className="login-form pt-callout pt-icon-info-sign">
             <h5>Note</h5>
@@ -103,25 +98,25 @@ class Login extends Component {
           </div>
           <label className='pt-label'>
             Email
-            <input 
-              className="pt-input" 
-              name="email" 
-              type="email" 
-              ref={(input) => { this.emailInput = input }} 
+            <input
+              className="pt-input"
+              name="email"
+              type="email"
+              ref={(input) => { this.emailInput = input }}
               placeholder="Email" />
           </label>
           <label className='pt-label'>
             Password
-            <input 
-              className="pt-input" 
-              name="password" 
-              type="password" 
-              ref={(input) => { this.passwordInput = input }} 
+            <input
+              className="pt-input"
+              name="password"
+              type="password"
+              ref={(input) => { this.passwordInput = input }}
               placeholder="Password" />
           </label>
-          <input 
-            type="submit" 
-            className="pt-button pt-intent-primary" 
+          <input
+            type="submit"
+            className="pt-button pt-intent-primary"
             value='Log In/Register' />
         </form>
       </div >

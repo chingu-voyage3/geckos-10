@@ -1,21 +1,21 @@
 import React, { Component } from 'react';
 
 class FBfeedItem extends Component {
-    render () {
+    render() {
         var postDate = new Date(this.props.FBitem.created_time);
 
-        return(
+        return (
             <div className="FBfeedItem">
                 {//If the story exists
                     this.props.FBitem.story ?
-                    <div className="postStory">{this.props.FBitem.story}</div>
-                    :
-                    ""
+                        <div className="postStory">{this.props.FBitem.story}</div>
+                        :
+                        ""
                 }
-                
+
                 <div className="postDate">
                     <a href={this.props.FBitem.permalink_url} target="_blank">
-                        {postDate.toLocaleDateString(this.props.locale,this.props.timeFormat)}
+                        {postDate.toLocaleDateString(this.props.locale, this.props.timeFormat)}
                     </a>
                 </div>
                 {//if the post has commentary from the poster
@@ -36,9 +36,9 @@ class FBfeedItem extends Component {
                 }
                 {
                     this.props.FBitem.picture ?
-                    <img src={this.props.FBitem.picture}/>
-                    :
-                    ""
+                        <img alt='pulled from fb' src={this.props.FBitem.picture} />
+                        :
+                        ""
                 }
             </div>
         );
