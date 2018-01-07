@@ -17,6 +17,7 @@ class Calendar extends Component {
       events: [],
       isSelected: false,
       currentEvent: {},
+      redirectToNewPage: false,
     };
     this.handleSelectEvent = this.handleSelectEvent.bind(this);
   }
@@ -83,7 +84,7 @@ class Calendar extends Component {
             events={this.state.events}
             views={allViews} selectable={true}
             onSelectEvent={this.handleSelectEvent} />
-          <button type='button' className='add-event pt-button pt-intent-primary'><Link to='/calendar/new'>Add Event</Link></button>
+          <button type='button' className='add-event pt-button pt-intent-primary'><Link to={{ pathname: '/calendar/new' }}>Add Event</Link></button>
           <PopoverModal {...this.state } />
         </div >
       </div>

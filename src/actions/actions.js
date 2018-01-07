@@ -1,8 +1,5 @@
 // import axios from 'axios';
 import firebase from 'firebase';
-import { Redirect } from 'react-router-dom';
-import React from 'react';
-
 
 //add event
 export function addCalendarEvent(event) {
@@ -14,7 +11,6 @@ export function addCalendarEvent(event) {
       .push(event);
     let postId = eventPost.key;
     console.log(postId);
-    <Redirect to='/calendar' />
   }
 }
 

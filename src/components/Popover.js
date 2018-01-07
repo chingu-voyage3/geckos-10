@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Button, Intent, Popover, PopoverInteractionKind, Position } from '@blueprintjs/core';
-import { removeCalendarEvent } from '../actions/actions';
+// import { removeCalendarEvent } from '../actions/actions';
 import firebase from 'firebase';
-import { Redirect } from 'react-router-dom';
+// import { Redirect } from 'react-router-dom';
 
 class PopoverModal extends Component {
   constructor(props) {
@@ -15,7 +15,6 @@ class PopoverModal extends Component {
     let firebaseId = this.props.currentEvent.id;
     console.log(firebaseId);
     firebase.database().ref(`users/events/${firebase.auth().currentUser.uid}/${firebaseId}`).remove();
-    <Redirect to='/calendar' />;
   }
 
   render() {

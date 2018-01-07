@@ -66,7 +66,7 @@ class App extends Component {
           <Header {...this.state} />
           <div>
             <Switch>
-              <Route path="/social" component="" />
+              {/* <Route path="/social" component="" /> */}
               <Route exact path="/calendar" render={() => (
                 <EventList {...this.state} />
               )} />
@@ -74,7 +74,7 @@ class App extends Component {
                 <AddEvent {...this.state} />
               )} />
 
-              <Route path="/weather" component="" />
+              {/* <Route path="/weather" component="" /> */}
               <Route exact path="/todo" component={BasicTodoApp} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/logout" component={Logout} />

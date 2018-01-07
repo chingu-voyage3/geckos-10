@@ -17,17 +17,21 @@ const renderField = ({ input, label, type, meta: { touched, error, warning } }) 
 )
 
 class AddEvent extends Component {
+
+
+
   componentDidMount() {
     console.log(firebase.auth().currentUser.uid);
   }
 
 
   render() {
-
     const { handleSubmit } = this.props;
     return (
       <div>
-        <Form className='loginStyles' onSubmit={handleSubmit(this.props.addCalendarEvent)}>
+        <Form className='loginStyles'
+          onSubmit={() => handleSubmit(this.props.addCalendarEvent)}
+        >
           <h3>Create A New Event</h3>
           <hr />
           <div className='form-group'>
@@ -63,6 +67,7 @@ class AddEvent extends Component {
       </div>
     )
   }
+
 }
 
 export default connect(null, { addCalendarEvent })(reduxForm({
