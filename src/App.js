@@ -123,10 +123,7 @@ class App extends Component {
           <Header {...this.state} />
           <div>
             <Switch>
-              <Route exact path="/todo" component="" />
               <Route path="/social" component={() => <SocialMedia {...this.state} />} />
-              <Route path="/calendar" component="" />
-              <Route path="/weather" component="" />
               <Route exact path="/login" component={Login} />
               <Route exact path="/logout" component={Logout} />
             </Switch>
