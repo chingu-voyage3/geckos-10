@@ -20,7 +20,6 @@ const renderField = ({ input, label, type, meta: { touched, error, warning } }) 
 
 
 
-
 class AddEvent extends Component {
   constructor(props) {
     super(props);
@@ -47,6 +46,9 @@ class AddEvent extends Component {
 
 
   render() {
+    if (!firebase.auth().currentUser) {
+      return <Redirect to='/login' />;
+    }
     if (this.state.fireRedirect) {
       return (
         <Redirect to='/calendar' />
@@ -102,16 +104,17 @@ class AddEvent extends Component {
 
 AddEvent.propTypes = {
   handleSubmit: PropTypes.func,
-  renderField: PropTypes.objectOf({
-    input: PropTypes.string,
-    label: PropTypes.string,
-    type: PropTypes.string,
-    meta: PropTypes.objectOf({
-      touched: PropTypes.string,
-      error: PropTypes.string,
-      warning: PropTypes.sring,
-    }),
-  })
+};
+
+renderField.propTypes = {
+  input: PropTypes.string,
+  label: PropTypes.string,
+  type: PropTypes.string,
+  meta: PropTypes.objectOf({
+    touched: PropTypes.string,
+    error: PropTypes.string,
+    warning: PropTypes.sring,
+  }),
 };
 
 export default connect(null, { addCalendarEvent })(reduxForm({

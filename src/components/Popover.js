@@ -23,6 +23,7 @@ class PopoverModal extends Component {
   }
 
   render() {
+
     if (this.props.isSelected) {
       let currentEvent = this.props.currentEvent;
       return (
@@ -58,7 +59,7 @@ class PopoverModal extends Component {
   }
 }
 
-Popover.propTypes = {
+PopoverModal.propTypes = {
   isSelected: PropTypes.func,
   currentEvent: PropTypes.object,
 };
