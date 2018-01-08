@@ -81,7 +81,7 @@ class App extends Component {
   componentWillMount() {
     this.removeAuthListener = app.auth().onAuthStateChanged((user) => {
       if (user) {
-        console.log(user);
+        //console.log(user);
         this.setState({
           authenticated: true,
           loading: false,

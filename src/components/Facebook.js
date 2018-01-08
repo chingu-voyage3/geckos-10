@@ -15,7 +15,6 @@ import React, { Component } from 'react';
 import FBfeedItem from './FBfeedItem';
 import PostToFB from './PostToFB';
 import TimeAgo from 'react-timeago';
-import GetOlderPosts from './GetOlderPosts';
 
 
 
@@ -61,7 +60,7 @@ class FacebookFeed extends Component {
         //run only if the FB feed needs to be refreshed
         if (this.state.refresh){
             FB.api(
-                "/me/feed?fields=permalink_url,message,story,created_time,description,picture,link,name,status_type",
+                "/me/feed?fields=permalink_url,message,story,created_time,description,full_picture,link,name,status_type,type,from",
                 function (response) {
                 if (response && !response.error) {
                     
@@ -134,7 +133,7 @@ class FacebookFeed extends Component {
                                 onClick={this.refreshFeed}>
                                 Refresh Feed
                         </button>
-                        <p className='postDate'>Updated {' '}  
+                        <p className='refreshDate'>Updated {' '}  
                             <TimeAgo 
                                 date={this.state.refreshTimeStamp}
                                 //The minimum number of seconds that the component should wait before updating 
