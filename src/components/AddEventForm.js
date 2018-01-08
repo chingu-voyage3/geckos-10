@@ -107,11 +107,11 @@ AddEvent.propTypes = {
 };
 
 renderField.propTypes = {
-  input: PropTypes.string,
+  input: PropTypes.object,
   label: PropTypes.string,
   type: PropTypes.string,
-  meta: PropTypes.objectOf({
-    touched: PropTypes.string,
+  meta: PropTypes.shape({
+    touched: PropTypes.bool,
     error: PropTypes.string,
     warning: PropTypes.sring,
   }),

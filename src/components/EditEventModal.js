@@ -119,7 +119,7 @@ class EditEventModal extends Component {
 
 EditEventModal.propTypes = {
   currentEvent: PropTypes.object,
-  isSelected: PropTypes.func,
+  isSelected: PropTypes.bool,
 
 };
 

@@ -60,7 +60,7 @@ class PopoverModal extends Component {
 }
 
 PopoverModal.propTypes = {
-  isSelected: PropTypes.func,
+  isSelected: PropTypes.bool,
   currentEvent: PropTypes.object,
 };
 
