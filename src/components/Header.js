@@ -13,8 +13,7 @@ class Header extends Component {
               to="/logout"
               className="pt-button pt-minimal pt-icon-log-out"
               aria-label="Logout"
-            />
-            <p>Logged in as {name}</p>
+            />Logged in as {name}
           </div>
           : <Link to="/login" className="pt-button pt-intent-primary">
             Register or Log In
