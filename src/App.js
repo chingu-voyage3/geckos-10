@@ -3,10 +3,15 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { app } from './store/store';
 import { Spinner } from '@blueprintjs/core';
 
+
+
 import Login from './components/Login';
 import Logout from './components/Logout';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import AddEvent from './components/AddEventForm';
+// import EventList from './containers/EventList';
+import Calendar from './components/Calendar';
 import BasicTodoApp from "./containers/BasicTodoApp";
 
 class App extends Component {
@@ -17,8 +22,11 @@ class App extends Component {
       loading: true,
       email: '',
       name: '',
+      uid: '',
     }
   }
+
+
 
   componentWillMount() {
     this.removeAuthListener = app.auth().onAuthStateChanged((user) => {
@@ -27,6 +35,7 @@ class App extends Component {
           authenticated: true,
           loading: false,
           name: user.email,
+          uid: user.uid
         })
       } else {
         this.setState({
@@ -35,6 +44,7 @@ class App extends Component {
         })
       }
     })
+
   }
 
   componentWillUnMount() {
@@ -56,10 +66,16 @@ class App extends Component {
           <Header {...this.state} />
           <div>
             <Switch>
+              {/* <Route path="/social" component="" /> */}
+              <Route exact path="/calendar" render={() => (
+                <Calendar {...this.state} />
+              )} />
+              <Route path="/calendar/new" render={() => (
+                <AddEvent {...this.state} />
+              )} />
+
+              {/* <Route path="/weather" component="" /> */}
               <Route exact path="/todo" component={BasicTodoApp} />
-              {false && <Route path="/social" component="" />}
-              {false && <Route path="/calendar" component="" />}
-              {false && <Route path="/weather" component="" />}
               <Route exact path="/login" component={Login} />
               <Route exact path="/logout" component={Logout} />
             </Switch>
@@ -70,5 +86,6 @@ class App extends Component {
     );
   }
 }
+
 
 export default App;

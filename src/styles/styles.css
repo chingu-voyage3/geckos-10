@@ -502,6 +502,32 @@ p {
   top: 25%;
   left: 50%; }
 
+.calendarComponent button a {
+  color: #fff; }
+
+.calendarComponent .bigCalendar {
+  height: 420px;
+  margin-top: 10vh;
+  margin-right: 5vw;
+  margin-left: 5vw; }
+
+.calendarComponent .add-event {
+  margin-left: 5vw;
+  margin-top: 2vh; }
+
+.calendarComponent .popover {
+  margin-top: 2vh;
+  margin-left: 1vw; }
+
+.pt-popover-content .pt-button .remove-button {
+  margin-left: 2vh; }
+
+.calendar-buttons {
+  width: 100%; }
+
+.buttons-inline {
+  display: inline; }
+
 .todoTab {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -528,3 +554,9 @@ p {
   padding: 10px 0 0 15px;
   margin-left: 20px;
   margin-right: 20px; }
+
+.my-popover .pt-popover-content {
+  max-height: 20vh;
+  overflow-y: auto;
+  height: 20vh;
+  width: 20vh; }

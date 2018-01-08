@@ -1,9 +1,11 @@
-import { createStore, compose } from "redux";
+import { createStore, compose, applyMiddleware } from "redux";
 import { reactReduxFirebase } from "react-redux-firebase";
 import firebase from "firebase";
 import { rootReducer } from "../reducers/index";
+import thunk from 'redux-thunk';
 
-const firebaseConfig = {
+
+export const firebaseConfig = {
   apiKey: "AIzaSyBJlE_NH1WuT-7lrGNpoE-3snfzV_BCaIU",
   authDomain: "geckos-10-tab.firebaseapp.com",
   databaseURL: "https://geckos-10-tab.firebaseio.com",
@@ -27,10 +29,13 @@ const createStoreWithFirebase = compose(
 )(createStore);
 
 const googleProvider = new firebase.auth.GoogleAuthProvider();
+googleProvider.addScope('https://www.googleapis.com/auth/calendar')
 const firebaseRef = firebase.database().ref();
+
+
 
 // Create store with reducers and initial state .
 const initialState = {};
-const store = createStoreWithFirebase(rootReducer, initialState);
+const store = createStoreWithFirebase(rootReducer, initialState, applyMiddleware(thunk));
 
 export { app, googleProvider, store, firebaseRef };
