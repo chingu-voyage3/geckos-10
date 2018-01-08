@@ -522,6 +522,12 @@ p {
 .pt-popover-content .pt-button .remove-button {
   margin-left: 2vh; }
 
+.calendar-buttons {
+  width: 100%; }
+
+.buttons-inline {
+  display: inline; }
+
 .todoTab {
   display: grid;
   grid-template-columns: repeat(2, 1fr);

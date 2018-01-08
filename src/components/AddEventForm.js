@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { reduxForm, Field, Form } from 'redux-form';
 import { addCalendarEvent } from '../actions/actions';
+import { Intent, Toaster } from '@blueprintjs/core';
 import { connect } from "react-redux";
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import firebase from 'firebase';
+import PropTypes from "prop-types";
 
 const required = value => value ? undefined : 'Required'
 const renderField = ({ input, label, type, meta: { touched, error, warning } }) => (
@@ -16,21 +18,45 @@ const renderField = ({ input, label, type, meta: { touched, error, warning } }) 
   </div>
 )
 
+
+
+
 class AddEvent extends Component {
-
-
-
-  componentDidMount() {
-    console.log(firebase.auth().currentUser.uid);
+  constructor(props) {
+    super(props);
+    this.state = {
+      fireRedirect: false,
+    }
+    this.addEvent = this.addEvent.bind(this);
   }
 
 
+  addEvent(event) {
+    // event.preventDefault();
+    firebase
+      .database()
+      .ref(`users/events/${firebase.auth().currentUser.uid}`)
+      .push(event)
+    this.setState({ fireRedirect: true });
+    this.toaster.show({
+      intent: Intent.SUCCESS,
+      message: "Successfully created event"
+    });
+  }
+
+
+
   render() {
+    if (this.state.fireRedirect) {
+      return (
+        <Redirect to='/calendar' />
+      )
+    }
     const { handleSubmit } = this.props;
     return (
       <div>
         <Form className='loginStyles'
-          onSubmit={() => handleSubmit(this.props.addCalendarEvent)}
+          onSubmit={handleSubmit(this.addEvent)}
         >
           <h3>Create A New Event</h3>
           <hr />
@@ -41,12 +67,12 @@ class AddEvent extends Component {
           </div>
           <div className='form-group'>
             <label className='pt-label'>Location
-            <Field className='pt-input' name='location' component={renderField} type='text' />
+            <Field className='pt-input' name='location' component={renderField} type='text' validate={[required]} />
             </label>
           </div>
           <div>
             <label className='pt-label'>Description
-            <Field className='pt-input' name='description' component={renderField} type='textarea' />
+            <Field className='pt-input' name='description' component={renderField} type='textarea' validate={[required]} />
             </label>
           </div>
           <div>
@@ -63,12 +89,30 @@ class AddEvent extends Component {
           </div>
           <button type='submit' className='pt-button pt-intent-primary'>Submit</button>
         </Form>
+        <Toaster
+          ref={element => {
+            this.toaster = element;
+          }} />
         <Link to='/calendar'>Go back!</Link>
       </div>
     )
   }
 
 }
+
+AddEvent.propTypes = {
+  handleSubmit: PropTypes.func,
+  renderField: PropTypes.objectOf({
+    input: PropTypes.string,
+    label: PropTypes.string,
+    type: PropTypes.string,
+    meta: PropTypes.objectOf({
+      touched: PropTypes.string,
+      error: PropTypes.string,
+      warning: PropTypes.sring,
+    }),
+  })
+};
 
 export default connect(null, { addCalendarEvent })(reduxForm({
   form: 'AddEvent',

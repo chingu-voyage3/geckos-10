@@ -10,7 +10,8 @@ import Logout from './components/Logout';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import AddEvent from './components/AddEventForm';
-import EventList from './containers/EventList';
+// import EventList from './containers/EventList';
+import Calendar from './components/Calendar';
 import BasicTodoApp from "./containers/BasicTodoApp";
 
 class App extends Component {
@@ -30,7 +31,6 @@ class App extends Component {
   componentWillMount() {
     this.removeAuthListener = app.auth().onAuthStateChanged((user) => {
       if (user) {
-        console.log(user.uid);
         this.setState({
           authenticated: true,
           loading: false,
@@ -68,7 +68,7 @@ class App extends Component {
             <Switch>
               {/* <Route path="/social" component="" /> */}
               <Route exact path="/calendar" render={() => (
-                <EventList {...this.state} />
+                <Calendar {...this.state} />
               )} />
               <Route path="/calendar/new" render={() => (
                 <AddEvent {...this.state} />
