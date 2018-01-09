@@ -37,6 +37,7 @@ $lightGrey:#ddd;
     border-radius: 5px;
     text-align: center;
     position: relative;
+    overflow: auto;
 
     .postHeader {
         text-align: left;
@@ -55,13 +56,10 @@ $lightGrey:#ddd;
         border: 1px solid $lightGrey;
         border-radius: 4px;
         padding: 5px;
-        img {
-            margin: 5px 0 5px 0;
-        }
     }
 
     img {
-        margin: 5px 0 25px 0;
+        margin: 5px 0 5px 0;
         max-width: 100%;
         height: auto;
     }
@@ -71,7 +69,7 @@ $lightGrey:#ddd;
         width: auto;
         bottom: 0;
         padding: 0;
-        margin: 5px 5px 5px 0;
+        margin: 30px 5px 5px 0;
         color: $lightGrey;
 
     }
