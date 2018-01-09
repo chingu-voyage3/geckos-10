@@ -569,3 +569,62 @@ p {
   color: white;
   margin: 5px;
   padding: 3px; }
+
+.calendarComponent button a {
+  color: #fff; }
+
+.calendarComponent .bigCalendar {
+  height: 420px;
+  margin-top: 10vh;
+  margin-right: 5vw;
+  margin-left: 5vw; }
+
+.calendarComponent .add-event {
+  margin-left: 5vw;
+  margin-top: 2vh; }
+
+.calendarComponent .popover {
+  margin-top: 2vh;
+  margin-left: 1vw; }
+
+.pt-popover-content .pt-button .remove-button {
+  margin-left: 2vh; }
+
+.calendar-buttons {
+  width: 100%; }
+
+.buttons-inline {
+  display: inline; }
+
+.todoTab {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  width: 100%;
+  height: 100%;
+  padding: 35px;
+  grid-column-gap: 35px; }
+
+.todoList {
+  line-height: 1.5;
+  font-weight: bold;
+  display: grid;
+  grid-template-rows: 40px repeat(10, 1fr);
+  border: 1px solid lightgray;
+  background: darkgray; }
+
+.todoList header {
+  padding: 10px 0 0 15px; }
+
+.todoList .todoListItem {
+  border: 1px solid lightgray;
+  border-bottom: 1px solid darkgray;
+  background: white;
+  padding: 10px 0 0 15px;
+  margin-left: 20px;
+  margin-right: 20px; }
+
+.my-popover .pt-popover-content {
+  max-height: 20vh;
+  overflow-y: auto;
+  height: 20vh;
+  width: 20vh; }
