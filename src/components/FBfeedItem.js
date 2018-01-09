@@ -25,7 +25,7 @@ class FBfeedItem extends Component {
     renderFooter(){
         return(
             <div className="postFooter">
-                <i className="fa fa-facebook-square fa-2x" aria-hidden="true"></i>
+                <i className="fa fa-facebook-square fa-lg" aria-hidden="true"></i>
             </div>
         );
     }

@@ -94,6 +94,9 @@ class FacebookFeed extends Component {
             if (response && !response.error) {
                 
                 console.log(response);
+                
+                //check to see if data is empty and tell user there are no new posts
+
                 this.setState({
                     FBfeed: this.state.FBfeed.concat(response.data),
                     pagePrev: response.paging.previous,
@@ -127,23 +130,30 @@ class FacebookFeed extends Component {
                 {this.state.FBauthenticated ? 
                     //If authenticated
                     <div id="facebook">
-                        <h2>Facebook Feed</h2>
-                        <PostToFB {...this.state} />
-                        <button className="FBbtn"
-                                onClick={this.refreshFeed}>
-                                Refresh Feed
-                        </button>
-                        <p className='refreshDate'>Updated {' '}  
+
+                        
+                        <div id="FBSidebar">
+                            <h1>Facebook</h1>
+                            <PostToFB {...this.state} />
+                            <button className="FBbtn"
+                                    onClick={this.refreshFeed}>
+                                    Refresh Feed
+                            </button>
+                            <p className='refreshDate'>Updated {' '}  
                             <TimeAgo 
                                 date={this.state.refreshTimeStamp}
                                 //The minimum number of seconds that the component should wait before updating 
                                 minPeriod='5' />
-                        </p>
+                            </p>
+                        </div>
+                        
                         {this.renderFBfeed()}
-                        <button className="FBbtn"
-                                onClick={this.getOlderPosts}>
-                            See Older Posts
-                        </button>
+                        <div id="FBFooter">
+                            <button className="FBbtn"
+                                    onClick={this.getOlderPosts}>
+                                See Older Posts
+                            </button>
+                        </div>
                     </div>
                 :
                 //if not authenticated

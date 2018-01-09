@@ -12,15 +12,38 @@ $lightGrey:#ddd;
 
 #facebook {
     margin: 30px;
+    display: grid;
+    grid-template-columns: 250px auto;
+    grid-template-rows: auto 50px;
     h1,h2,h3 {
         color: $facebookBlue;
+        text-align: left;
     }
 }
 
+#FBHeader {
+    //span across all columns
+    grid-column: 1 / -1;
+}
+
+#FBSidebar {
+    position: fixed;
+    width: 200px;
+}
+
+#FBFooter {
+    grid-column: 1 / -1;
+    text-align: center;
+    margin-top: 20px;
+}
+
 #facebookFeedContainer {
+    grid-column: 2 / span 1;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
-    grid-auto-rows: minmax(200px, auto-fit);
+    align-items: center;
+    grid-template-columns: 1fr minmax(200px, 600px) 1fr;
+    grid-auto-rows: minmax(100px, auto);
+    grid-gap: 10px;
     //grid-auto-flow: dense;
 }
 
@@ -34,12 +57,12 @@ $lightGrey:#ddd;
 .FBfeedItem {
     //border: $mediumGrey solid 1px;
     background-color: white;
-    margin: 5px;
     padding: 10px;
     border-radius: 5px;
     text-align: center;
     position: relative;
     overflow: auto;
+    grid-column: 2 / span 1;
 
     .postHeader {
         text-align: left;
@@ -67,11 +90,9 @@ $lightGrey:#ddd;
     }
 
     .postFooter {
-        position: absolute;
         width: auto;
-        bottom: 0;
-        padding: 0;
-        margin: 30px 5px 5px 0;
+        text-align: right;
+        margin: 5px 0 0 0;
         color: $lightGrey;
 
     }

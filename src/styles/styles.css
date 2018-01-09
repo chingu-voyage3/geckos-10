@@ -510,14 +510,33 @@ p {
   overflow: scroll; }
 
 #facebook {
-  margin: 30px; }
+  margin: 30px;
+  display: grid;
+  grid-template-columns: 250px auto;
+  grid-template-rows: auto 50px; }
   #facebook h1, #facebook h2, #facebook h3 {
-    color: #39518F; }
+    color: #39518F;
+    text-align: left; }
+
+#FBHeader {
+  grid-column: 1 / -1; }
+
+#FBSidebar {
+  position: fixed;
+  width: 200px; }
+
+#FBFooter {
+  grid-column: 1 / -1;
+  text-align: center;
+  margin-top: 20px; }
 
 #facebookFeedContainer {
+  grid-column: 2 / span 1;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  grid-auto-rows: minmax(200px, auto-fit); }
+  align-items: center;
+  grid-template-columns: 1fr minmax(200px, 600px) 1fr;
+  grid-auto-rows: minmax(100px, auto);
+  grid-gap: 10px; }
 
 .refreshDate {
   color: white;
@@ -527,12 +546,12 @@ p {
 
 .FBfeedItem {
   background-color: white;
-  margin: 5px;
   padding: 10px;
   border-radius: 5px;
   text-align: center;
   position: relative;
-  overflow: auto; }
+  overflow: auto;
+  grid-column: 2 / span 1; }
   .FBfeedItem .postHeader {
     text-align: left; }
   .FBfeedItem .postBody {
@@ -549,11 +568,9 @@ p {
     max-width: 100%;
     height: auto; }
   .FBfeedItem .postFooter {
-    position: absolute;
     width: auto;
-    bottom: 0;
-    padding: 0;
-    margin: 30px 5px 5px 0;
+    text-align: right;
+    margin: 5px 0 0 0;
     color: #ddd; }
   .FBfeedItem .postDate {
     color: #7E828A;
