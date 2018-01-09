@@ -45,7 +45,7 @@ class FBfeedItem extends Component {
                         : 
                         "" 
                     }
-                    <p>Status type: {this.props.FBitem.status_type}</p>
+                    
 
                 </div>
             );
