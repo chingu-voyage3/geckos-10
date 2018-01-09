@@ -418,7 +418,10 @@ html {
 
 body {
   font-size: 1.5rem;
-  color: #303030; }
+  color: #303030;
+  position: absolute;
+  height: 100%;
+  width: 100%; }
 
 h1,
 h2,
@@ -441,3 +444,119 @@ p a {
 p {
   line-height: 2;
   font-size: 1.6rem; }
+
+#root {
+  height: 100%; }
+
+.active {
+  color: #93ff00; }
+
+.app {
+  display: grid;
+  grid-template-rows: 5vh 1fr 200px;
+  height: 100%; }
+
+.navList {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); }
+
+.appFooter .navItem {
+  margin: auto; }
+
+.navItem-1 {
+  grid-column: 1/1; }
+
+.navItem-2 {
+  grid-column: 2/2; }
+
+.navItem-3 {
+  grid-column: 3/3; }
+
+.navItem-4 {
+  grid-column: 4/4; }
+
+.appHeader {
+  height: 5vh; }
+
+.loginStyles {
+  width: 90%;
+  max-width: 315px;
+  margin: 20px auto;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px; }
+
+.loginStyles input,
+.loginStyles button {
+  width: 100%; }
+
+.login-form-hr, .login-form {
+  margin-bottom: 10px; }
+
+.login-form {
+  margin-top: 10px; }
+
+.logoutSpinner {
+  text-align: center;
+  position: absolute;
+  top: 25%;
+  left: 50%; }
+
+.calendarComponent button a {
+  color: #fff; }
+
+.calendarComponent .bigCalendar {
+  height: 420px;
+  margin-top: 10vh;
+  margin-right: 5vw;
+  margin-left: 5vw; }
+
+.calendarComponent .add-event {
+  margin-left: 5vw;
+  margin-top: 2vh; }
+
+.calendarComponent .popover {
+  margin-top: 2vh;
+  margin-left: 1vw; }
+
+.pt-popover-content .pt-button .remove-button {
+  margin-left: 2vh; }
+
+.calendar-buttons {
+  width: 100%; }
+
+.buttons-inline {
+  display: inline; }
+
+.todoTab {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  width: 100%;
+  height: 100%;
+  padding: 35px;
+  grid-column-gap: 35px; }
+
+.todoList {
+  line-height: 1.5;
+  font-weight: bold;
+  display: grid;
+  grid-template-rows: 40px repeat(10, 1fr);
+  border: 1px solid lightgray;
+  background: darkgray; }
+
+.todoList header {
+  padding: 10px 0 0 15px; }
+
+.todoList .todoListItem {
+  border: 1px solid lightgray;
+  border-bottom: 1px solid darkgray;
+  background: white;
+  padding: 10px 0 0 15px;
+  margin-left: 20px;
+  margin-right: 20px; }
+
+.my-popover .pt-popover-content {
+  max-height: 20vh;
+  overflow-y: auto;
+  height: 20vh;
+  width: 20vh; }

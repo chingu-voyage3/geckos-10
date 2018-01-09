@@ -4,14 +4,24 @@
   "private": true,
   "homepage": ".",
   "dependencies": {
+    "@blueprintjs/core": "^1.35.0",
+    "axios": "^0.17.1",
+    "firebase": "^4.8.1",
+    "moment": "^2.20.1",
     "node-sass-chokidar": "0.0.3",
     "npm-run-all": "^4.1.2",
     "react": "^16.2.0",
+    "react-addons-css-transition-group": "^15.6.2",
+    "react-big-calendar": "^0.17.0",
+    "react-datepicker": "^1.0.3",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.6",
+    "react-redux-firebase": "^1.5.1",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.0.17",
     "redux": "^3.7.2",
+    "redux-form": "^7.2.0",
+    "redux-promise": "^0.5.3",
     "redux-thunk": "^2.2.0"
   },
   "scripts": {
@@ -22,6 +32,19 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "build-css": "node-sass-chokidar src/ -o src/",
-    "watch-css": "npm run build-css && node-sass-chokidar src/styles -o src/styles --watch --recursive"
+    "watch-css": "npm run build-css && node-sass-chokidar src/styles -o src/styles --watch --recursive",
+    "lint": "esw webpack.config.* src tools --color",
+    "lint:watch": "npm run lint -- --watch"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.1.2",
+    "eslint": "^4.14.0",
+    "eslint-config-standard": "^11.0.0-beta.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-node": "^5.2.1",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-react": "^7.5.1",
+    "eslint-plugin-standard": "^3.0.1",
+    "eslint-watch": "^3.1.3"
   }
 }

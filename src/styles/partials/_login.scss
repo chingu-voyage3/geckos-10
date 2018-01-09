@@ -1,0 +1,21 @@
+.loginStyles {
+    width: 90%;
+  max-width: 315px;
+  margin: 20px auto;
+  border: 1px solid #ddd;
+  border-radius:5px;
+  padding: 10px;
+}
+
+.loginStyles input,
+.loginStyles button {
+  width: $full;
+}
+
+.login-form-hr, .login-form {
+  margin-bottom: 10px;
+}
+
+.login-form {
+  margin-top: 10px;
+}
