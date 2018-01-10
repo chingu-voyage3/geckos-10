@@ -61,7 +61,7 @@ class App extends Component {
       )
     }
     return (
-      <BrowserRouter>
+      <BrowserRouter basename="/geckos-10">
         <div className="app">
           <Header {...this.state} />
           <div>
