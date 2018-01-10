@@ -85,6 +85,7 @@ class App extends Component {
   }
 
   componentWillMount() {
+    this.initFBSDK();
     this.removeAuthListener = app.auth().onAuthStateChanged(user => {
       if (user) {
         //console.log(user);
@@ -107,7 +108,6 @@ class App extends Component {
       }
     });
 
-    this.initFBSDK();
   }
 
   componentWillUnMount() {

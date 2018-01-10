@@ -42,6 +42,9 @@ class Login extends Component {
         // console.log(UID);
         // let calendarKey = result.credential.idToken;
         // console.log(calendarKey);
+        this.setState({
+          redirect: true
+        });
       }
     });
   }
