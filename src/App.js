@@ -19,14 +19,13 @@ class App extends Component {
   constructor() {
     super();
     this.initFBSDK = this.initFBSDK.bind(this);
+    this.checkFBauth = this.checkFBauth.bind(this);
     this.state = {
       authenticated: false,
       loading: true,
       email: "",
       name: "",
       uid: "",
-      FBaccessToken: "",
-      FBuid: "",
       FBauthenticated: false
     };
   }
@@ -41,33 +40,15 @@ class App extends Component {
         appId: "1186050748193429",
         //With xfbml set to true, the SDK will parse your page's DOM to find and initialize any social plugins that have been added using XFBML. If you're not using social plugins on the page, setting xfbml to false will improve page load times.
         xfbml: true,
+        cookie: true,
         version: "v2.11"
       });
       FB.AppEvents.logPageView();
 
       // Additional initialization code
-      FB.getLoginStatus(
-        function (response) {
-          console.log("FB response: " + response.status);
-          if (response.status === "connected") {
-            // the user is logged in and has authenticated the
-            // app, and response.authResponse supplies
-            // the user's ID, a valid access token, a signed
-            // request, and the time the access token
-            // and signed request each expire
-            this.setState({
-              FBuid: response.authResponse.userID,
-              FBaccessToken: response.authResponse.accessToken,
-              FBauthenticated: true
-            });
-          } else if (response.status === "not_authorized") {
-            // the user is logged in to Facebook,
-            // but has not authenticated your app
-          } else {
-            // the user isn't logged in to Facebook.
-          }
-        }.bind(this)
-      );
+      //for users who are already logged in when app page loads
+      this.checkFBauth();
+
     }.bind(this);
 
     //Load SDK asynchronously
@@ -84,6 +65,30 @@ class App extends Component {
     })(document, "script", "facebook-jssdk");
   }
 
+
+  checkFBauth(){
+    FB.getLoginStatus(
+      function (response) {
+        console.log("FB response: " + response.status);
+        if (response.status === "connected") {
+          // the user is logged in and has authenticated the
+          // app, and response.authResponse supplies
+          // the user's ID, a valid access token, a signed
+          // request, and the time the access token
+          // and signed request each expire
+          this.setState({
+            FBauthenticated: true
+          });
+        } else if (response.status === "not_authorized") {
+          // the user is logged in to Facebook,
+          // but has not authenticated your app
+        } else {
+          // the user isn't logged in to Facebook.
+        }
+      }.bind(this)
+    );
+  }  
+
   componentWillMount() {
     this.initFBSDK();
     this.removeAuthListener = app.auth().onAuthStateChanged(user => {
@@ -95,14 +100,14 @@ class App extends Component {
           name: !user.email ? user.providerData[0].email : user.email,
           uid: user.uid
         });
+        this.checkFBauth();
+      
       } else {
         this.setState({
           authenticated: false,
           loading: false,
           email: "",
           name: "",
-          FBaccessToken: "",
-          FBuid: "",
           FBauthenticated: false
         });
       }

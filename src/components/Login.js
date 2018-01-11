@@ -42,6 +42,9 @@ class Login extends Component {
         // console.log(UID);
         // let calendarKey = result.credential.idToken;
         // console.log(calendarKey);
+        const token = result.credential.accessToken;
+        console.log("successfully logged in with facebook: "+token)
+
         this.setState({
           redirect: true
         });

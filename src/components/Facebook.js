@@ -27,8 +27,6 @@ class FacebookFeed extends Component {
         this.getOlderPosts = this.getOlderPosts.bind(this);
         this.state = {
             //login info passed down from app through socialmedia component
-            FBaccessToken: this.props.FBaccessToken,
-            FBuid: this.props.FBuid,
             FBauthenticated: this.props.FBauthenticated,
             FBfeed: [], //stores fb post info
             refresh: true, //indicates whether app should make an api call to get post data
@@ -157,8 +155,10 @@ class FacebookFeed extends Component {
                     </div>
                 :
                 //if not authenticated
+                <div>
                 <h2>Log into Facebook to view your feed.</h2>
-
+                <PostToFB {...this.state} />
+                </div>
                 }
             </div>
         );
