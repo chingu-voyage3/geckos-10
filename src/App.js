@@ -100,7 +100,11 @@ class App extends Component {
           name: !user.email ? user.providerData[0].email : user.email,
           uid: user.uid
         });
-        this.checkFBauth();
+        if (typeof(FB) !== 'undefined' && FB !== null ) {
+          //only run if FB SDK is finished
+          this.checkFBauth();
+        }
+        
       
       } else {
         this.setState({
