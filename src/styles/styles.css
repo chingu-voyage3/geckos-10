@@ -518,6 +518,30 @@ p {
     color: #39518F;
     text-align: left; }
 
+#FBPostForm textarea {
+  resize: none;
+  border-radius: 5px;
+  border: white;
+  outline: none; }
+
+#FBPostForm ::-webkit-input-placeholder {
+  font-style: italic;
+  color: #7E828A; }
+
+#FBPostForm .small {
+  height: 50px;
+  width: 160px; }
+
+#FBPostForm .big {
+  height: 200px;
+  width: 200px; }
+
+#FBPostForm .show {
+  display: block; }
+
+#FBPostForm .hide {
+  display: none; }
+
 #FBHeader {
   grid-column: 1 / -1; }
 
@@ -534,7 +558,7 @@ p {
   grid-column: 2 / span 1;
   display: grid;
   align-items: center;
-  grid-template-columns: 1fr minmax(200px, 600px) 1fr;
+  grid-template-columns: 1fr minmax(200px, 900px) 1fr;
   grid-auto-rows: minmax(100px, auto);
   grid-gap: 10px; }
 
@@ -542,7 +566,7 @@ p {
   color: white;
   font-size: 11px;
   font-style: italic;
-  margin: 5px 0 10px 0; }
+  margin: 0 0 20px 0; }
 
 .FBfeedItem {
   background-color: white;

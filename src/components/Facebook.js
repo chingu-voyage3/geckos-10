@@ -132,7 +132,6 @@ class FacebookFeed extends Component {
                         
                         <div id="FBSidebar">
                             <h1>Facebook</h1>
-                            <PostToFB {...this.state} />
                             <button className="FBbtn"
                                     onClick={this.refreshFeed}>
                                     Refresh Feed
@@ -143,6 +142,7 @@ class FacebookFeed extends Component {
                                 //The minimum number of seconds that the component should wait before updating 
                                 minPeriod='5' />
                             </p>
+                            <PostToFB {...this.state} />
                         </div>
                         
                         {this.renderFBfeed()}

@@ -5,16 +5,20 @@ class PostToFB extends Component {
     //incomplete
     constructor(props) {
         super(props)
+        this.handleFocus = this.handleFocus.bind(this);
+        this.handleChange = this.handleChange.bind(this);
         this.state = {
             message: '',
+            textarea: 'small',
+            isShowing: 'hide',
         }
 
         this.handleChange = this.handleChange.bind(this);
         this.makePost = this.makePost.bind(this);
     }
 
-    makePost(){
-        console.log(this.state.value);
+    makePost(event){
+
         FB.api(
             "/me/feed",
             "POST",
@@ -22,27 +26,54 @@ class PostToFB extends Component {
                 "message": this.state.message
             },
             function (response) {
-              if (response && !response.error) {
+                if (response && !response.error) {
                 /* handle the result */
                 alert('Successfully posted update!')
-              }
+                }
             }
         );
+        this.setState({
+            message: '',
+        });
+        
+        event.preventDefault();
     }
 
 
     handleChange(event) {
         this.setState({message: event.target.value});
-      }
+    }
+
+    handleFocus(){
+        if (this.state.textarea === 'small'){
+            this.setState({
+                textarea: 'big',
+                isShowing: 'show',
+            });
+        }
+        else {
+            this.setState({
+                textarea: 'small',
+                isShowing: 'hide',
+            });
+        }
+    }
+
+
 
     render () {
         return (
             <div>
-                <input type="text" value={this.state.message} onChange={this.handleChange} />
-                <button className="FBbtn"
-                        onClick={this.makePost}>
-                    Post to Facebook
-                </button>
+                <form id="FBPostForm" onSubmit={this.makePost}>
+                    <textarea className={this.state.textarea} 
+                              value={this.state.message} 
+                              onChange={this.handleChange}
+                              onFocus={this.handleFocus} 
+                              onBlur={this.handleFocus}
+                              placeholder="Post to Facebook"
+                              />
+                    <input className={this.state.isShowing} type="submit" value="Post to Facebook" />
+                </form>
             </div>
         );
     }
