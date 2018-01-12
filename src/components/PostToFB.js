@@ -84,6 +84,9 @@ class PostToFB extends Component {
                                 onChange={this.handleChange}
                                 placeholder="Post to Facebook"
                                 />
+                    <input  className={this.state.isShowing}
+                            type="file"
+                            />
                     <input  className={this.state.isShowing} 
                             type="submit" 
                             value="Post to Facebook" 
