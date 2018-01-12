@@ -86,9 +86,13 @@ class FBfeedItem extends Component {
                         <a href={this.props.FBitem.link} target="_blank">
                             {this.props.FBitem.name}
                         </a>
+                        
                         {
                             this.props.FBitem.full_picture ?
-                            <img alt={this.props.FBitem.name} src={this.props.FBitem.full_picture} />
+                            <div>
+                                <br />
+                                <img alt={this.props.FBitem.name} src={this.props.FBitem.full_picture} />
+                            </div>
                             :
                             ""
                         }

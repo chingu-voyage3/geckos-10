@@ -42,7 +42,7 @@ class FacebookFeed extends Component {
         this.getFBPosts();
         return(
             <div id="facebookFeedContainer">
-                {this.state.FBfeed.map( (FBitem, index) =>
+                {this.state.FBfeed.map( (FBitem) =>
                     <FBfeedItem  
                         key={FBitem.id}
                         FBitem={FBitem}
@@ -146,6 +146,7 @@ class FacebookFeed extends Component {
                         </div>
                         
                         {this.renderFBfeed()}
+
                         <div id="FBFooter">
                             <button className="FBbtn"
                                     onClick={this.getOlderPosts}>
@@ -155,9 +156,8 @@ class FacebookFeed extends Component {
                     </div>
                 :
                 //if not authenticated
-                <div>
-                <h2>Log into Facebook to view your feed.</h2>
-                <PostToFB {...this.state} />
+                <div id="facebook">
+                    <h2>Log into Facebook to view your feed.</h2>
                 </div>
                 }
             </div>

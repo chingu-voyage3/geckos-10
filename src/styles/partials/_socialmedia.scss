@@ -27,6 +27,7 @@ $lightGrey:#ddd;
         border-radius: 5px;
         border: white;
         outline: none;
+        padding: 5px;
     }
     ::-webkit-input-placeholder {
         font-style: italic;
@@ -46,11 +47,6 @@ $lightGrey:#ddd;
     .hide {
         display: none;
     }
-}
-
-#FBHeader {
-    //span across all columns
-    grid-column: 1 / -1;
 }
 
 #FBSidebar {
@@ -134,7 +130,7 @@ $lightGrey:#ddd;
     }
     
     .postMessage {
-        margin: 5px;
+        margin: 15px 5px;
         font-size: 14px;
     }
 }

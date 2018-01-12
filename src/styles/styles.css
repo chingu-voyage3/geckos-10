@@ -522,7 +522,8 @@ p {
   resize: none;
   border-radius: 5px;
   border: white;
-  outline: none; }
+  outline: none;
+  padding: 5px; }
 
 #FBPostForm ::-webkit-input-placeholder {
   font-style: italic;
@@ -541,9 +542,6 @@ p {
 
 #FBPostForm .hide {
   display: none; }
-
-#FBHeader {
-  grid-column: 1 / -1; }
 
 #FBSidebar {
   position: fixed;
@@ -604,7 +602,7 @@ p {
     .FBfeedItem .postDate a {
       color: #7E828A; }
   .FBfeedItem .postMessage {
-    margin: 5px;
+    margin: 15px 5px;
     font-size: 14px; }
 
 .FBbtn {
