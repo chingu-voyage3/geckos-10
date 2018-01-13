@@ -86,6 +86,7 @@ class PostToFB extends Component {
                                 />
                     <input  className={this.state.isShowing}
                             type="file"
+                            name="FBPostPhoto"
                             />
                     <input  className={this.state.isShowing} 
                             type="submit" 
