@@ -3,13 +3,11 @@ $mediumGrey: #7E828A;
 $lightGrey:#ddd;
 
 #SocialMedia {
-    margin-top: 50px;
     background-color: $lightGrey;
     padding: 10px;
     //height: 675px;
-    //height: 85vh;
-    height: -webkit-calc(100vh - 150px);
-    overflow: scroll;
+    min-height: -webkit-calc(100vh - 150px);
+    //overflow: scroll;
 }
 
 #facebook {

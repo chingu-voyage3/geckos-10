@@ -144,7 +144,7 @@ class App extends Component {
       <BrowserRouter>
         <div className="app">
           <Header {...this.state} />
-          <div>
+          <div className="appMain">
             <Switch>
               <Route
                 path="/social"
