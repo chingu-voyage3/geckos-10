@@ -5,7 +5,7 @@ import firebase from 'firebase'
 import { rootReducer } from '../reducers/index';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyA6smUss1Pst2Asvk1idmVOTBArTnv4GiM",
+  apiKey: "AIzaSyBJlE_NH1WuT-7lrGNpoE-3snfzV_BCaIU",
   authDomain: "geckos-10-tab.firebaseapp.com",
   databaseURL: "https://geckos-10-tab.firebaseio.com",
   projectId: "geckos-10-tab",

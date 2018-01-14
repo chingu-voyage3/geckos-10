@@ -56,10 +56,12 @@ class App extends Component {
           <Header {...this.state} />
           <div>
             <Switch>
-              <Route exact path="/todo" component="" />
+              <Route path="/todo" component="" />
               <Route path="/social" component="" />
               <Route path="/calendar" component="" />
-              <Route path="/weather" component={Weather} />
+              <Route path="/weather" render={() => (
+                <Weather {...this.state} /> // pass the state of App to Weather as props
+              )} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/logout" component={Logout} />
             </Switch>
