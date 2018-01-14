@@ -15,6 +15,7 @@ import React, { Component } from 'react';
 import FBfeedItem from './FBfeedItem';
 import PostToFB from './PostToFB';
 import TimeAgo from 'react-timeago';
+import { Spinner } from "@blueprintjs/core";
 
 
 
@@ -33,6 +34,7 @@ class FacebookFeed extends Component {
             refreshTimeStamp: '',
             pagePrev: '',
             pageNext: '',
+            loading: true,
         };
         this.timeFormat = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour:'2-digit', minute:'2-digit'};
         this.locale = 'en-US';
@@ -43,13 +45,14 @@ class FacebookFeed extends Component {
         return(
             <div id="facebookFeedContainer">
                 {this.state.FBfeed.map( (FBitem) =>
-                    <FBfeedItem  
-                        key={FBitem.id}
-                        FBitem={FBitem}
-                        timeFormat={this.timeFormat}
-                        locale={this.locale}
-                    />
-                )}
+                        <FBfeedItem  
+                            key={FBitem.id}
+                            FBitem={FBitem}
+                            timeFormat={this.timeFormat}
+                            locale={this.locale}
+                        />
+                    )
+                }
             </div>
         );
     }
@@ -69,6 +72,7 @@ class FacebookFeed extends Component {
                         refreshTimeStamp: new Date().getTime(),
                         pagePrev: response.paging.previous,
                         pageNext: response.paging.next,
+                        loading: false,
                     });
     
                 }
@@ -129,7 +133,11 @@ class FacebookFeed extends Component {
                     //If authenticated
                     <div id="facebook">
 
-                        
+                        {this.state.loading ?
+                            <div className="spinner">
+                                <Spinner /> 
+                            </div>
+                        :
                         <div id="FBSidebar">
                             <h1>Facebook</h1>
                             <button className="FBbtn"
@@ -144,14 +152,20 @@ class FacebookFeed extends Component {
                             </p>
                             <PostToFB {...this.state} />
                         </div>
+                        }
+                        
                         
                         {this.renderFBfeed()}
 
                         <div id="FBFooter">
+                            {this.state.loading ?
+                            "":
                             <button className="FBbtn"
                                     onClick={this.getOlderPosts}>
                                 See Older Posts
                             </button>
+
+                            }
                         </div>
                     </div>
                 :

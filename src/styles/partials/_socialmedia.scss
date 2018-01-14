@@ -19,6 +19,11 @@ $lightGrey:#ddd;
         color: $facebookBlue;
         text-align: left;
     }
+    .spinner {
+        position: absolute;
+        top: 25%;
+        left: 50%;
+    }
 }
 
 #FBPostForm {

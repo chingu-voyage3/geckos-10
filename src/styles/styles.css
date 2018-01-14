@@ -519,6 +519,10 @@ p {
   #facebook h1, #facebook h2, #facebook h3 {
     color: #39518F;
     text-align: left; }
+  #facebook .spinner {
+    position: absolute;
+    top: 25%;
+    left: 50%; }
 
 #FBPostForm textarea {
   resize: none;
