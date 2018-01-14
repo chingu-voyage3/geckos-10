@@ -26,7 +26,8 @@ class App extends Component {
       email: "",
       name: "",
       uid: "",
-      FBauthenticated: false
+      FBauthenticated: false,
+      FBaccessToken: "",
     };
   }
 
@@ -67,6 +68,12 @@ class App extends Component {
 
 
   checkFBauth(){
+    //cant use getLoginStatus if user is currently logged into the app, that doesnt change when you logged out
+    //it would only change if the user revoked permissions from the app, must use a firebase one to find the 
+    //providers facebook has logged into
+
+    //need to run this to get accesstoken to make fb api calls
+
     FB.getLoginStatus(
       function (response) {
         console.log("FB response: " + response.status);
@@ -76,20 +83,19 @@ class App extends Component {
           // the user's ID, a valid access token, a signed
           // request, and the time the access token
           // and signed request each expire
+
+          var accessToken = response.authResponse.accessToken;
+
           this.setState({
-            FBauthenticated: true
+            FBaccessToken: accessToken,
           });
         } else if (response.status === "not_authorized") {
           // the user is logged in to Facebook,
           // but has not authenticated your app
-          this.setState({
-            FBauthenticated: false,
-          });
+          
         } else {
           // the user isn't logged in to Facebook.
-          this.setState({
-            FBauthenticated: false,
-          });
+          
         }
       }.bind(this)
     );
@@ -98,13 +104,22 @@ class App extends Component {
   componentWillMount() {
     this.initFBSDK();
     this.removeAuthListener = app.auth().onAuthStateChanged(user => {
+      console.log('auth state changed');
       if (user) {
         //console.log(user);
+        var loggedInWithFB = false;
+        user.providerData.forEach(function (profile) {
+          console.log("Sign-in provider: " + profile.providerId);
+          if (profile.providerId === "facebook.com"){
+            loggedInWithFB = true;
+          }
+        });
         this.setState({
           authenticated: true,
           loading: false,
           name: !user.email ? user.providerData[0].email : user.email,
-          uid: user.uid
+          uid: user.uid,
+          FBauthenticated: loggedInWithFB,
         });
         if (typeof(FB) !== 'undefined' && FB !== null ) {
           //only run if FB SDK is finished

@@ -1,3 +1,4 @@
+/*global FB*/
 import React, { Component } from 'react';
 import FacebookFeed from './Facebook';
 
@@ -10,7 +11,13 @@ class SocialMedia extends Component {
     render () {
         return (
             <div id="SocialMedia">
-                <FacebookFeed   {...this.props} />
+                { //make sure facebook can't be loaded before FB SDk is initialized
+                    (typeof(FB) !== 'undefined' && FB !== null )?
+                        <FacebookFeed   {...this.props} />
+                    :
+                        ""
+                }
+                
             </div>
         );
     }
