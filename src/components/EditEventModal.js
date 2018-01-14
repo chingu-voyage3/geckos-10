@@ -26,19 +26,46 @@ class EditEventModal extends Component {
   changeText(event) {
     let state = this.props.currentEvent;
     if (event.target.name === 'title') {
-      state.title = event.target.value;
+      if (event.target.value) {
+        state.title = event.target.value;
+      } else {
+        state.title = ''
+      }
     } else if (event.target.name === 'description') {
-      state.description = event.target.value
+      if (event.target.value) {
+        state.description = event.target.value
+      } else {
+        state.description = ''
+      }
     } else if (event.target.name === 'location') {
-      state.location = event.target.value
+      if (event.target.value) {
+        state.location = event.target.value
+      } else {
+        state.location = ''
+      }
     } else if (event.target.name === 'startTime') {
-      state.startTime = event.target.value
+      if (event.target.value) {
+        state.startTime = event.target.value
+      } else {
+        state.startTime = ''
+      }
     } else if (event.target.name === 'startDate') {
-      state.startDate = event.target.value
+      if (event.target.value) {
+        state.startDate = event.target.value
+      } else {
+        state.startDate = ''
+      }
+
     } else if (event.target.name === 'endTime') {
-      state.endTime = event.target.value
+      if (event.target.value) {
+        state.endTime = event.target.value
+      } else {
+        state.endTime = ''
+      }
     } else if (event.target.name === 'endDate') {
-      state.endDate = event.target.value
+      if (event.target.value) {
+        state.endDate = ''
+      }
     }
     this.setState({
       currentEvent: state,

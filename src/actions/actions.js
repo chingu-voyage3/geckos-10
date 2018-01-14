@@ -1,14 +1,6 @@
 // import axios from 'axios';
 import firebase from 'firebase';
 
-//add event
-export function addCalendarEvent(event) {
-  firebase
-    .database()
-    .ref(`users/events/${firebase.auth().currentUser.uid}`)
-    .push(event);
-}
-
 
 // add todo
 export function addTodo(list, value) {

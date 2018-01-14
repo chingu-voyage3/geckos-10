@@ -4,9 +4,12 @@ import BigCalendar from 'react-big-calendar';
 import { Link, Redirect } from 'react-router-dom';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import { firebase } from '@firebase/app';
+import PropTypes from "prop-types";
+
+
 import PopoverModal from './Popover';
 import EditEventModal from './EditEventModal';
-import PropTypes from "prop-types";
+import AddEventModal from './AddEventModal';
 
 BigCalendar.momentLocalizer(moment);
 
@@ -89,7 +92,7 @@ class Calendar extends Component {
             views={allViews} selectable={true}
             onSelectEvent={this.handleSelectEvent} />
           <section className='calendar-buttons'>
-            <button type='button' className='add-event pt-button pt-intent-primary'><Link to={{ pathname: '/calendar/new' }}>Add Event</Link></button>
+            <AddEventModal {...this.state } />
             <PopoverModal {...this.state } />
             <EditEventModal {...this.state } />
           </section>
