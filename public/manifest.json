@@ -1,9 +1,12 @@
 {
   "manifest_version": 2,
-  "description": "Extension",
+  "description": "New tab geared towards developers, featuring to-do lists, calendar, and social media feed. Also a weather widget and pomodoro clock.",
   "version": "1.0",
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Geckos Tab",
+  "name": "Geckos Tab - Developer Oriented New Tab",
+  "browser_action": {
+    "default_icon": "icon.png"
+  },
   "chrome_url_overrides": {
     "newtab": "index.html"
   },
