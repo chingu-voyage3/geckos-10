@@ -1,6 +1,6 @@
 /*global FB*/
 import React, { Component } from 'react';
-import FacebookFeed from './Facebook';
+import FacebookFeed from './facebook_components/Facebook';
 
 class SocialMedia extends Component {
 

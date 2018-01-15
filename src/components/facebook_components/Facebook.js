@@ -150,7 +150,7 @@ class FacebookFeed extends Component {
                                 //The minimum number of seconds that the component should wait before updating 
                                 minPeriod='5' />
                             </p>
-                            <PostToFB {...this.state} />
+                            <PostToFB {...this.state} refreshCallback={this.refreshFeed} />
                         </div>
                         }
                         
