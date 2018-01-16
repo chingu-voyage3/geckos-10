@@ -456,12 +456,16 @@ p {
   grid-template-rows: 5vh 1fr 200px;
   height: 100%; }
 
+.appFooter {
+  height: 50px; }
+
 .navList {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); }
+  grid-template-columns: repeat(4, 1fr);
+  align-items: center; }
 
-.appFooter .navItem {
-  margin: auto; }
+.navItem {
+  margin: 20px auto auto auto; }
 
 .navItem-1 {
   grid-column: 1/1; }
@@ -476,7 +480,7 @@ p {
   grid-column: 4/4; }
 
 .appHeader {
-  height: 5vh; }
+  height: 50px; }
 
 .loginStyles {
   width: 90%;
@@ -501,6 +505,119 @@ p {
   position: absolute;
   top: 25%;
   left: 50%; }
+
+#SocialMedia {
+  background-color: #ddd;
+  padding: 10px;
+  min-height: -webkit-calc(100vh - 150px); }
+
+#facebook {
+  margin: 30px;
+  display: grid;
+  grid-template-columns: 250px auto;
+  grid-template-rows: auto 50px; }
+  #facebook h1, #facebook h2, #facebook h3 {
+    color: #39518F;
+    text-align: left; }
+  #facebook .spinner {
+    position: absolute;
+    top: 25%;
+    left: 50%; }
+
+#FBPostForm textarea {
+  resize: none;
+  border-radius: 5px;
+  border: white;
+  outline: none;
+  padding: 5px;
+  transition: all 0.2s linear;
+  -webkit-transition: all 0.2s linear; }
+
+#FBPostForm ::-webkit-input-placeholder {
+  font-style: italic;
+  color: #7E828A; }
+
+#FBPostForm .small {
+  height: 50px;
+  width: 160px; }
+
+#FBPostForm .big {
+  height: 200px;
+  width: 250px; }
+
+#FBPostForm .show {
+  display: block; }
+
+#FBPostForm .hide {
+  display: none; }
+
+#FBSidebar {
+  position: fixed;
+  width: 200px; }
+
+#FBFooter {
+  grid-column: 1 / -1;
+  text-align: center;
+  margin-top: 20px; }
+
+#facebookFeedContainer {
+  grid-column: 2 / span 1;
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1fr minmax(200px, 900px) 1fr;
+  grid-auto-rows: minmax(100px, auto);
+  grid-gap: 20px; }
+
+.refreshDate {
+  color: white;
+  font-size: 11px;
+  font-style: italic;
+  margin: 0 0 20px 0; }
+
+.FBfeedItem {
+  background-color: white;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+  position: relative;
+  overflow: auto;
+  grid-column: 2 / span 1; }
+  .FBfeedItem .postHeader {
+    text-align: left; }
+  .FBfeedItem .postBody {
+    margin: 0;
+    padding: 0; }
+  .FBfeedItem .postStory {
+    font-weight: bold; }
+  .FBfeedItem .linkBox {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px; }
+  .FBfeedItem img {
+    margin: 5px 0 5px 0;
+    max-width: 100%;
+    height: auto; }
+  .FBfeedItem .postFooter {
+    width: auto;
+    text-align: right;
+    margin: 5px 0 0 0;
+    color: #ddd; }
+  .FBfeedItem .postDate {
+    color: #7E828A;
+    font-size: 11px;
+    font-style: italic;
+    margin: 5px 0 10px 0; }
+    .FBfeedItem .postDate a {
+      color: #7E828A; }
+  .FBfeedItem .postMessage {
+    margin: 15px 5px;
+    font-size: 14px; }
+
+.FBbtn {
+  background-color: #39518F;
+  color: white;
+  margin: 5px;
+  padding: 3px; }
 
 .calendarComponent button a {
   color: #fff; }
@@ -560,3 +677,7 @@ p {
   overflow-y: auto;
   height: 20vh;
   width: 20vh; }
+
+.appMain {
+  height: -webkit-calc(100vh - 100px);
+  overflow: scroll; }

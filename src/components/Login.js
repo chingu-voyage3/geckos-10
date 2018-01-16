@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import { Toaster, Intent } from "@blueprintjs/core";
-
-import { app, googleProvider } from "../store/store";
+import { app, googleProvider, facebookProvider } from "../store/store";
 
 class Login extends Component {
   constructor(props) {
     super(props);
     this.authWithGoogle = this.authWithGoogle.bind(this);
     this.authWithEmailPassword = this.authWithEmailPassword.bind(this);
+    this.authWithFacebook = this.authWithFacebook.bind(this);
     this.state = {
       redirect: false
     };
@@ -23,12 +23,28 @@ class Login extends Component {
         });
         //console.log(error);
       } else {
+        this.setState({
+          redirect: true
+        });
+      }
+    });
+  }
+
+  authWithFacebook() {
+    app.auth().signInWithPopup(facebookProvider).then((result, error) => {
+      if (error) {
+        this.toaster.show({ intent: Intent.DANGER, message: error.message });
+        console.log(error);
+      } else {
         // const token = result.credential.accessToken;
         // let UID = result.user.uid;
         // let key = result.user.G;
         // console.log(UID);
         // let calendarKey = result.credential.idToken;
         // console.log(calendarKey);
+        const token = result.credential.accessToken;
+        console.log("successfully logged in with facebook: "+token)
+
         this.setState({
           redirect: true
         });
@@ -74,6 +90,7 @@ class Login extends Component {
     if (this.state.redirect === true) {
       return <Redirect to="/" />;
     }
+    //Toaster, part of blueprint, provides visual intent styles, and notices
     return (
       <div className="loginStyles">
         <Toaster
@@ -86,6 +103,12 @@ class Login extends Component {
           onClick={() => this.authWithGoogle()}
         >
           {" "}Log In with Google
+        </button>
+        <button
+          className="pt-button pt-intent-primary"
+          onClick={() => this.authWithFacebook()}
+        >
+          {" "}Log In with Facebook
         </button>
         <hr className="login-form-hr" />
         <form

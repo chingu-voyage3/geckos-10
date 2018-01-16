@@ -1,10 +1,16 @@
+.appFooter {
+  height: 50px;
+  
+}
+
 .navList {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  align-items: center;
 }
 
-.appFooter .navItem {
-  margin: auto;
+.navItem {
+  margin: 20px auto auto auto;
 }
 
 .navItem-1 {

@@ -6,12 +6,20 @@ import { app } from "../store/store";
 class Logout extends Component {
   constructor() {
     super();
+    this.deleteCookie = this.deleteCookie.bind(this);
     this.state = {
       redirect: false
     };
   }
+
+  deleteCookie(name) {
+    document.cookie = name +'=; Path=/; Expires='+new Date().toUTCString()+';';
+  }
+
   componentWillMount() {
     app.auth().signOut().then(() => {
+      //make sure facebook cookies get properly deleted when logging out
+      this.deleteCookie('fblo_1186050748193429'); 
       this.setState({ redirect: true });
     });
   }
