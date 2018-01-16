@@ -551,6 +551,30 @@ p {
 #FBPostForm .hide {
   display: none; }
 
+#photoBtnLabel, #FBsubmit, .FBbtn, .formButtonsContainer button {
+  color: white;
+  background-color: #39518F;
+  display: inline-block;
+  cursor: pointer;
+  width: 150px;
+  height: 25px;
+  padding: 5px;
+  margin: 5px 0;
+  text-align: center; }
+
+#photoBtnLabel + #photo_upload:focus,
+#photoBtnLabel:hover,
+#FBsubmit:hover, .formButtonsContainer button:hover, .FBbtn:hover {
+  background-color: #7E828A; }
+
+#photo_upload {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1; }
+
 #FBSidebar {
   position: fixed;
   width: 200px; }
@@ -612,12 +636,6 @@ p {
   .FBfeedItem .postMessage {
     margin: 15px 5px;
     font-size: 14px; }
-
-.FBbtn {
-  background-color: #39518F;
-  color: white;
-  margin: 5px;
-  padding: 3px; }
 
 .calendarComponent button a {
   color: #fff; }

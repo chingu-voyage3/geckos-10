@@ -5,7 +5,9 @@ class PostPhoto extends Component {
 
     constructor(props){
         super(props)
-
+        this.state = {
+            labelText: 'Add a Photo',
+        }
     }
 
     getFiles(event){
@@ -33,8 +35,12 @@ class PostPhoto extends Component {
     render(){
         return(
             <div>
-                <input  className={this.props.isShowing}
-                        type="file"
+                <label  className={this.props.isShowing}
+                        id="photoBtnLabel"
+                        htmlFor="photo_upload">
+                        {this.state.labelText}
+                </label>
+                <input  type="file"
                         name="photo_upload"
                         id="photo_upload"
                         accept=".jpg, .jpeg, .bmp, .png, .gif, .tif, .tiff"

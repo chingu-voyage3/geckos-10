@@ -27,6 +27,7 @@ $lightGrey:#ddd;
 }
 
 #FBPostForm {
+
     textarea {
         resize: none;
         border-radius: 5px;
@@ -54,6 +55,36 @@ $lightGrey:#ddd;
     .hide {
         display: none;
     }
+}
+
+
+#photoBtnLabel, #FBsubmit, .FBbtn, .formButtonsContainer button {
+    color: white;
+    background-color: $facebookBlue;
+    display: inline-block;
+    cursor: pointer;
+    width: 150px;
+    height: 25px;
+    padding: 5px;
+    margin: 5px 0;
+    text-align: center;
+    
+}
+
+#photoBtnLabel + #photo_upload:focus ,
+#photoBtnLabel:hover,
+#FBsubmit:hover, .formButtonsContainer button:hover, .FBbtn:hover{
+    background-color: $mediumGrey;
+}
+
+#photo_upload {
+    //want to hide input while still making it accessible to the browser
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
 }
 
 #FBSidebar {
@@ -142,10 +173,5 @@ $lightGrey:#ddd;
     }
 }
 
-.FBbtn {
-    background-color: $facebookBlue;
-    color: white;
-    margin: 5px;
-    padding: 3px;
 
-}
+

@@ -14,7 +14,7 @@ Submit for review now or learn more. */
 import React, { Component } from 'react';
 import FBfeedItem from './FBfeedItem';
 import PostToFB from './PostToFB';
-import TimeAgo from 'react-timeago';
+import RefreshFB from './RefreshFB';
 import { Spinner } from "@blueprintjs/core";
 
 
@@ -140,17 +140,8 @@ class FacebookFeed extends Component {
                         :
                         <div id="FBSidebar">
                             <h1>Facebook</h1>
-                            <button className="FBbtn"
-                                    onClick={this.refreshFeed}>
-                                    Refresh Feed
-                            </button>
-                            <p className='refreshDate'>Updated {' '}  
-                            <TimeAgo 
-                                date={this.state.refreshTimeStamp}
-                                //The minimum number of seconds that the component should wait before updating 
-                                minPeriod='5' />
-                            </p>
                             <PostToFB {...this.state} refreshCallback={this.refreshFeed} />
+                            <RefreshFB {...this.state} refreshCallback={this.refreshFeed} />
                         </div>
                         }
                         

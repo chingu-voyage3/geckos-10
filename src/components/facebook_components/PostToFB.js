@@ -6,9 +6,9 @@ class PostToFB extends Component {
     //incomplete
     constructor(props) {
         super(props)
-        this.handleFocus = this.handleFocus.bind(this);
+        this.expandPostForm = this.expandPostForm.bind(this);
         this.handleChange = this.handleChange.bind(this);
-        this.handleBlur = this.handleBlur.bind(this);
+        this.minimizePostForm = this.minimizePostForm.bind(this);
         this.makePost = this.makePost.bind(this);
         this.getPhotoIDs = this.getPhotoIDs.bind(this);
         this.state = {
@@ -57,7 +57,7 @@ class PostToFB extends Component {
         this.setState({message: event.target.value});
     }
 
-    handleFocus(){
+    expandPostForm(){
 
         this.setState({
             textarea: 'big',
@@ -66,9 +66,10 @@ class PostToFB extends Component {
 
     }
 
-    handleBlur() {
+    minimizePostForm(event) {
         //only do it if there's no message so that it doesn't disappear on the user when they're trying to submit
         //and if they aren't showing a picture
+        event.preventDefault();
         if (this.state.message ==='' ) {
             this.setState({
                 textarea: 'small',
@@ -94,19 +95,25 @@ class PostToFB extends Component {
             <div>
                 <form   id="FBPostForm" 
                         onSubmit={this.makePost}
-                        onFocus={this.handleFocus} 
-                        onBlur={this.handleBlur}
+                        onFocus={this.expandPostForm} 
+                        //onBlur={this.minimizePostForm}
                         >
                     <textarea   className={this.state.textarea} 
                                 value={this.state.message} 
                                 onChange={this.handleChange}
                                 placeholder="Post to Facebook"
                                 />
-                    {/*<PostPhoto {...this.state} photoIDCallback={this.getPhotoIDs}/> */}
-                    <input  className={this.state.isShowing} 
-                            type="submit" 
-                            value="Post to Facebook" 
-                            />
+                    <div className="formButtonsContainer">
+                        <PostPhoto {...this.state} photoIDCallback={this.getPhotoIDs}/> 
+                        <input  className={this.state.isShowing}
+                                id="FBsubmit" 
+                                type="submit" 
+                                value="Post to Facebook" 
+                                />
+                        <button className={this.state.isShowing} onClick={this.minimizePostForm}>
+                            Collapse
+                        </button>
+                    </div>
                 </form>
             </div>
         );
