@@ -1,15 +1,15 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
-  "icons": [
-    {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
-    }
-  ],
-  "start_url": "./index.html",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+	"manifest_version": 2,
+	"description": "New tab geared towards developers, featuring to-do lists, calendar, and social media feed. Also a weather widget and pomodoro clock.",
+	"version": "1.0",
+	"short_name": "Geckos Tab",
+	"name": "Geckos Tab - Developer Oriented New Tab",
+	"browser_action": {
+		"default_icon": "icon.png"
+	},
+	"chrome_url_overrides": {
+		"newtab": "index.html"
+	},
+	"content_security_policy": "script-src 'self' https://apis.google.com/ https://www.gstatic.com/ https://*.firebaseio.com https://www.googleapis.com https://connect.facebook.net https://*.facebook.com https://use.fontawesome.com; object-src 'self'",
+	"key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmeLImymN5FL6ow/ly7monzQ/b64xbL8lEsPeVx4d96EvvRfn6JJz2yzH/sEtCkQIcYl5oC1iOEkrmjUQy+OKJammvW9DfdmbpeAdz4pTFgxa5DEUBuaTLva5nrSBL77uH5ht3hzmccXzuVJbfCryKS3h5CSFp8H9QUVmtpgwCRdFGbS12hciYkefofTPK0V1QK0lk4G5FJamtww6ILEzL7V0yH7tfXYZ0GS5/NxZ9BP+Tl931DvD2NCZuVpGbnGehNjfb7VEqTZsI4SQD4iwMut0PPVz6BUCzBghuS4Ciqvpxwx0tbjKeT1en1qBvDnxVC+k8M3zs/T7sV2qzG4IKwIDAQAB"
 }
