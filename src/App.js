@@ -14,12 +14,12 @@ import Calendar from "./components/Calendar";
 import BasicTodoApp from "./containers/BasicTodoApp";
 
 import SocialMedia from "./components/SocialMedia";
+import Cookies from "universal-cookie";
 
 class App extends Component {
   constructor() {
     super();
     this.initFBSDK = this.initFBSDK.bind(this);
-    this.checkFBauth = this.checkFBauth.bind(this);
     this.state = {
       authenticated: false,
       loading: true,
@@ -27,7 +27,7 @@ class App extends Component {
       name: "",
       uid: "",
       FBauthenticated: false,
-      FBaccessToken: "",
+      FBaccessToken: ""
     };
   }
 
@@ -45,11 +45,6 @@ class App extends Component {
         version: "v2.11"
       });
       FB.AppEvents.logPageView();
-
-      // Additional initialization code
-      //for users who are already logged in when app page loads
-      this.checkFBauth();
-
     }.bind(this);
 
     //Load SDK asynchronously
@@ -66,67 +61,29 @@ class App extends Component {
     })(document, "script", "facebook-jssdk");
   }
 
-
-  checkFBauth(){
-    //cant use getLoginStatus if user is currently logged into the app, that doesnt change when you logged out
-    //it would only change if the user revoked permissions from the app, must use a firebase one to find the 
-    //providers facebook has logged into
-
-    //need to run this to get accesstoken to make fb api calls
-
-    FB.getLoginStatus(
-      function (response) {
-        console.log("FB response: " + response.status);
-        if (response.status === "connected") {
-          // the user is logged in and has authenticated the
-          // app, and response.authResponse supplies
-          // the user's ID, a valid access token, a signed
-          // request, and the time the access token
-          // and signed request each expire
-
-          var accessToken = response.authResponse.accessToken;
-
-          this.setState({
-            FBaccessToken: accessToken,
-          });
-        } else if (response.status === "not_authorized") {
-          // the user is logged in to Facebook,
-          // but has not authenticated your app
-          
-        } else {
-          // the user isn't logged in to Facebook.
-          
-        }
-      }.bind(this)
-    );
-  }  
-
   componentWillMount() {
     this.initFBSDK();
     this.removeAuthListener = app.auth().onAuthStateChanged(user => {
-      console.log('auth state changed');
+      console.log("auth state changed");
       if (user) {
         //console.log(user);
         var loggedInWithFB = false;
         user.providerData.forEach(function (profile) {
           console.log("Sign-in provider: " + profile.providerId);
-          if (profile.providerId === "facebook.com"){
+          if (profile.providerId === "facebook.com") {
             loggedInWithFB = true;
           }
         });
+        const cookies = new Cookies();
+        const accessToken = cookies.get("FBaccessToken");
         this.setState({
           authenticated: true,
           loading: false,
           name: !user.email ? user.providerData[0].email : user.email,
           uid: user.uid,
           FBauthenticated: loggedInWithFB,
+          FBaccessToken: accessToken
         });
-        if (typeof(FB) !== 'undefined' && FB !== null ) {
-          //only run if FB SDK is finished
-          this.checkFBauth();
-        }
-        
-      
       } else {
         this.setState({
           authenticated: false,
@@ -137,7 +94,6 @@ class App extends Component {
         });
       }
     });
-
   }
 
   componentWillUnMount() {
