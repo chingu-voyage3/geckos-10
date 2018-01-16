@@ -17,81 +17,87 @@ import PostToFB from './PostToFB';
 import RefreshFB from './RefreshFB';
 import { Spinner } from "@blueprintjs/core";
 
-
-
 class FacebookFeed extends Component {
+  constructor(props) {
+    super(props);
+    this.getFBPosts = this.getFBPosts.bind(this);
+    this.refreshFeed = this.refreshFeed.bind(this);
+    this.getOlderPosts = this.getOlderPosts.bind(this);
+    this.state = {
+        //login info passed down from app through socialmedia component
+        FBauthenticated: this.props.FBauthenticated,
+        FBaccessToken: this.props.FBaccessToken,
+        FBfeed: [], //stores fb post info
+        refresh: true, //indicates whether app should make an api call to get post data
+        refreshTimeStamp: "",
+        pagePrev: "",
+        pageNext: "",
+        loading: true,
+    };
+    this.timeFormat = {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+    };
+    this.locale = "en-US";
+  }
 
-    constructor(props) {
-        super(props)
-        this.getFBPosts = this.getFBPosts.bind(this);
-        this.refreshFeed = this.refreshFeed.bind(this);
-        this.getOlderPosts = this.getOlderPosts.bind(this);
-        this.state = {
-            //login info passed down from app through socialmedia component
-            FBauthenticated: this.props.FBauthenticated,
-            FBfeed: [], //stores fb post info
-            refresh: true, //indicates whether app should make an api call to get post data
-            refreshTimeStamp: '',
-            pagePrev: '',
-            pageNext: '',
-            loading: true,
-        };
-        this.timeFormat = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour:'2-digit', minute:'2-digit'};
-        this.locale = 'en-US';
-    }
+  renderFBfeed() {
+    this.getFBPosts();
+    return (
+      <div id="facebookFeedContainer">
+        {this.state.FBfeed.map(FBitem =>
+          <FBfeedItem
+            key={FBitem.id}
+            FBitem={FBitem}
+            timeFormat={this.timeFormat}
+            locale={this.locale}
+          />
+        )}
+      </div>
+    );
+  }
 
-    renderFBfeed() {
-        this.getFBPosts();
-        return(
-            <div id="facebookFeedContainer">
-                {this.state.FBfeed.map( (FBitem) =>
-                        <FBfeedItem  
-                            key={FBitem.id}
-                            FBitem={FBitem}
-                            timeFormat={this.timeFormat}
-                            locale={this.locale}
-                        />
-                    )
-                }
-            </div>
-        );
+  getFBPosts() {
+    //run only if the FB feed needs to be refreshed
+    if (this.state.refresh) {
+      FB.api(
+        "/me/feed?fields=permalink_url,message,story,created_time,description,full_picture,link,name,status_type,type,from",
+        {
+          access_token: this.state.FBaccessToken
+        },
+        function (response) {
+          if (response && !response.error) {
+            console.log(response);
+            this.setState({
+              FBfeed: response.data,
+              refresh: false,
+              refreshTimeStamp: new Date().getTime(),
+              pagePrev: response.paging.previous,
+              pageNext: response.paging.next,
+              loading: false
+            });
+          } else {
+            console.log(response.error);
+          }
+          //The callback is made in a different context. You need to bind to this
+          //in order to have access to this.setState inside the callback
+        }.bind(this)
+      );
     }
-
-    getFBPosts() {
-        //run only if the FB feed needs to be refreshed
-        if (this.state.refresh){
-            FB.api(
-                "/me/feed?fields=permalink_url,message,story,created_time,description,full_picture,link,name,status_type,type,from",
-                function (response) {
-                if (response && !response.error) {
-                    
-                    console.log(response);
-                    this.setState({
-                        FBfeed: response.data,
-                        refresh: false,
-                        refreshTimeStamp: new Date().getTime(),
-                        pagePrev: response.paging.previous,
-                        pageNext: response.paging.next,
-                        loading: false,
-                    });
-    
-                }
-                else {
-                    console.log(response.error)
-                }
-                //The callback is made in a different context. You need to bind to this  
-                //in order to have access to this.setState inside the callback
-                }.bind(this)
-            );
-        }
- 
-    }
+  }
 
 
     getOlderPosts(){
         console.log("older posts");
         FB.api(
             this.state.pageNext,
+            {
+                access_token: this.state.FBaccessToken
+              },
             function (response) {
             if (response && !response.error) {
                 
@@ -168,6 +174,6 @@ class FacebookFeed extends Component {
             </div>
         );
     }
-}
 
+}
 export default FacebookFeed;

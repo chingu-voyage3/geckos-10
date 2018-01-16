@@ -1,23 +1,23 @@
 /*global FB*/
-import React, { Component } from 'react';
-import PostPhoto from './PostPhoto.js';
+import React, { Component } from "react";
+import PostPhoto from "./PostPhoto.js";
 
 class PostToFB extends Component {
     //incomplete
     constructor(props) {
-        super(props)
-        this.expandPostForm = this.expandPostForm.bind(this);
+        super(props);
+        this.handleFocus = this.handleFocus.bind(this);
         this.handleChange = this.handleChange.bind(this);
-        this.minimizePostForm = this.minimizePostForm.bind(this);
+        this.handleBlur = this.handleBlur.bind(this);
         this.makePost = this.makePost.bind(this);
         this.getPhotoIDs = this.getPhotoIDs.bind(this);
         this.state = {
-            message: '',
-            textarea: 'small',
-            isShowing: 'hide',
+            message: "",
+            textarea: "small",
+            isShowing: "hide",
             photoIDs: [], //array to hold strings of IDs
-        }
-
+            FBaccessToken: this.props.FBaccessToken
+        };
     }
 
     makePost(event){
@@ -27,43 +27,38 @@ class PostToFB extends Component {
             "/me/feed",
             "POST",
             {
-                "message": this.state.message
+              access_token: this.state.FBaccessToken,
+              message: this.state.message
             },
             function (response) {
-                if (response && !response.error) {
-                
-                    this.setState({
-                        message: '',
-                        photoIDs: [],
-                        textarea: 'small',
-                        isShowing: 'hide',
-                    });
-                    //refresh the feed after making a new post
-                    this.props.refreshCallback();
-                    
-                }
-                else {
-                    alert("Could not post to Facebook");
-                }
+              if (response && !response.error) {
+                this.setState({
+                  message: "",
+                  photoIDs: [],
+                  textarea: "small",
+                  isShowing: "hide"
+                });
+                //refresh the feed after making a new post
+                this.props.refreshCallback();
+              } else {
+                alert("Could not post to Facebook");
+              }
             }.bind(this)
-        );
+          );
         
         
         
     }
-
 
     handleChange(event) {
-        this.setState({message: event.target.value});
+        this.setState({ message: event.target.value });
     }
 
-    expandPostForm(){
-
+    expandPostForm() {
         this.setState({
-            textarea: 'big',
-            isShowing: 'show',
+            textarea: "big",
+            isShowing: "show"
         });
-
     }
 
     minimizePostForm(event) {
@@ -78,17 +73,17 @@ class PostToFB extends Component {
         }
         
     }
+    
 
-
-    getPhotoIDs(photoIDs) {
-        console.log("photo ids: ");
-        for (var i = 0; i <photoIDs.length(); i++){
-            console.log(photoIDs[i]);
-        }
-        this.setState({
-            photoIDs: photoIDs,
-        });
+  getPhotoIDs(photoIDs) {
+    console.log("photo ids: ");
+    for (var i = 0; i < photoIDs.length(); i++) {
+      console.log(photoIDs[i]);
     }
+    this.setState({
+      photoIDs: photoIDs
+    });
+  }
 
     render () {
         return (
