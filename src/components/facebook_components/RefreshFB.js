@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import TimeAgo from 'react-timeago';
 
 class RefreshFB extends Component {
@@ -19,6 +20,11 @@ class RefreshFB extends Component {
             </div>
         );
     }
+}
+
+RefreshFB.PropTypes = {
+    refreshCallback: PropTypes.func,
+    refreshTimeStamp: PropTypes.date,
 }
 
 export default RefreshFB;

@@ -1,12 +1,10 @@
 /*global FB*/
 import React, { Component } from 'react';
+import { Spinner } from "@blueprintjs/core";
 import FacebookFeed from './facebook_components/Facebook';
 
 class SocialMedia extends Component {
 
-    componentWillReceiveProps(nextProps) {
-        console.log('SM receive props called');
-    }
 
     render () {
         return (
@@ -15,7 +13,10 @@ class SocialMedia extends Component {
                     (typeof(FB) !== 'undefined' && FB !== null )?
                         <FacebookFeed   {...this.props} />
                     :
-                        ""
+                        <div className="spinner">
+                            SDK not finished loading
+                            <Spinner /> 
+                        </div>
                 }
                 
             </div>

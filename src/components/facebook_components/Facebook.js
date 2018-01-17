@@ -12,10 +12,11 @@ Some of the permissions below have not been approved for use by Facebook.
 Submit for review now or learn more. */
 
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { Spinner } from "@blueprintjs/core";
 import FBfeedItem from './FBfeedItem';
 import PostToFB from './PostToFB';
 import RefreshFB from './RefreshFB';
-import { Spinner } from "@blueprintjs/core";
 
 class FacebookFeed extends Component {
   constructor(props) {
@@ -45,50 +46,50 @@ class FacebookFeed extends Component {
     this.locale = "en-US";
   }
 
-  renderFBfeed() {
-    this.getFBPosts();
-    return (
-      <div id="facebookFeedContainer">
-        {this.state.FBfeed.map(FBitem =>
-          <FBfeedItem
-            key={FBitem.id}
-            FBitem={FBitem}
-            timeFormat={this.timeFormat}
-            locale={this.locale}
-          />
-        )}
-      </div>
-    );
-  }
-
-  getFBPosts() {
-    //run only if the FB feed needs to be refreshed
-    if (this.state.refresh) {
-      FB.api(
-        "/me/feed?fields=permalink_url,message,story,created_time,description,full_picture,link,name,status_type,type,from",
-        {
-          access_token: this.state.FBaccessToken
-        },
-        function (response) {
-          if (response && !response.error) {
-            console.log(response);
-            this.setState({
-              FBfeed: response.data,
-              refresh: false,
-              refreshTimeStamp: new Date().getTime(),
-              pagePrev: response.paging.previous,
-              pageNext: response.paging.next,
-              loading: false
-            });
-          } else {
-            console.log(response.error);
-          }
-          //The callback is made in a different context. You need to bind to this
-          //in order to have access to this.setState inside the callback
-        }.bind(this)
-      );
+    renderFBfeed() {
+        this.getFBPosts();
+        return (
+            <div id="facebookFeedContainer">
+            {this.state.FBfeed.map(FBitem =>
+                <FBfeedItem
+                key={FBitem.id}
+                FBitem={FBitem}
+                timeFormat={this.timeFormat}
+                locale={this.locale}
+                />
+            )}
+            </div>
+        );
     }
-  }
+
+    getFBPosts() {
+        //run only if the FB feed needs to be refreshed
+        if (this.state.refresh) {
+            FB.api(
+                "/me/feed?fields=permalink_url,message,story,created_time,description,full_picture,link,name,status_type,type,from",
+                {
+                    access_token: this.state.FBaccessToken
+                },
+                function (response) {
+                    if (response && !response.error) {
+                        console.log(response);
+                        this.setState({
+                            FBfeed: response.data,
+                            refresh: false,
+                            refreshTimeStamp: new Date().getTime(),
+                            pagePrev: response.paging.previous,
+                            pageNext: response.paging.next,
+                            loading: false
+                        });
+                    } else {
+                        console.log(response.error);
+                    }
+                //The callback is made in a different context. You need to bind to this
+                //in order to have access to this.setState inside the callback
+                }.bind(this)
+            );
+        }
+    }
 
 
     getOlderPosts(){
@@ -122,14 +123,10 @@ class FacebookFeed extends Component {
     }
 
     refreshFeed(){
-        //called by refresh button
-
-        console.log("refresh");
 
         this.setState({
             refresh: true,
         });
-
     }    
 
     render (){
@@ -175,5 +172,10 @@ class FacebookFeed extends Component {
         );
     }
 
+}
+
+FacebookFeed.PropTypes = {
+    FBaccessToken: PropTypes.string,
+    FBauthenticated: PropTypes.bool,
 }
 export default FacebookFeed;

@@ -1,22 +1,23 @@
 /*global FB*/
 import React, { Component } from "react";
+import PropTypes from 'prop-types';
 import PostPhoto from "./PostPhoto.js";
 
 class PostToFB extends Component {
     //incomplete
     constructor(props) {
         super(props);
-        this.handleFocus = this.handleFocus.bind(this);
         this.handleChange = this.handleChange.bind(this);
-        this.handleBlur = this.handleBlur.bind(this);
         this.makePost = this.makePost.bind(this);
         this.getPhotoIDs = this.getPhotoIDs.bind(this);
+        this.expandPostForm = this.expandPostForm.bind(this);
+        this.minimizePostForm = this.minimizePostForm.bind(this);
         this.state = {
             message: "",
             textarea: "small",
             isShowing: "hide",
             photoIDs: [], //array to hold strings of IDs
-            FBaccessToken: this.props.FBaccessToken
+            FBaccessToken: this.props.FBaccessToken,
         };
     }
 
@@ -113,6 +114,11 @@ class PostToFB extends Component {
             </div>
         );
     }
+}
+
+PostToFB.PropTypes = {
+    refreshCallback: PropTypes.func,
+    FBaccessToken: PropTypes.string,
 }
 
 export default PostToFB;

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class FBfeedItem extends Component {
 
@@ -131,6 +132,12 @@ class FBfeedItem extends Component {
             </div>
        );
     }
+}
+
+FBfeedItem.PropTypes = {
+    FBitem: PropTypes.objectOf(PropTypes.any),
+    locale: PropTypes.string,
+    timeFormat: PropTypes.object,
 }
 
 export default FBfeedItem;

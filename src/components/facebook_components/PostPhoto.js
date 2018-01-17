@@ -1,5 +1,6 @@
 /*global FB*/
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class PostPhoto extends Component {
 
@@ -50,6 +51,11 @@ class PostPhoto extends Component {
             </div>
         );
     }
+}
+
+PostPhoto.PropTypes = {
+    isShowing: PropTypes.string,
+    labelText: PropTypes.string,
 }
 
 export default PostPhoto;
