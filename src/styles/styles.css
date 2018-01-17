@@ -551,6 +551,15 @@ p {
 #FBPostForm .hide {
   display: none; }
 
+#refreshCheckGroup {
+  color: #7E828A;
+  font-style: italic;
+  size: 11px;
+  display: grid;
+  grid-template: auto 0 / 1fr 5fr;
+  margin: 5px 0;
+  align-items: center; }
+
 #photoBtnLabel, #FBsubmit, .FBbtn, .formButtonsContainer button {
   color: white;
   background-color: #39518F;

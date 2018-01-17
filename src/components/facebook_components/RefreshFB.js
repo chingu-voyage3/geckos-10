@@ -24,7 +24,10 @@ class RefreshFB extends Component {
 
 RefreshFB.propTypes = {
     refreshCallback: PropTypes.func,
-    refreshTimeStamp: PropTypes.date,
+    refreshTimeStamp: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.instanceOf(Date)
+      ]),
 }
 
 export default RefreshFB;

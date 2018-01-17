@@ -2,33 +2,42 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-class PostPhoto extends Component {
+class GetFiles extends Component {
 
     constructor(props){
         super(props)
+        this.getFiles = this.getFiles.bind(this);
         this.state = {
             labelText: 'Add a Photo',
         }
     }
 
     getFiles(event){
-        console.log('Selected file:', event.target.files[0]);
         event.preventDefault()
-        /* for (var i = 0; i < event.target.files.length(); i++){
+        
+        var numFiles = event.target.files.length;
+        var text = '';
 
-        } */
-  /*       FB.api(
-            "/me/photos?published=false",
-            "POST",
-            {
-                "source": "{image-url}"
-            },
-            function (response) {
-              if (response && !response.error) {
-                
-              }
-            }
-        ); */
+        if (numFiles == 0){
+            text = 'No Photos Selected';
+        }
+        else if (numFiles == 1) {
+            text = '1 Photo Selected';
+        }
+        else {
+            text = numFiles + ' Photos Selected';
+        }
+
+        for (var i = 0; i < numFiles; i++){
+            console.log('Selected file:', event.target.files[i]);
+        }
+
+        this.setState({
+            labelText: text,
+        });
+
+        this.props.getPhotoCallback(event.target.files);
+
 
     }
 
@@ -53,8 +62,9 @@ class PostPhoto extends Component {
     }
 }
 
-PostPhoto.propTypes = {
+GetFiles.propTypes = {
     isShowing: PropTypes.string,
+    getPhotoCallback: PropTypes.func,
 }
 
-export default PostPhoto;
+export default GetFiles;

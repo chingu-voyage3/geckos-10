@@ -93,12 +93,12 @@ class FacebookFeed extends Component {
 
 
     getOlderPosts(){
-        console.log("older posts");
+
         FB.api(
             this.state.pageNext,
             {
                 access_token: this.state.FBaccessToken
-              },
+            },
             function (response) {
             if (response && !response.error) {
                 

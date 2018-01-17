@@ -1,7 +1,7 @@
 /*global FB*/
 import React, { Component } from "react";
 import PropTypes from 'prop-types';
-import PostPhoto from "./PostPhoto.js";
+import GetFiles from "./GetFiles.js";
 
 class PostToFB extends Component {
     //incomplete
@@ -9,20 +9,43 @@ class PostToFB extends Component {
         super(props);
         this.handleChange = this.handleChange.bind(this);
         this.makePost = this.makePost.bind(this);
-        this.getPhotoIDs = this.getPhotoIDs.bind(this);
+        this.getPhotos = this.getPhotos.bind(this);
         this.expandPostForm = this.expandPostForm.bind(this);
         this.minimizePostForm = this.minimizePostForm.bind(this);
+        this.uploadPhotos = this.uploadPhotos.bind(this);
         this.state = {
             message: "",
             textarea: "small",
             isShowing: "hide",
-            photoIDs: [], //array to hold strings of IDs
+            refreshCheck: false,
+            photos: [], //array to hold photos to be added to post
             FBaccessToken: this.props.FBaccessToken,
         };
     }
 
+
+    uploadPhotos(){
+        /*       FB.api(
+            "/me/photos?published=false",
+            "POST",
+            {
+                "source": "{image-url}"
+            },
+            function (response) {
+              if (response && !response.error) {
+                
+              }
+            }
+        ); */
+    }
+
     makePost(event){
         event.preventDefault();
+
+        //check that there are photos to upload
+        if (this.state.photos.length > 0) {
+            this.uploadPhotos();
+        }
 
         FB.api(
             "/me/feed",
@@ -35,12 +58,13 @@ class PostToFB extends Component {
               if (response && !response.error) {
                 this.setState({
                   message: "",
-                  photoIDs: [],
+                  photos: [],
                   textarea: "small",
                   isShowing: "hide"
                 });
-                //refresh the feed after making a new post
-                this.props.refreshCallback();
+                //refresh the feed after making a new post is user has checked the box
+                this.state.refreshCheck ? this.props.refreshCallback() : "" ;
+
               } else {
                 alert("Could not post to Facebook");
               }
@@ -49,10 +73,6 @@ class PostToFB extends Component {
         
         
         
-    }
-
-    handleChange(event) {
-        this.setState({ message: event.target.value });
     }
 
     expandPostForm() {
@@ -76,15 +96,27 @@ class PostToFB extends Component {
     }
     
 
-  getPhotoIDs(photoIDs) {
+  getPhotos(files) {
     console.log("photo ids: ");
-    for (var i = 0; i < photoIDs.length(); i++) {
-      console.log(photoIDs[i]);
+    for (var i = 0; i < files.length; i++) {
+      console.log(files[i]);
     }
     this.setState({
-      photoIDs: photoIDs
+      photos: files
     });
   }
+
+  handleChange(event) {
+    //handles change on both textarea and checkbox
+    const target = event.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const name = target.name;
+
+    this.setState({
+      [name]: value
+    });
+
+}
 
     render () {
         return (
@@ -93,14 +125,31 @@ class PostToFB extends Component {
                         onSubmit={this.makePost}
                         onFocus={this.expandPostForm} 
                         //onBlur={this.minimizePostForm}
+                        encType="multipart/form-data"
                         >
                     <textarea   className={this.state.textarea} 
-                                value={this.state.message} 
+                                value={this.state.message}
+                                name="message" 
                                 onChange={this.handleChange}
                                 placeholder="Post to Facebook"
                                 />
                     <div className="formButtonsContainer">
-                        <PostPhoto {...this.state} photoIDCallback={this.getPhotoIDs}/> 
+                        
+                        <div id="refreshCheckGroup" lassName={this.state.isShowing}>
+                            <input  type="checkbox"
+                                    name="refreshCheck" 
+                                    checked={this.state.refreshCheck}
+                                    onChange={this.handleChange}
+                                    className={this.state.isShowing}
+                                    />
+                            <label  htmlFor="refreshCheck" 
+                                    className={this.state.isShowing}
+                                    >
+                                Refresh after posting
+                            </label>`
+                        </div>
+                        
+                        <GetFiles {...this.state} getPhotoCallback={this.getPhotos}/> 
                         <input  className={this.state.isShowing}
                                 id="FBsubmit" 
                                 type="submit" 

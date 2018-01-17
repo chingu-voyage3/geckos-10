@@ -64,15 +64,16 @@ class App extends Component {
   componentWillMount() {
     this.initFBSDK();
     this.removeAuthListener = app.auth().onAuthStateChanged(user => {
-      console.log("auth state changed");
+      
       if (user) {
         //console.log(user);
         var loggedInWithFB = false;
         user.providerData.forEach(function (profile) {
-          console.log("Sign-in provider: " + profile.providerId);
+
           if (profile.providerId === "facebook.com") {
             loggedInWithFB = true;
           }
+
         });
         const cookies = new Cookies();
         const accessToken = cookies.get("FBaccessToken");

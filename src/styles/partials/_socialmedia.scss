@@ -57,6 +57,15 @@ $lightGrey:#ddd;
     }
 }
 
+#refreshCheckGroup {
+    color: $mediumGrey;
+    font-style: italic;
+    size: 11px;
+    display: grid;
+    grid-template:  auto 0 / 1fr 5fr;
+    margin: 5px 0;
+    align-items: center;
+}
 
 #photoBtnLabel, #FBsubmit, .FBbtn, .formButtonsContainer button {
     color: white;
