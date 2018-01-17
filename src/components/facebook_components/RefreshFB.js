@@ -22,7 +22,7 @@ class RefreshFB extends Component {
     }
 }
 
-RefreshFB.PropTypes = {
+RefreshFB.propTypes = {
     refreshCallback: PropTypes.func,
     refreshTimeStamp: PropTypes.date,
 }

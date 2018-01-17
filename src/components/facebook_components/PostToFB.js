@@ -116,7 +116,7 @@ class PostToFB extends Component {
     }
 }
 
-PostToFB.PropTypes = {
+PostToFB.propTypes = {
     refreshCallback: PropTypes.func,
     FBaccessToken: PropTypes.string,
 }

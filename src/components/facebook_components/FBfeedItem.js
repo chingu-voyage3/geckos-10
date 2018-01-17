@@ -134,7 +134,7 @@ class FBfeedItem extends Component {
     }
 }
 
-FBfeedItem.PropTypes = {
+FBfeedItem.propTypes = {
     FBitem: PropTypes.objectOf(PropTypes.any),
     locale: PropTypes.string,
     timeFormat: PropTypes.object,

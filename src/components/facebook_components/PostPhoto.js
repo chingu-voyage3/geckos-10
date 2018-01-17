@@ -53,9 +53,8 @@ class PostPhoto extends Component {
     }
 }
 
-PostPhoto.PropTypes = {
+PostPhoto.propTypes = {
     isShowing: PropTypes.string,
-    labelText: PropTypes.string,
 }
 
 export default PostPhoto;

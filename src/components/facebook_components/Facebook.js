@@ -174,7 +174,7 @@ class FacebookFeed extends Component {
 
 }
 
-FacebookFeed.PropTypes = {
+FacebookFeed.propTypes = {
     FBaccessToken: PropTypes.string,
     FBauthenticated: PropTypes.bool,
 }
