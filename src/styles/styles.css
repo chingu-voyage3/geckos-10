@@ -506,25 +506,33 @@ p {
   top: 25%;
   left: 50%; }
 
-#SocialMedia {
+/******* Colors *******/
+/******* Social Media *******/
+#social-media {
   background-color: #ddd;
   padding: 10px;
   min-height: -webkit-calc(100vh - 150px); }
 
-#facebook {
+/******* Facebook *******/
+#fb {
   margin: 30px;
   display: grid;
   grid-template-columns: 250px auto;
   grid-template-rows: auto 50px; }
-  #facebook h1, #facebook h2, #facebook h3 {
+  #fb h1, #fb h2, #fb h3 {
     color: #39518F;
     text-align: left; }
-  #facebook .spinner {
+  #fb .fb__spinner {
     position: absolute;
     top: 25%;
     left: 50%; }
 
-#FBPostForm textarea {
+/******* Sidebar *******/
+#fb__sidebar {
+  position: fixed;
+  width: 200px; }
+
+#fb__post_form textarea {
   resize: none;
   border-radius: 5px;
   border: white;
@@ -533,34 +541,42 @@ p {
   transition: all 0.2s linear;
   -webkit-transition: all 0.2s linear; }
 
-#FBPostForm ::-webkit-input-placeholder {
+#fb__post_form ::-webkit-input-placeholder {
   font-style: italic;
   color: #7E828A; }
 
-#FBPostForm .small {
+#fb__post_form .fb--small {
   height: 50px;
   width: 160px; }
 
-#FBPostForm .big {
+#fb__post_form .fb--big {
   height: 200px;
   width: 250px; }
 
-#FBPostForm .show {
+#fb__post_form .fb--show {
   display: block; }
 
-#FBPostForm .hide {
+#fb__post_form .fb--hide {
   display: none; }
 
-#refreshCheckGroup {
+#fb__refresh_checkgroup {
   color: #7E828A;
   font-style: italic;
-  size: 11px;
+  font-size: 11px;
   display: grid;
-  grid-template: auto 0 / 1fr 5fr;
-  margin: 5px 0;
-  align-items: center; }
+  grid-template: auto 0 / 15px auto;
+  margin: 5px 0; }
+  #fb__refresh_checkgroup label {
+    margin: 0 0 0 5px;
+    padding: 0; }
 
-#photoBtnLabel, #FBsubmit, .FBbtn, .formButtonsContainer button {
+.fb__refresh_date {
+  color: white;
+  font-style: italic;
+  font-size: 11px;
+  margin: 0 0 20px 0; }
+
+#fb__photo_btn_label, #fb__submit, .fb__btn, .fb__form_buttons_container button {
   color: white;
   background-color: #39518F;
   display: inline-block;
@@ -571,12 +587,12 @@ p {
   margin: 5px 0;
   text-align: center; }
 
-#photoBtnLabel + #photo_upload:focus,
-#photoBtnLabel:hover,
-#FBsubmit:hover, .formButtonsContainer button:hover, .FBbtn:hover {
+#fb__photo_btn_label + #fb__photo_upload:focus,
+#fb__photo_btn_label:hover,
+#fb__submit:hover, .fb__form_buttons_container button:hover, .fb__btn:hover {
   background-color: #7E828A; }
 
-#photo_upload {
+#fb__photo_upload {
   width: 0.1px;
   height: 0.1px;
   opacity: 0;
@@ -584,67 +600,58 @@ p {
   position: absolute;
   z-index: -1; }
 
-#FBSidebar {
-  position: fixed;
-  width: 200px; }
-
-#FBFooter {
-  grid-column: 1 / -1;
-  text-align: center;
-  margin-top: 20px; }
-
-#facebookFeedContainer {
+/******* Body *******/
+#fb__feed_container {
   grid-column: 2 / span 1;
   display: grid;
   align-items: center;
   grid-template-columns: 1fr minmax(200px, 900px) 1fr;
   grid-auto-rows: minmax(100px, auto);
   grid-gap: 20px; }
+  #fb__feed_container .fb__feed_item {
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    position: relative;
+    overflow: auto;
+    grid-column: 2 / span 1; }
+    #fb__feed_container .fb__feed_item .fb__post_header {
+      text-align: left; }
+    #fb__feed_container .fb__feed_item .fb__post_body {
+      margin: 0;
+      padding: 0; }
+    #fb__feed_container .fb__feed_item .fb__post_story {
+      font-weight: bold; }
+    #fb__feed_container .fb__feed_item .fb__link_box {
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 5px; }
+    #fb__feed_container .fb__feed_item img {
+      margin: 5px 0 5px 0;
+      max-width: 100%;
+      height: auto; }
+    #fb__feed_container .fb__feed_item .fb__post_footer {
+      width: auto;
+      text-align: right;
+      margin: 5px 0 0 0;
+      color: #ddd; }
+    #fb__feed_container .fb__feed_item .fb__post_date {
+      color: #7E828A;
+      font-size: 11px;
+      font-style: italic;
+      margin: 5px 0 10px 0; }
+      #fb__feed_container .fb__feed_item .fb__post_date a {
+        color: #7E828A; }
+    #fb__feed_container .fb__feed_item .fb__post_message {
+      margin: 15px 5px;
+      font-size: 14px; }
 
-.refreshDate {
-  color: white;
-  font-size: 11px;
-  font-style: italic;
-  margin: 0 0 20px 0; }
-
-.FBfeedItem {
-  background-color: white;
-  padding: 10px;
-  border-radius: 5px;
+/******* Footer *******/
+#fb__footer {
+  grid-column: 1 / -1;
   text-align: center;
-  position: relative;
-  overflow: auto;
-  grid-column: 2 / span 1; }
-  .FBfeedItem .postHeader {
-    text-align: left; }
-  .FBfeedItem .postBody {
-    margin: 0;
-    padding: 0; }
-  .FBfeedItem .postStory {
-    font-weight: bold; }
-  .FBfeedItem .linkBox {
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    padding: 5px; }
-  .FBfeedItem img {
-    margin: 5px 0 5px 0;
-    max-width: 100%;
-    height: auto; }
-  .FBfeedItem .postFooter {
-    width: auto;
-    text-align: right;
-    margin: 5px 0 0 0;
-    color: #ddd; }
-  .FBfeedItem .postDate {
-    color: #7E828A;
-    font-size: 11px;
-    font-style: italic;
-    margin: 5px 0 10px 0; }
-    .FBfeedItem .postDate a {
-      color: #7E828A; }
-  .FBfeedItem .postMessage {
-    margin: 15px 5px;
-    font-size: 14px; }
+  margin-top: 20px; }
 
 .calendarComponent button a {
   color: #fff; }

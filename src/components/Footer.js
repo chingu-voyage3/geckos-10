@@ -9,16 +9,24 @@ class Footer extends Component {
         {this.props.authenticated
           ? <div className="navList">
             <div className="navItem navItem-1">
-              <NavLink to="/todo">Todos</NavLink>
+              <NavLink to="/todo">
+                <i className="fa fa-list-ul fa-2x fa-fw" aria-hidden="true" title="To Do"></i>
+              </NavLink>
             </div>
             <div className="navItem navItem-2">
-              <NavLink to="/social">Feed</NavLink>
+              <NavLink to="/social">
+                <i className="fa fa-users fa-2x fa-fw" aria-hidden="true" title="Social Media Feed"></i>
+              </NavLink>
             </div>
             <div className="navItem navItem-3">
-              <NavLink to="/calendar">Calendar</NavLink>
+              <NavLink to="/calendar">
+                <i className="fa fa-calendar fa-2x fa-fw" aria-hidden="true" title="Calendar"></i>
+              </NavLink>
             </div>
             <div className="navItem navItem-4">
-              <NavLink to="/weather">Weather</NavLink>
+              <NavLink to="/weather">
+                <i className="fa fa-sun-o  fa-2x fa-fw" aria-hidden="true" title="Weather"></i>
+              </NavLink>
             </div>
           </div>
           : <p>You must sign in to continue!</p>}

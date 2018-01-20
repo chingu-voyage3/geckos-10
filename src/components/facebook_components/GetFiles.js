@@ -17,6 +17,7 @@ class GetFiles extends Component {
         
         var numFiles = event.target.files.length;
         var text = '';
+        
 
         if (numFiles == 0){
             text = 'No Photos Selected';
@@ -28,8 +29,18 @@ class GetFiles extends Component {
             text = numFiles + ' Photos Selected';
         }
 
+
         for (var i = 0; i < numFiles; i++){
+            //check size of files
+            //If you upload a PNG file, try keep the file size below 1 MB. PNG files larger than 1 MB may appear pixelated after upload.
+            //We recommend uploading photos under 4MB.
             console.log('Selected file:', event.target.files[i]);
+            /* if (event.target.files[i].size > 4000000){
+                alert(event.target.files[i].name + " is too large. Please select an image that is smaller than 4MB.")
+                //eventually limit image size**
+            } */
+
+            
         }
 
         this.setState({
@@ -46,13 +57,13 @@ class GetFiles extends Component {
         return(
             <div>
                 <label  className={this.props.isShowing}
-                        id="photoBtnLabel"
+                        id="fb__photo_btn_label"
                         htmlFor="photo_upload">
                         {this.state.labelText}
                 </label>
                 <input  type="file"
                         name="photo_upload"
-                        id="photo_upload"
+                        id="fb__photo_upload"
                         accept=".jpg, .jpeg, .bmp, .png, .gif, .tif, .tiff"
                         onChange={this.getFiles}
                         multiple

@@ -6,12 +6,12 @@ class RefreshFB extends Component {
 
     render(){
         return(
-            <div className="RefreshFB">
-                <button className="FBbtn"
+            <div className="fb__refresh">
+                <button className="fb__btn"
                         onClick={this.props.refreshCallback}>
                         Refresh Feed
                 </button>
-                <p className='refreshDate'>Updated {' '}  
+                <p className='fb__refresh_date'>Updated {' '}  
                     <TimeAgo 
                         date={this.props.refreshTimeStamp}
                         //The minimum number of seconds that the component should wait before updating 

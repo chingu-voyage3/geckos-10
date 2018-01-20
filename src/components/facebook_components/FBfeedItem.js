@@ -6,15 +6,15 @@ class FBfeedItem extends Component {
     renderHeader() {
         var postDate = new Date(this.props.FBitem.created_time);
         return (
-            <div className="postHeader">
+            <div className="fb__post_header">
                 {//If the story exists display that, if not display who the post is from
                     this.props.FBitem.story ?
-                    <div className="postStory">{this.props.FBitem.story}</div>
+                    <div className="fb__post_story">{this.props.FBitem.story}</div>
                     :
-                    <div className="postStory">{this.props.FBitem.from.name}</div>
+                    <div className="fb__post_story">{this.props.FBitem.from.name}</div>
                 }
 
-                <div className="postDate">
+                <div className="fb__post_date">
                     <a href={this.props.FBitem.permalink_url} target="_blank">
                         {postDate.toLocaleDateString(this.props.locale, this.props.timeFormat)}
                     </a>
@@ -25,7 +25,7 @@ class FBfeedItem extends Component {
 
     renderFooter(){
         return(
-            <div className="postFooter">
+            <div className="fb__post_footer">
                 <i className="fa fa-facebook-square fa-lg" aria-hidden="true"></i>
             </div>
         );
@@ -38,7 +38,7 @@ class FBfeedItem extends Component {
             //many different kinds of status posts
             //mobile_status_update, created_note, added_photos, added_video, shared_story, created_group, created_event, wall_post, app_created_story, published_story, tagged_in_photo, approved_friend
             return(
-                <div className="postBody">
+                <div className="fb__post_body">
 
                     {//if the post has commentary from the poster
                         this.props.FBitem.message ? 
@@ -55,11 +55,11 @@ class FBfeedItem extends Component {
         else if (this.props.FBitem.type === "photo"){
             //post includes photo, doesnt specify who posted it
             return(
-                <div className="postBody">
+                <div className="fb__post_body">
 
                     {//if the post has commentary from the poster
                         this.props.FBitem.message ? 
-                        <div className="postMessage">{this.props.FBitem.message}</div> 
+                        <div className="fb__post_message">{this.props.FBitem.message}</div> 
                         : 
                         "" 
                     }
@@ -74,16 +74,16 @@ class FBfeedItem extends Component {
 
         else if (this.props.FBitem.type === "link"){
             return (
-                <div className="postBody">
+                <div className="fb__post_body">
 
                     {//if the post has commentary from the poster
                         this.props.FBitem.message ? 
-                        <div className="postMessage">{this.props.FBitem.message}</div> 
+                        <div className="fb__post_message">{this.props.FBitem.message}</div> 
                         : 
                         "" 
                     }
                 
-                    <div className="linkBox">
+                    <div className="fb__link_box">
                         <a href={this.props.FBitem.link} target="_blank">
                             {this.props.FBitem.name}
                         </a>
@@ -121,7 +121,7 @@ class FBfeedItem extends Component {
         
         
        return(
-            <div className="FBfeedItem">
+            <div className="fb__feed_item">
                             
                 {this.renderHeader()}
 

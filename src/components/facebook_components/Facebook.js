@@ -24,6 +24,7 @@ class FacebookFeed extends Component {
     this.getFBPosts = this.getFBPosts.bind(this);
     this.refreshFeed = this.refreshFeed.bind(this);
     this.getOlderPosts = this.getOlderPosts.bind(this);
+    this.checkFBAuth = this.checkFBAuth.bind(this);
     this.state = {
         //login info passed down from app through socialmedia component
         FBauthenticated: this.props.FBauthenticated,
@@ -46,10 +47,27 @@ class FacebookFeed extends Component {
     this.locale = "en-US";
   }
 
+  checkFBAuth(){
+    //check that access token is valid
+    console.log('Access Token: '+this.state.FBaccessToken)
+    FB.api(
+        "/debug_token?input_token="+this.state.FBaccessToken,
+        function (response) {
+          if (response && !response.error) {
+            /* handle the result */
+            console.log(response);
+          }
+          else {
+            console.log(response.error.message);
+          }
+        }
+    );
+}
+
     renderFBfeed() {
         this.getFBPosts();
         return (
-            <div id="facebookFeedContainer">
+            <div id="fb__feed_container">
             {this.state.FBfeed.map(FBitem =>
                 <FBfeedItem
                 key={FBitem.id}
@@ -134,27 +152,31 @@ class FacebookFeed extends Component {
             <div>
                 {this.state.FBauthenticated ? 
                     //If authenticated
-                    <div id="facebook">
+                    <div id="fb">
 
                         {this.state.loading ?
-                            <div className="spinner">
+                            <div className="fb__spinner">
                                 <Spinner /> 
                             </div>
                         :
-                        <div id="FBSidebar">
+                        <div id="fb__sidebar">
                             <h1>Facebook</h1>
                             <PostToFB {...this.state} refreshCallback={this.refreshFeed} />
                             <RefreshFB {...this.state} refreshCallback={this.refreshFeed} />
+                            {/* <button className="FBbtn"
+                                    onClick={this.checkFBAuth}>
+                                Test Auth
+                            </button> */}
                         </div>
                         }
                         
                         
                         {this.renderFBfeed()}
 
-                        <div id="FBFooter">
+                        <div id="fb__footer">
                             {this.state.loading ?
                             "":
-                            <button className="FBbtn"
+                            <button className="fb__btn"
                                     onClick={this.getOlderPosts}>
                                 See Older Posts
                             </button>
@@ -164,7 +186,7 @@ class FacebookFeed extends Component {
                     </div>
                 :
                 //if not authenticated
-                <div id="facebook">
+                <div id="fb">
                     <h2>Log into Facebook to view your feed.</h2>
                 </div>
                 }

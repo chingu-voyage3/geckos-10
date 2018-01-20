@@ -8,77 +8,148 @@ class PostToFB extends Component {
     constructor(props) {
         super(props);
         this.handleChange = this.handleChange.bind(this);
-        this.makePost = this.makePost.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
         this.getPhotos = this.getPhotos.bind(this);
         this.expandPostForm = this.expandPostForm.bind(this);
         this.minimizePostForm = this.minimizePostForm.bind(this);
         this.uploadPhotos = this.uploadPhotos.bind(this);
+        this.makePost = this.makePost.bind(this);
+        this.encodePhoto = this.encodePhoto.bind(this);
         this.state = {
             message: "",
-            textarea: "small",
-            isShowing: "hide",
+            textarea: "fb--small",
+            isShowing: "fb--hide",
+            displayCheckbox: "fb--hide",
             refreshCheck: false,
-            photos: [], //array to hold photos to be added to post
+            photos: [], //photos user selected to be added to post
+            mediaAttachments: [],
             FBaccessToken: this.props.FBaccessToken,
         };
     }
 
 
-    uploadPhotos(){
-        /*       FB.api(
-            "/me/photos?published=false",
-            "POST",
-            {
-                "source": "{image-url}"
-            },
-            function (response) {
-              if (response && !response.error) {
-                
-              }
-            }
-        ); */
+
+    encodePhoto(photo){
+        var reader = new FileReader();
+
+        reader.onload = function(e) {
+            
+            var arrayBuffer = e.target.result;
+
+            console.log('photo type: '+photo.type)
+            
+            var blob = new Blob([arrayBuffer], { type: photo.type });
+
+            // We will use FormData object to create multipart/form request
+            var pictureData = new FormData();
+            //pictureData.append('access_token', this.state.FBaccessToken);
+            pictureData.append('source', blob);
+            
+
+            return pictureData;
+        }.bind(this)
+
+        return reader.readAsArrayBuffer(photo);
+
     }
 
-    makePost(event){
-        event.preventDefault();
+    uploadPhotos(){
+        //not sure if this is async or not.... maybe not will have to change if it ends up being async... **
+        //store photo ids returned from api call here
+        var temp = []
 
-        //check that there are photos to upload
-        if (this.state.photos.length > 0) {
-            this.uploadPhotos();
+        for (var i =0; i < this.state.photos.length; i++){
+            //each photo must be uploaded in a separate api call
+            console.log("uploading: "+ this.state.photos[i].name);
+
+            var encodedRequest = this.encodePhoto(this.state.photos[i]);
+
+            //upload to facebook
+            FB.api(
+                //"/me/photos?published=false", //upload to get ids to add to status update
+                "/me/photos?access_token="+this.state.FBaccessToken, //upload to get ids to add to status update
+                "POST",
+                encodedRequest,
+                function (response) {
+                  if (response && !response.error) {
+                    //once successfully gotten the photos add them to the array of photo ids
+                    temp.push({"media_fbid": response.id});
+                    console.log(response);
+                  }
+                  else {
+                    alert(response.error.message);
+                  }
+                }.bind(this)
+            );
+
         }
 
+        this.setState({
+            mediaAttachments: temp
+        });
+        
+    }
+
+    makePost(postParameters){
         FB.api(
             "/me/feed",
             "POST",
-            {
-              access_token: this.state.FBaccessToken,
-              message: this.state.message
-            },
+            postParameters,
             function (response) {
               if (response && !response.error) {
                 this.setState({
                   message: "",
                   photos: [],
-                  textarea: "small",
-                  isShowing: "hide"
+                  mediaAttachments: [],
+                  textarea: "fb--small",
+                  isShowing: "fb--hide"
                 });
+
                 //refresh the feed after making a new post is user has checked the box
                 this.state.refreshCheck ? this.props.refreshCallback() : "" ;
 
               } else {
-                alert("Could not post to Facebook");
+                alert(response.error.message);
               }
             }.bind(this)
           );
         
+    }
+
+    handleSubmit(event){
+        event.preventDefault();
+
+        var postParam = {
+            access_token: this.state.FBaccessToken,
+            message: this.state.message,
+        };
+
+        //check that there are photos to upload
+        if (this.state.photos.length > 0) {
+            this.uploadPhotos();
+            
+/*             for (var i = 0; i < this.state.mediaAttachments.length; i++ ) {
+                postParam['attached_media['+i+']'] = this.state.mediaAttachments[0];
+            } */
+            
+            
+        }
+
+        else {
+            
         
+            this.makePost(postParam);
+        }
+        
+
+
         
     }
 
     expandPostForm() {
         this.setState({
-            textarea: "big",
-            isShowing: "show"
+            textarea: "fb--big",
+            isShowing: "fb--show"
         });
     }
 
@@ -88,8 +159,9 @@ class PostToFB extends Component {
         event.preventDefault();
         if (this.state.message ==='' ) {
             this.setState({
-                textarea: 'small',
-                isShowing: 'hide',
+                textarea: 'fb--small',
+                isShowing: 'fb--hide',
+                displayCheckbox: 'fb--hide',
             });
         }
         
@@ -115,16 +187,29 @@ class PostToFB extends Component {
     this.setState({
       [name]: value
     });
+    
+    //Display checkbox only when there's text in the textarea
+    if (value !== '' && this.state.isShowing === 'fb--show'){
+        
+        this.setState({
+            displayCheckbox: 'fb--show'
+        });
+    }
+    else {
+        this.setState({
+            displayCheckbox: 'fb--hide'
+        });
+    }
 
 }
 
     render () {
         return (
             <div>
-                <form   id="FBPostForm" 
-                        onSubmit={this.makePost}
+                <form   id="fb__post_form" 
+                        onSubmit={this.handleSubmit}
                         onFocus={this.expandPostForm} 
-                        //onBlur={this.minimizePostForm}
+                        onBlur={this.minimizePostForm}
                         encType="multipart/form-data"
                         >
                     <textarea   className={this.state.textarea} 
@@ -133,31 +218,29 @@ class PostToFB extends Component {
                                 onChange={this.handleChange}
                                 placeholder="Post to Facebook"
                                 />
-                    <div className="formButtonsContainer">
+                    <div className="fb__form_buttons_container">
                         
-                        <div id="refreshCheckGroup" lassName={this.state.isShowing}>
+                        <div id="fb__refresh_checkgroup" className={this.state.displayCheckbox}>
                             <input  type="checkbox"
                                     name="refreshCheck" 
                                     checked={this.state.refreshCheck}
                                     onChange={this.handleChange}
-                                    className={this.state.isShowing}
                                     />
-                            <label  htmlFor="refreshCheck" 
-                                    className={this.state.isShowing}
-                                    >
+                            <label  htmlFor="refreshCheck" >
                                 Refresh after posting
                             </label>`
                         </div>
                         
-                        <GetFiles {...this.state} getPhotoCallback={this.getPhotos}/> 
+                        {/* <GetFiles {...this.state} getPhotoCallback={this.getPhotos}/> 
+                        <button className={this.state.isShowing} onClick={this.minimizePostForm}>
+                            Collapse
+                        </button> */}
+                        
                         <input  className={this.state.isShowing}
-                                id="FBsubmit" 
+                                id="fb__submit" 
                                 type="submit" 
                                 value="Post to Facebook" 
                                 />
-                        <button className={this.state.isShowing} onClick={this.minimizePostForm}>
-                            Collapse
-                        </button>
                     </div>
                 </form>
             </div>
