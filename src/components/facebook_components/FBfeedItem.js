@@ -83,7 +83,7 @@ class FBfeedItem extends Component {
                         "" 
                     }
                 
-                    <div className="fb__link_box">
+                    <div className="fb__content_box">
                         <a href={this.props.FBitem.link} target="_blank">
                             {this.props.FBitem.name}
                         </a>
@@ -105,8 +105,30 @@ class FBfeedItem extends Component {
         }
 
         else if (this.props.FBitem.type === "video"){
+            
             return(
-                <p>I am a video post</p>
+                <div className="fb__post_body">
+                    {//if the post has commentary from the poster
+                        this.props.FBitem.message ? 
+                        <div className="fb__post_message">{this.props.FBitem.message}</div> 
+                        : 
+                        "" 
+                    }
+                    {
+                        this.props.FBitem.full_picture ?
+                        <div className="fb__content_box">
+                            <a href={this.props.FBitem.link} target="_blank">
+                                {this.props.FBitem.description}
+                            </a>
+                            <br />
+                            <img alt={this.props.FBitem.name} src={this.props.FBitem.full_picture} />                     
+                        </div>
+                        :
+                        <a href={this.props.FBitem.link} target="_blank">
+                            {this.props.FBitem.description}
+                        </a>
+                    }
+                </div>
             );
         }
         else {

@@ -1,7 +1,7 @@
 /*global FB*/
 import React, { Component } from "react";
 import PropTypes from 'prop-types';
-import GetFiles from "./GetFiles.js";
+//import GetFiles from "./GetFiles.js";
 
 class PostToFB extends Component {
     //incomplete
@@ -184,20 +184,19 @@ class PostToFB extends Component {
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const name = target.name;
 
-    this.setState({
-      [name]: value
-    });
     
     //Display checkbox only when there's text in the textarea
     if (value !== '' && this.state.isShowing === 'fb--show'){
         
         this.setState({
-            displayCheckbox: 'fb--show'
+            displayCheckbox: 'fb--show',
+            [name]: value
         });
     }
     else {
         this.setState({
-            displayCheckbox: 'fb--hide'
+            displayCheckbox: 'fb--hide',
+            [name]: value
         });
     }
 

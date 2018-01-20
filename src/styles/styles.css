@@ -623,7 +623,7 @@ p {
       padding: 0; }
     #fb__feed_container .fb__feed_item .fb__post_story {
       font-weight: bold; }
-    #fb__feed_container .fb__feed_item .fb__link_box {
+    #fb__feed_container .fb__feed_item .fb__content_box {
       border: 1px solid #ddd;
       border-radius: 4px;
       padding: 5px; }

@@ -1,4 +1,3 @@
-/*global FB*/
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
@@ -34,7 +33,7 @@ class GetFiles extends Component {
             //check size of files
             //If you upload a PNG file, try keep the file size below 1 MB. PNG files larger than 1 MB may appear pixelated after upload.
             //We recommend uploading photos under 4MB.
-            console.log('Selected file:', event.target.files[i]);
+            //console.log('Selected file:', event.target.files[i]);
             /* if (event.target.files[i].size > 4000000){
                 alert(event.target.files[i].name + " is too large. Please select an image that is smaller than 4MB.")
                 //eventually limit image size**
