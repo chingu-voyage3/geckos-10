@@ -1,6 +1,18 @@
 .appFooter {
   height: 50px;
-  
+  background-color: $dark-shade;
+
+  a {
+    color: $light-accent;
+  }
+
+  .active {
+    color: $dark-accent;
+  }
+
+  a:hover {
+    color: $main-color;
+  }
 }
 
 .navList {

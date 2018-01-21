@@ -1,11 +1,7 @@
-/******* Colors *******/
-$facebook-blue: #39518F;
-$medium-grey: #7E828A;
-$light-grey:#ddd;
 
 /******* Social Media *******/
 #social-media {
-    background-color: $light-grey;
+    background-color: $light-shade;
     padding: 10px;
     //height: 675px;
     min-height: -webkit-calc(100vh - 150px);
@@ -18,7 +14,7 @@ $light-grey:#ddd;
     grid-template-columns: 250px auto;
     grid-template-rows: auto 50px;
     h1,h2,h3 {
-        color: $facebook-blue;
+        color: $main-color;
         text-align: left;
     }
     .fb__spinner {
@@ -48,7 +44,7 @@ $light-grey:#ddd;
     }
     ::-webkit-input-placeholder {
         font-style: italic;
-        color: $medium-grey;
+        color: $dark-shade;
      }
     .fb--small {
         height: 50px;
@@ -67,7 +63,7 @@ $light-grey:#ddd;
 }
 
 #fb__refresh_checkgroup {
-    color: $medium-grey;
+    color: $dark-shade;
     font-style: italic;
     font-size: 11px;
     display: grid;
@@ -82,7 +78,7 @@ $light-grey:#ddd;
 }
 
 .fb__refresh_date {
-    color: white;
+    color: $dark-shade;
     font-style: italic;
     font-size: 11px;
     margin: 0 0 20px 0;
@@ -90,7 +86,7 @@ $light-grey:#ddd;
 
 #fb__photo_btn_label, #fb__submit, .fb__btn, .fb__form_buttons_container button {
     color: white;
-    background-color: $facebook-blue;
+    background-color: $dark-accent;
     display: inline-block;
     cursor: pointer;
     width: 150px;
@@ -104,7 +100,7 @@ $light-grey:#ddd;
 #fb__photo_btn_label + #fb__photo_upload:focus ,
 #fb__photo_btn_label:hover,
 #fb__submit:hover, .fb__form_buttons_container button:hover, .fb__btn:hover{
-    background-color: $medium-grey;
+    background-color: $light-accent;
 }
 
 #fb__photo_upload {
@@ -130,15 +126,25 @@ $light-grey:#ddd;
 
     .fb__feed_item {
         background-color: white;
+        color: $dark-shade;
         padding: 10px;
         border-radius: 5px;
         text-align: center;
         position: relative;
         overflow: auto;
         grid-column: 2 / span 1;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     
+        a {
+            color: $dark-accent;
+        }
+        a:hover {
+            color: $main-color;
+        }
+
         .fb__post_header {
             text-align: left;
+            color: $main-color;
         }
     
         .fb__post_body {
@@ -151,7 +157,7 @@ $light-grey:#ddd;
         }
     
         .fb__content_box {
-            border: 1px solid $light-grey;
+            border: 1px solid $light-accent;
             border-radius: 4px;
             padding: 5px;
         }
@@ -166,18 +172,18 @@ $light-grey:#ddd;
             width: auto;
             text-align: right;
             margin: 5px 0 0 0;
-            color: $light-grey;
+            color: $light-accent;
     
         }
     
         .fb__post_date {
-            color: $medium-grey;
+            color: $light-accent;
             font-size: 11px;
             font-style: italic;
             margin: 5px 0 10px 0;
     
             a {
-                color: $medium-grey;
+                color: $light-accent;
             }
         }
         
@@ -186,6 +192,7 @@ $light-grey:#ddd;
             font-size: 14px;
         }
     }
+
 
 }
 

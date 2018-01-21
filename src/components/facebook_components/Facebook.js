@@ -14,6 +14,7 @@ Submit for review now or learn more. */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Spinner } from "@blueprintjs/core";
+import { Redirect } from "react-router-dom";
 import FBfeedItem from './FBfeedItem';
 import PostToFB from './PostToFB';
 import RefreshFB from './RefreshFB';
@@ -52,6 +53,9 @@ class FacebookFeed extends Component {
     console.log('Access Token: '+this.state.FBaccessToken)
     FB.api(
         "/debug_token?input_token="+this.state.FBaccessToken,
+        {
+            access_token: this.state.FBaccessToken
+        },
         function (response) {
           if (response && !response.error) {
             /* handle the result */
@@ -59,6 +63,7 @@ class FacebookFeed extends Component {
           }
           else {
             console.log(response.error.message);
+            return <Redirect to="/logout" />;
           }
         }
     );
@@ -66,17 +71,19 @@ class FacebookFeed extends Component {
 
     renderFBfeed() {
         this.getFBPosts();
-        return (
+        return ( //TODO FIGURE OUT WHY THIS ISNT RIGHT 
             <div id="fb__feed_container">
-            {this.state.FBfeed.map(FBitem =>
-                <FBfeedItem
-                key={FBitem.id}
-                FBitem={FBitem}
-                timeFormat={this.timeFormat}
-                locale={this.locale}
-                />
-            )}
+                {this.checkFBAuth()}
+                {this.state.FBfeed.map(FBitem =>
+                    <FBfeedItem
+                    key={FBitem.id}
+                    FBitem={FBitem}
+                    timeFormat={this.timeFormat}
+                    locale={this.locale}
+                    />)}
             </div>
+                
+                
         );
     }
 
@@ -99,6 +106,7 @@ class FacebookFeed extends Component {
                             pageNext: response.paging.next,
                             loading: false
                         });
+                        
                     } else {
                         console.log(response.error);
                     }
@@ -163,10 +171,10 @@ class FacebookFeed extends Component {
                             <h1>Facebook</h1>
                             <PostToFB {...this.state} refreshCallback={this.refreshFeed} />
                             <RefreshFB {...this.state} refreshCallback={this.refreshFeed} />
-                            {/* <button className="FBbtn"
+                            {/* <button className="fb__btn"
                                     onClick={this.checkFBAuth}>
                                 Test Auth
-                            </button> */}
+                            </button>  */}
                         </div>
                         }
                         

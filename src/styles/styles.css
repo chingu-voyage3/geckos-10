@@ -457,7 +457,14 @@ p {
   height: 100%; }
 
 .appFooter {
-  height: 50px; }
+  height: 50px;
+  background-color: #7F645F; }
+  .appFooter a {
+    color: #C9BDB4; }
+  .appFooter .active {
+    color: #C5AE8A; }
+  .appFooter a:hover {
+    color: #D47E68; }
 
 .navList {
   display: grid;
@@ -480,7 +487,15 @@ p {
   grid-column: 4/4; }
 
 .appHeader {
-  height: 50px; }
+  height: 50px;
+  color: #C9BDB4;
+  background-color: #7F645F; }
+  .appHeader a {
+    color: #C9BDB4; }
+  .appHeader .active {
+    color: #C5AE8A; }
+  .appHeader a:hover {
+    color: #D47E68; }
 
 .loginStyles {
   width: 90%;
@@ -506,10 +521,9 @@ p {
   top: 25%;
   left: 50%; }
 
-/******* Colors *******/
 /******* Social Media *******/
 #social-media {
-  background-color: #ddd;
+  background-color: #F1F3EE;
   padding: 10px;
   min-height: -webkit-calc(100vh - 150px); }
 
@@ -520,7 +534,7 @@ p {
   grid-template-columns: 250px auto;
   grid-template-rows: auto 50px; }
   #fb h1, #fb h2, #fb h3 {
-    color: #39518F;
+    color: #D47E68;
     text-align: left; }
   #fb .fb__spinner {
     position: absolute;
@@ -543,7 +557,7 @@ p {
 
 #fb__post_form ::-webkit-input-placeholder {
   font-style: italic;
-  color: #7E828A; }
+  color: #7F645F; }
 
 #fb__post_form .fb--small {
   height: 50px;
@@ -560,7 +574,7 @@ p {
   display: none; }
 
 #fb__refresh_checkgroup {
-  color: #7E828A;
+  color: #7F645F;
   font-style: italic;
   font-size: 11px;
   display: grid;
@@ -571,14 +585,14 @@ p {
     padding: 0; }
 
 .fb__refresh_date {
-  color: white;
+  color: #7F645F;
   font-style: italic;
   font-size: 11px;
   margin: 0 0 20px 0; }
 
 #fb__photo_btn_label, #fb__submit, .fb__btn, .fb__form_buttons_container button {
   color: white;
-  background-color: #39518F;
+  background-color: #C5AE8A;
   display: inline-block;
   cursor: pointer;
   width: 150px;
@@ -590,7 +604,7 @@ p {
 #fb__photo_btn_label + #fb__photo_upload:focus,
 #fb__photo_btn_label:hover,
 #fb__submit:hover, .fb__form_buttons_container button:hover, .fb__btn:hover {
-  background-color: #7E828A; }
+  background-color: #C9BDB4; }
 
 #fb__photo_upload {
   width: 0.1px;
@@ -610,21 +624,28 @@ p {
   grid-gap: 20px; }
   #fb__feed_container .fb__feed_item {
     background-color: white;
+    color: #7F645F;
     padding: 10px;
     border-radius: 5px;
     text-align: center;
     position: relative;
     overflow: auto;
-    grid-column: 2 / span 1; }
+    grid-column: 2 / span 1;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); }
+    #fb__feed_container .fb__feed_item a {
+      color: #C5AE8A; }
+    #fb__feed_container .fb__feed_item a:hover {
+      color: #D47E68; }
     #fb__feed_container .fb__feed_item .fb__post_header {
-      text-align: left; }
+      text-align: left;
+      color: #D47E68; }
     #fb__feed_container .fb__feed_item .fb__post_body {
       margin: 0;
       padding: 0; }
     #fb__feed_container .fb__feed_item .fb__post_story {
       font-weight: bold; }
     #fb__feed_container .fb__feed_item .fb__content_box {
-      border: 1px solid #ddd;
+      border: 1px solid #C9BDB4;
       border-radius: 4px;
       padding: 5px; }
     #fb__feed_container .fb__feed_item img {
@@ -635,14 +656,14 @@ p {
       width: auto;
       text-align: right;
       margin: 5px 0 0 0;
-      color: #ddd; }
+      color: #C9BDB4; }
     #fb__feed_container .fb__feed_item .fb__post_date {
-      color: #7E828A;
+      color: #C9BDB4;
       font-size: 11px;
       font-style: italic;
       margin: 5px 0 10px 0; }
       #fb__feed_container .fb__feed_item .fb__post_date a {
-        color: #7E828A; }
+        color: #C9BDB4; }
     #fb__feed_container .fb__feed_item .fb__post_message {
       margin: 15px 5px;
       font-size: 14px; }
@@ -714,4 +735,6 @@ p {
 
 .appMain {
   height: -webkit-calc(100vh - 100px);
-  overflow: scroll; }
+  overflow: scroll;
+  padding: 0;
+  margin: 0; }

@@ -15,7 +15,7 @@ class Footer extends Component {
             </div>
             <div className="navItem navItem-2">
               <NavLink to="/social">
-                <i className="fa fa-users fa-2x fa-fw" aria-hidden="true" title="Social Media Feed"></i>
+                <i className="fa fa-facebook-official fa-2x fa-fw" aria-hidden="true" title="Social Media Feed"></i>
               </NavLink>
             </div>
             <div className="navItem navItem-3">
@@ -25,7 +25,7 @@ class Footer extends Component {
             </div>
             <div className="navItem navItem-4">
               <NavLink to="/weather">
-                <i className="fa fa-sun-o  fa-2x fa-fw" aria-hidden="true" title="Weather"></i>
+                <i className="fa fa-sun-o fa-2x fa-fw" aria-hidden="true" title="Weather"></i>
               </NavLink>
             </div>
           </div>

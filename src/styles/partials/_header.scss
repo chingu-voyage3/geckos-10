@@ -1,4 +1,16 @@
 .appHeader {
   height: 50px;
-  
+  color: $light-accent;
+  background-color: $dark-shade;
+  a {
+    color: $light-accent;
+  }
+
+  .active {
+    color: $dark-accent;
+  }
+
+  a:hover {
+    color: $main-color;
+  }
 }
