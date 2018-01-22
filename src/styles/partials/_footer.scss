@@ -7,11 +7,11 @@
   }
 
   .active {
-    color: $dark-accent;
+    color: $main-color;
   }
 
   a:hover {
-    color: $main-color;
+    color: $dark-accent;
   }
 }
 

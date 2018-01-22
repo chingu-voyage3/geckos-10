@@ -32,7 +32,7 @@ class TodoListItem extends Component {
           outline: "none"
         }}
       >
-        {"\u270E"}
+        <i className="fa fa-pencil" aria-hidden="true" title="Edit"></i>
       </button>
       : false;
 
@@ -46,7 +46,7 @@ class TodoListItem extends Component {
           outline: "none"
         }}
       >
-        {"\u274C"}
+        <i className="fa fa-times" aria-hidden="true" title="Delete"></i>
       </button>
       : false;
 
@@ -61,7 +61,10 @@ class TodoListItem extends Component {
           float: "right"
         }}
       >
-        {this.props.displayName === "Not Done" ? "\u21E8" : "\u21E6"}
+        {this.props.displayName === "Not Done" ? 
+          <i className="fa fa-arrow-right" aria-hidden="true" title="Move Right"></i> 
+          : 
+          <i className="fa fa-arrow-left" aria-hidden="true" title="Move Left"></i>}
       </button>
     );
 

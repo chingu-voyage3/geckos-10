@@ -462,9 +462,9 @@ p {
   .appFooter a {
     color: #C9BDB4; }
   .appFooter .active {
-    color: #C5AE8A; }
-  .appFooter a:hover {
     color: #D47E68; }
+  .appFooter a:hover {
+    color: #C5AE8A; }
 
 .navList {
   display: grid;
@@ -706,26 +706,36 @@ p {
   width: 100%;
   height: 100%;
   padding: 35px;
-  grid-column-gap: 35px; }
+  grid-column-gap: 35px;
+  background-color: #F1F3EE; }
 
 .todoList {
   line-height: 1.5;
   font-weight: bold;
   display: grid;
   grid-template-rows: 40px repeat(10, 1fr);
-  border: 1px solid lightgray;
-  background: darkgray; }
+  background: white;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  align-items: center; }
 
 .todoList header {
-  padding: 10px 0 0 15px; }
+  padding: 10px 0 0 15px;
+  color: #D47E68;
+  font-size: 18px; }
 
 .todoList .todoListItem {
-  border: 1px solid lightgray;
-  border-bottom: 1px solid darkgray;
-  background: white;
-  padding: 10px 0 0 15px;
+  border-radius: 5px;
+  padding: 5px 0 5px 15px;
   margin-left: 20px;
-  margin-right: 20px; }
+  margin-right: 20px;
+  color: #7F645F; }
+
+.todoList .todoListItem:hover {
+  background: #F1F3EE; }
+
+.todoListItem button {
+  color: #C5AE8A; }
 
 .my-popover .pt-popover-content {
   max-height: 20vh;
