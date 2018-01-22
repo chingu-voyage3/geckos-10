@@ -26,13 +26,21 @@
 }
 
 .todoList .todoListItem {
-  //border: 1px solid $light-accent;
+  border: 1px solid $light-accent;
   border-radius: 5px;
   padding: 5px 0 5px 15px;
   margin-left: 20px;
   margin-right: 20px;
   color: $dark-shade;
   
+}
+
+.todoList .editing {
+  border-radius: 5px;
+  padding: 5px 0 5px 15px;
+  margin-left: 20px;
+  margin-right: 20px;
+  color: $dark-shade;
 }
 
 .todoList .todoListItem:hover {

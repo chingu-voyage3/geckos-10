@@ -780,6 +780,14 @@ p {
   font-size: 18px; }
 
 .todoList .todoListItem {
+  border: 1px solid #C9BDB4;
+  border-radius: 5px;
+  padding: 5px 0 5px 15px;
+  margin-left: 20px;
+  margin-right: 20px;
+  color: #7F645F; }
+
+.todoList .editing {
   border-radius: 5px;
   padding: 5px 0 5px 15px;
   margin-left: 20px;
