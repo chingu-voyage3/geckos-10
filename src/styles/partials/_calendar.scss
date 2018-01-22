@@ -30,3 +30,60 @@
 .buttons-inline {
   display: inline;
 }
+
+.rbc-month-view, .rbc-time-view {
+  background: white;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.rbc-agenda-view > table {
+  background: white;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.rbc-agenda-content > table {
+  background: white;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  
+}
+
+.rbc-today {
+  background-color: $light-shade;
+}
+
+.rbc-toolbar-label {
+  color: $main-color;
+}
+
+.rbc-btn-group button {
+  background-color: $dark-accent;
+  color: white;
+}
+
+.rbc-btn-group button:hover, .rbc-toolbar button:active:hover, .rbc-toolbar button.rbc-active:hover, .rbc-toolbar button:active:focus, .rbc-toolbar button.rbc-active:focus {
+  background-color: $light-accent;
+  color: white;
+}
+
+.rbc-toolbar button:active, .rbc-toolbar button.rbc-active {
+  background-color: $main-color;
+}
+
+.rbc-event {
+  background-color: $main-color;
+}
+
+.rbc-event.rbc-selected {
+  background-color: darken($main-color, 20%);
+}
+
+.rbc-header {
+  color: $dark-shade;
+}
+
+.rbc-date-cell a {
+  color: $dark-shade;
+}

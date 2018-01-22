@@ -29,7 +29,7 @@ class Footer extends Component {
               </NavLink>
             </div>
           </div>
-          : <p>You must sign in to continue!</p>}
+          : ""}
 
       </footer>
     );

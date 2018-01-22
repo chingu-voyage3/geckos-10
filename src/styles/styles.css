@@ -1,3 +1,4 @@
+@import url(../../node_modules/react-big-calendar/lib/css/react-big-calendar.css);
 html {
   box-sizing: border-box; }
 
@@ -489,13 +490,24 @@ p {
 .appHeader {
   height: 50px;
   color: #C9BDB4;
-  background-color: #7F645F; }
+  background-color: #7F645F;
+  padding: 5px; }
   .appHeader a {
     color: #C9BDB4; }
   .appHeader .active {
     color: #C5AE8A; }
   .appHeader a:hover {
     color: #D47E68; }
+
+.pt-icon-log-out {
+  color: #C9BDB4;
+  margin: 10px 5px 5px 15px; }
+
+.pt-icon-log-out:hover {
+  color: #C5AE8A; }
+
+.loginStyles {
+  background: white; }
 
 .loginStyles {
   width: 90%;
@@ -700,6 +712,50 @@ p {
 .buttons-inline {
   display: inline; }
 
+.rbc-month-view, .rbc-time-view {
+  background: white;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); }
+
+.rbc-agenda-view > table {
+  background: white;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px; }
+
+.rbc-agenda-content > table {
+  background: white;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px; }
+
+.rbc-today {
+  background-color: #F1F3EE; }
+
+.rbc-toolbar-label {
+  color: #D47E68; }
+
+.rbc-btn-group button {
+  background-color: #C5AE8A;
+  color: white; }
+
+.rbc-btn-group button:hover, .rbc-toolbar button:active:hover, .rbc-toolbar button.rbc-active:hover, .rbc-toolbar button:active:focus, .rbc-toolbar button.rbc-active:focus {
+  background-color: #C9BDB4;
+  color: white; }
+
+.rbc-toolbar button:active, .rbc-toolbar button.rbc-active {
+  background-color: #D47E68; }
+
+.rbc-event {
+  background-color: #D47E68; }
+
+.rbc-event.rbc-selected {
+  background-color: #a7482f; }
+
+.rbc-header {
+  color: #7F645F; }
+
+.rbc-date-cell a {
+  color: #7F645F; }
+
 .todoTab {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -747,4 +803,5 @@ p {
   height: -webkit-calc(100vh - 100px);
   overflow: scroll;
   padding: 0;
-  margin: 0; }
+  margin: 0;
+  background: #F1F3EE; }
