@@ -454,11 +454,10 @@ p {
 
 .app {
   display: grid;
-  grid-template-rows: 5vh 1fr 200px;
+  grid-template-rows: 5vh 1fr;
   height: 100%; }
 
 .appFooter {
-  height: 50px;
   background-color: #7F645F; }
   .appFooter a {
     color: #C9BDB4; }
@@ -800,7 +799,6 @@ p {
   width: 20vh; }
 
 .appMain {
-  height: -webkit-calc(100vh - 100px);
   overflow: scroll;
   padding: 0;
   margin: 0;
