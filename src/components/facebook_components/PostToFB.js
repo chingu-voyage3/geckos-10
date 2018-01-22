@@ -36,7 +36,7 @@ class PostToFB extends Component {
             
             var arrayBuffer = e.target.result;
 
-            console.log('photo type: '+photo.type)
+            //console.log('photo type: '+photo.type)
             
             var blob = new Blob([arrayBuffer], { type: photo.type });
 
@@ -60,7 +60,7 @@ class PostToFB extends Component {
 
         for (var i =0; i < this.state.photos.length; i++){
             //each photo must be uploaded in a separate api call
-            console.log("uploading: "+ this.state.photos[i].name);
+            //console.log("uploading: "+ this.state.photos[i].name);
 
             var encodedRequest = this.encodePhoto(this.state.photos[i]);
 
@@ -74,7 +74,7 @@ class PostToFB extends Component {
                   if (response && !response.error) {
                     //once successfully gotten the photos add them to the array of photo ids
                     temp.push({"media_fbid": response.id});
-                    console.log(response);
+                    //console.log(response);
                   }
                   else {
                     alert(response.error.message);
@@ -169,9 +169,9 @@ class PostToFB extends Component {
     
 
   getPhotos(files) {
-    console.log("photo ids: ");
+    //passed to GetFiles component so
     for (var i = 0; i < files.length; i++) {
-      console.log(files[i]);
+      //console.log(files[i]);
     }
     this.setState({
       photos: files

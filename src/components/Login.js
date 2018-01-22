@@ -35,7 +35,7 @@ class Login extends Component {
     app.auth().signInWithPopup(facebookProvider).then((result, error) => {
       if (error) {
         this.toaster.show({ intent: Intent.DANGER, message: error.message });
-        console.log(error);
+        
       } else {
         // const token = result.credential.accessToken;
         // let UID = result.user.uid;

@@ -50,7 +50,6 @@ class FacebookFeed extends Component {
 
   checkFBAuth(){
     //check that access token is valid
-    console.log('Access Token: '+this.state.FBaccessToken)
     FB.api(
         "/debug_token?input_token="+this.state.FBaccessToken,
         {
@@ -58,11 +57,11 @@ class FacebookFeed extends Component {
         },
         function (response) {
           if (response && !response.error) {
-            /* handle the result */
-            console.log(response);
+            //Don't need to return anything of access token had no issues
+            //console.log(response);
           }
           else {
-            console.log(response.error.message);
+            //if theres an issue log out user for now
             return <Redirect to="/logout" />;
           }
         }
@@ -71,7 +70,7 @@ class FacebookFeed extends Component {
 
     renderFBfeed() {
         this.getFBPosts();
-        return ( //TODO FIGURE OUT WHY THIS ISNT RIGHT 
+        return ( 
             <div id="fb__feed_container">
                 {this.checkFBAuth()}
                 {this.state.FBfeed.map(FBitem =>
@@ -97,7 +96,7 @@ class FacebookFeed extends Component {
                 },
                 function (response) {
                     if (response && !response.error) {
-                        console.log(response);
+                        
                         this.setState({
                             FBfeed: response.data,
                             refresh: false,
@@ -108,7 +107,7 @@ class FacebookFeed extends Component {
                         });
                         
                     } else {
-                        console.log(response.error);
+                        alert(response.error.messsage);
                     }
                 //The callback is made in a different context. You need to bind to this
                 //in order to have access to this.setState inside the callback
@@ -128,8 +127,6 @@ class FacebookFeed extends Component {
             function (response) {
             if (response && !response.error) {
                 
-                console.log(response);
-                
                 //check to see if data is empty and tell user there are no new posts
 
                 this.setState({
@@ -140,7 +137,7 @@ class FacebookFeed extends Component {
 
             }
             else {
-                console.log(response.error)
+                alert(response.error.message);
             }
             //The callback is made in a different context. You need to bind to this  
             //in order to have access to this.setState inside the callback
