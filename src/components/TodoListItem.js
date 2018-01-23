@@ -69,7 +69,7 @@ class TodoListItem extends Component {
     );
 
     return (
-      <section className="todoListItem">
+      <section className={(this.props.addNewTodo) ? "editing" : "todoListItem"}>
         {editButton}
         {commentTxt}
         {deleteButton}
