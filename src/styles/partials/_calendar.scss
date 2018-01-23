@@ -56,16 +56,18 @@
 
 .rbc-toolbar-label {
   color: $main-color;
+  font-weight: bold;
 }
 
-.rbc-btn-group button {
+.rbc-btn-group button, .calendar-buttons button {
   background-color: $dark-accent;
   color: white;
 }
 
-.rbc-btn-group button:hover, .rbc-toolbar button:active:hover, .rbc-toolbar button.rbc-active:hover, .rbc-toolbar button:active:focus, .rbc-toolbar button.rbc-active:focus {
+.rbc-btn-group button:hover, .rbc-toolbar button:active:hover, .rbc-toolbar button.rbc-active:hover, .rbc-toolbar button:active:focus, .rbc-toolbar button.rbc-active:focus, .calendar-buttons button:hover {
   background-color: $light-accent;
   color: white;
+  outline: none;
 }
 
 .rbc-toolbar button:active, .rbc-toolbar button.rbc-active {
@@ -87,3 +89,4 @@
 .rbc-date-cell a {
   color: $dark-shade;
 }
+

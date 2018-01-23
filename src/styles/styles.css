@@ -731,15 +731,17 @@ p {
   background-color: #F1F3EE; }
 
 .rbc-toolbar-label {
-  color: #D47E68; }
+  color: #D47E68;
+  font-weight: bold; }
 
-.rbc-btn-group button {
+.rbc-btn-group button, .calendar-buttons button {
   background-color: #C5AE8A;
   color: white; }
 
-.rbc-btn-group button:hover, .rbc-toolbar button:active:hover, .rbc-toolbar button.rbc-active:hover, .rbc-toolbar button:active:focus, .rbc-toolbar button.rbc-active:focus {
+.rbc-btn-group button:hover, .rbc-toolbar button:active:hover, .rbc-toolbar button.rbc-active:hover, .rbc-toolbar button:active:focus, .rbc-toolbar button.rbc-active:focus, .calendar-buttons button:hover {
   background-color: #C9BDB4;
-  color: white; }
+  color: white;
+  outline: none; }
 
 .rbc-toolbar button:active, .rbc-toolbar button.rbc-active {
   background-color: #D47E68; }

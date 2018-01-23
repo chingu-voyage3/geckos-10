@@ -62,6 +62,8 @@ class FacebookFeed extends Component {
           }
           else {
             //if theres an issue log out user for now
+
+            //console.log(response.error.message);
             return <Redirect to="/logout" />;
           }
         }
@@ -107,6 +109,8 @@ class FacebookFeed extends Component {
                         });
                         
                     } else {
+ 
+                        //console.log(response.error.message);
                         alert(response.error.messsage);
                     }
                 //The callback is made in a different context. You need to bind to this
@@ -153,6 +157,11 @@ class FacebookFeed extends Component {
     }    
 
     render (){
+        //check if access token has been set
+        if(typeof(this.state.FBaccessToken) == 'undefined' || FB == null){
+            //if not set then redirect to logout
+            return <Redirect to="/logout" />;
+        }
         return(
             <div>
                 {this.state.FBauthenticated ? 
