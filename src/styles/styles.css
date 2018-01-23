@@ -514,7 +514,10 @@ p {
   margin: 20px auto;
   border: 1px solid #ddd;
   border-radius: 5px;
-  padding: 10px; }
+  padding: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); }
+  .loginStyles button + button {
+    margin-top: 10px; }
 
 .loginStyles input,
 .loginStyles button {
@@ -759,9 +762,6 @@ p {
   color: #7F645F; }
 
 /**Add Event Page / Edit Styles**/
-.cal-add-event .loginStyles, .pt-popover-content-sizing .loginStyles {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); }
-
 .cal-add-event h3, .pt-popover-content-sizing h3 {
   text-align: center;
   color: #D47E68; }
