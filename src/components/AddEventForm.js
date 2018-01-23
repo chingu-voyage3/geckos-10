@@ -56,7 +56,7 @@ class AddEvent extends Component {
     }
     const { handleSubmit } = this.props;
     return (
-      <div>
+      <div className="cal-add-event">
         <Form className='loginStyles'
           onSubmit={handleSubmit(this.addEvent)}
         >
@@ -84,7 +84,7 @@ class AddEvent extends Component {
             <Field className='pt-input' name='startTime' component={renderField} type='time' validate={[required]} />
           </div>
           <div>
-            <label className='pt-label'>End
+            <label className='pt-label cal-end-label'>End
           </label>
             <Field className='pt-input' name='endDate' component={renderField} type='date' validate={[required]} />
             <Field className='pt-input' name='endTime' component={renderField} type='time' validate={[required]} />
@@ -95,7 +95,10 @@ class AddEvent extends Component {
           ref={element => {
             this.toaster = element;
           }} />
-        <Link to='/calendar'>Go back!</Link>
+        <Link to='/calendar' className="rtrn-cal-btn">
+          <i className="fa fa-arrow-left" aria-hidden="true" title="Return to Calendar"></i>
+          {" "}Go back!
+        </Link>
       </div>
     )
   }

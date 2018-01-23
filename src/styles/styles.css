@@ -610,7 +610,8 @@ p {
   height: 25px;
   padding: 5px;
   margin: 5px 0;
-  text-align: center; }
+  text-align: center;
+  border-radius: 5px; }
 
 #fb__photo_btn_label + #fb__photo_upload:focus,
 #fb__photo_btn_label:hover,
@@ -756,6 +757,49 @@ p {
 
 .rbc-date-cell a {
   color: #7F645F; }
+
+/**Add Event Page / Edit Styles**/
+.cal-add-event .loginStyles, .pt-popover-content-sizing .loginStyles {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); }
+
+.cal-add-event h3, .pt-popover-content-sizing h3 {
+  text-align: center;
+  color: #D47E68; }
+
+.cal-add-event label, .pt-popover-content-sizing label {
+  color: #7F645F; }
+
+.cal-add-event button, .pt-popover-content-sizing button {
+  margin-top: 20px; }
+
+.cal-add-event .rtrn-cal-btn, .pt-popover-content-sizing .rtrn-cal-btn {
+  margin-left: 50px;
+  background-color: #C5AE8A;
+  font-size: 16px;
+  color: white;
+  padding: 5px;
+  border-radius: 5px; }
+
+.cal-add-event .rtrn-cal-btn:hover, .pt-popover-content-sizing .rtrn-cal-btn:hover {
+  background-color: #C9BDB4;
+  text-decoration: none; }
+
+.cal-end-label {
+  padding-top: 10px; }
+
+/* More popup*/
+.cal-more-content {
+  color: #7F645F; }
+  .cal-more-content .more-title {
+    color: #D47E68; }
+  .cal-more-content .more-location {
+    font-style: italic;
+    color: #C9BDB4; }
+  .cal-more-content .more-desc {
+    font-style: italic; }
+  .cal-more-content .cal-more-start-end {
+    font-weight: bold;
+    color: #C5AE8A; }
 
 .todoTab {
   display: grid;

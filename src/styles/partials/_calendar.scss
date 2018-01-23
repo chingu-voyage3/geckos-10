@@ -89,4 +89,58 @@
 .rbc-date-cell a {
   color: $dark-shade;
 }
+/**Add Event Page / Edit Styles**/
 
+.cal-add-event, .pt-popover-content-sizing {
+  .loginStyles {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  h3 {
+    text-align: center;
+    color: $main-color;
+  }
+  label {
+    color: $dark-shade;
+  }
+  button {
+    margin-top: 20px;
+  }
+  .rtrn-cal-btn {
+    margin-left: 50px;
+    background-color: $dark-accent;
+    font-size: 16px;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+  }
+  .rtrn-cal-btn:hover {
+    background-color: $light-accent;
+    text-decoration: none;
+  }
+}
+
+.cal-end-label {
+  padding-top: 10px;
+}
+
+
+/* More popup*/
+.cal-more-content {
+
+  color: $dark-shade;
+  
+  .more-title {
+    color: $main-color;
+  }
+  .more-location {
+    font-style: italic;
+    color: $light-accent;
+  }
+  .more-desc {
+    font-style: italic;
+  }
+  .cal-more-start-end {
+    font-weight: bold;
+    color: $dark-accent;
+  }
+}

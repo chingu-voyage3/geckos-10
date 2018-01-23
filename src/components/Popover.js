@@ -35,14 +35,18 @@ class PopoverModal extends Component {
             position={Position.RIGHT}
           >
             <Button intent={Intent.PRIMARY}>More</Button>
-            <div>
-              <h2>{currentEvent.title}</h2>
-              <h5>{currentEvent.location}</h5>
-              <h5>{currentEvent.description}</h5>
-              <p>Start Date: {currentEvent.startDate}</p>
-              <p>Start Time: {currentEvent.startTime}</p>
-              <p>End Date: {currentEvent.endDate}</p>
-              <p>End Time: {currentEvent.endTime}</p>
+            <div className="cal-more-content">
+              <h2 className="more-title">{currentEvent.title}</h2>
+              <h5 className="more-location">{currentEvent.location}</h5>
+              <p className="more-desc">{currentEvent.description}</p>
+              <p>
+                <span className="cal-more-start-end">Starts</span>{" "}
+                {currentEvent.startDate} at {currentEvent.startTime}
+              </p>
+              <p>
+                <span className="cal-more-start-end">Ends</span>{" "}
+                {currentEvent.endDate} at {currentEvent.endTime}
+              </p>
               <Button onClick={this.deleteEvent} className="remove-button pt-button pt-intent-danger">Remove</Button>
             </div>
           </Popover>
