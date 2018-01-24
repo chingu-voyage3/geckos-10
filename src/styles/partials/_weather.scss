@@ -1,23 +1,34 @@
 .currentWeatherDiv {
-
-  margin: 30px;
+  margin: 30px 25%;
 }
 
-.iconTemp {
+.currentWeatherDiv h1, .currentWeatherDiv h2, .currentWeatherDiv h3 {
+  margin-bottom: 0;
+}
+
+.iconTemp, .descriptionMinMax, .minMax, .city{
   display: flex;
   justify-content: space-around;
-  margin: auto 25%;
 }
 
-.iconTemp > * {
-  flex: 0 1 50%;
+.iconTemp > *, .descriptionMinMax > * {
+  flex: 1 1 50%;
   align-self: center;
   text-align: center;
 }
 
 .icon {
-  width: 100%;
+  width: 20%;
 }
+
+.minMax > *, .descriptionMinMax{
+  margin: 0 10px;
+}
+
+.city {
+  margin-top: 20%;
+}
+
 /*
 .currentTemp {
   flex: 1 1 10em;
