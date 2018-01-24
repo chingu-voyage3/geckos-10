@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import axios from "axios";
+import CurrentWeather from "./CurrentWeather";
+//import ForecastedWeather from "./ForecastedWeather";
 
 class Weather extends Component {
   constructor(props) {
@@ -81,12 +83,8 @@ class Weather extends Component {
     }
     return (
       <div className="weatherTab">
-        <br/><p>{this.state.currentTemp}</p><br/>
-        <p>{this.state.currentMinTemp}</p><br/>
-        <p>{this.state.currentMaxTemp}</p><br/>
-        <p>{this.state.currentWeatherDescription}</p><br/>
-        <p>{`http://openweathermap.org/img/w/${this.state.currentWeatherIcon}.png`}</p><br/>
-        <p>{this.state.cityName}</p>
+        <CurrentWeather {...this.state} />
+        {/* <ForecastedWeather /> */}
       </div>
     )
   }
