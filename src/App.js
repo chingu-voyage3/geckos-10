@@ -42,7 +42,6 @@ class App extends Component {
         //With xfbml set to true, the SDK will parse your page's DOM to find and initialize any social plugins that have been added using XFBML. If you're not using social plugins on the page, setting xfbml to false will improve page load times.
         xfbml: true,
         cookie: true,
-        fileUpload: true,
         version: "v2.11"
       });
       FB.AppEvents.logPageView();
