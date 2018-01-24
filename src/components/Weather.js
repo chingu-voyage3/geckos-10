@@ -10,7 +10,12 @@ class Weather extends Component {
     this.getForecastedWeather = this.getForecastedWeather.bind(this);
 
     this.state = {
-      currentTemp: ""
+      currentTemp: "",
+      currentMinTemp: "",
+      currentMaxTemp: "",
+      currentWeatherDescription: "",
+      currentWeatherIcon: "",
+      cityName: ""
     };
   }
 
@@ -24,23 +29,28 @@ class Weather extends Component {
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition(position => {
         this.getCurrentWeather(position.coords.latitude, position.coords.longitude);
+        //this.getForecastedWeather(position.coords.latitude, position.coords.longitude);
       });
     } else {
       console.error("Geolocation not available");
     }
   }
 
-  getCurrentWeather = (lat, long) => { 
+  getCurrentWeather(lat, long) { 
     let self = this;
     axios
       .get(
         `http://api.openweathermap.org/data/2.5/weather/?lat=${lat}&lon=${long}&units=imperial&appid=8a97501f583dce1be2d56e0078c390f0`
-        //`https://api.darksky.net/forecast/57543c2d90d2e41f9cc119f5b105cb2c/${lat},${long}?exclude=minutely,hourly,alerts,flags&units=auto`
       )
       .then(function(response) {
         console.log(response.data);
         self.setState({
-          currentTemp: self.state.currentTemp + response.data.main.temp
+          currentTemp: self.state.currentTemp + response.data.main.temp,
+          currentMinTemp: self.state.currentMinTemp + response.data.main.temp_min,
+          currentMaxTemp: self.state.currentMaxTemp + response.data.main.temp_max,
+          currentWeatherDescription: self.state.currentWeatherDescription + response.data.weather[0].description,
+          currentWeatherIcon: self.state.currentWeatherIcon + response.data.weather[0].icon,
+          cityName: self.state.cityName + response.data.name
         });
       })
       .catch(function(error) {
@@ -48,8 +58,21 @@ class Weather extends Component {
       });
   }
 
-  getForecastedWeather() {
-    // TODO
+  getForecastedWeather(lat, long) {
+    /*let self = this;
+    axios
+      .get(
+        `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&units=imperial&appid=8a97501f583dce1be2d56e0078c390f0`
+      )
+      .then(function(response) {
+        console.log(response.data);
+        self.setState({
+          futureMaxTemp: self.state.futureMaxTemp + response.data.main.temp_max
+        });
+      })
+      .catch(function(error) {
+        console.error(error);
+      });*/
   }
 
   render() {
@@ -58,7 +81,12 @@ class Weather extends Component {
     }
     return (
       <div className="weatherTab">
-        <p>{this.state.currentTemp}</p>
+        <br/><p>{this.state.currentTemp}</p><br/>
+        <p>{this.state.currentMinTemp}</p><br/>
+        <p>{this.state.currentMaxTemp}</p><br/>
+        <p>{this.state.currentWeatherDescription}</p><br/>
+        <p>{`http://openweathermap.org/img/w/${this.state.currentWeatherIcon}.png`}</p><br/>
+        <p>{this.state.cityName}</p>
       </div>
     )
   }
