@@ -1,7 +1,7 @@
 /*global FB*/
 import React, { Component } from "react";
 import PropTypes from 'prop-types';
-//import GetFiles from "./GetFiles.js";
+import GetFiles from "./GetFiles.js";
 
 class PostToFB extends Component {
     //incomplete
@@ -19,11 +19,12 @@ class PostToFB extends Component {
             message: "",
             textarea: "fb--small",
             isShowing: "fb--hide",
-            displayCheckbox: "fb--hide",
+            displayOptions: "fb--hide",
             refreshCheck: false,
             photos: [], //photos user selected to be added to post
             mediaAttachments: [],
             FBaccessToken: this.props.FBaccessToken,
+            placeholdText: "Post to Facebook"
         };
     }
 
@@ -38,16 +39,16 @@ class PostToFB extends Component {
 
             //console.log('photo type: '+photo.type)
             
-            var blob = new Blob([arrayBuffer], { type: photo.type });
+            //var blob = new Blob([arrayBuffer], { type: photo.type });
 
             // We will use FormData object to create multipart/form request
             var pictureData = new FormData();
             //pictureData.append('access_token', this.state.FBaccessToken);
-            pictureData.append('source', blob);
+            pictureData.append('source', arrayBuffer);
             
 
             return pictureData;
-        }.bind(this)
+        }
 
         return reader.readAsArrayBuffer(photo);
 
@@ -77,9 +78,10 @@ class PostToFB extends Component {
                     //console.log(response);
                   }
                   else {
+                    console.log(response);
                     alert(response.error.message);
                   }
-                }.bind(this)
+                }
             );
 
         }
@@ -102,7 +104,9 @@ class PostToFB extends Component {
                   photos: [],
                   mediaAttachments: [],
                   textarea: "fb--small",
-                  isShowing: "fb--hide"
+                  isShowing: "fb--hide",
+                  placeholdText: "Post to Facebook",
+                  displayOptions: "fb--hide"
                 });
 
                 //refresh the feed after making a new post is user has checked the box
@@ -128,7 +132,7 @@ class PostToFB extends Component {
         if (this.state.photos.length > 0) {
             this.uploadPhotos();
             
-/*             for (var i = 0; i < this.state.mediaAttachments.length; i++ ) {
+    /*         for (var i = 0; i < this.state.mediaAttachments.length; i++ ) {
                 postParam['attached_media['+i+']'] = this.state.mediaAttachments[0];
             } */
             
@@ -149,7 +153,8 @@ class PostToFB extends Component {
     expandPostForm() {
         this.setState({
             textarea: "fb--big",
-            isShowing: "fb--show"
+            isShowing: "fb--show",
+            placeholdText: "Begin typing"
         });
     }
 
@@ -161,7 +166,8 @@ class PostToFB extends Component {
             this.setState({
                 textarea: 'fb--small',
                 isShowing: 'fb--hide',
-                displayCheckbox: 'fb--hide',
+                displayOptions: 'fb--hide',
+                placeholdText:"Post to Facebook"
             });
         }
         
@@ -171,7 +177,7 @@ class PostToFB extends Component {
   getPhotos(files) {
     //passed to GetFiles component so
     for (var i = 0; i < files.length; i++) {
-      //console.log(files[i]);
+      console.log(files[i]);
     }
     this.setState({
       photos: files
@@ -189,13 +195,13 @@ class PostToFB extends Component {
     if (value !== '' && this.state.isShowing === 'fb--show'){
         
         this.setState({
-            displayCheckbox: 'fb--show',
+            displayOptions: 'fb--show',
             [name]: value
         });
     }
     else {
         this.setState({
-            displayCheckbox: 'fb--hide',
+            displayOptions: 'fb--hide',
             [name]: value
         });
     }
@@ -215,11 +221,11 @@ class PostToFB extends Component {
                                 value={this.state.message}
                                 name="message" 
                                 onChange={this.handleChange}
-                                placeholder="Post to Facebook"
+                                placeholder={this.state.placeholdText}
                                 />
                     <div className="fb__form_buttons_container">
                         
-                        <div id="fb__refresh_checkgroup" className={this.state.displayCheckbox}>
+                        <div id="fb__refresh_checkgroup" className={this.state.displayOptions}>
                             <input  type="checkbox"
                                     name="refreshCheck" 
                                     checked={this.state.refreshCheck}
@@ -227,15 +233,12 @@ class PostToFB extends Component {
                                     />
                             <label  htmlFor="refreshCheck" >
                                 Refresh after posting
-                            </label>`
+                            </label>
                         </div>
                         
-                        {/* <GetFiles {...this.state} getPhotoCallback={this.getPhotos}/> 
-                        <button className={this.state.isShowing} onClick={this.minimizePostForm}>
-                            Collapse
-                        </button> */}
+                        {/*<GetFiles {...this.state} getPhotoCallback={this.getPhotos}/> */}
                         
-                        <input  className={this.state.isShowing}
+                        <input  className={this.state.displayOptions}
                                 id="fb__submit" 
                                 type="submit" 
                                 value="Post to Facebook" 

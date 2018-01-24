@@ -44,7 +44,7 @@
     }
     ::-webkit-input-placeholder {
         font-style: italic;
-        color: $dark-shade;
+        color: lighten($dark-shade, 20%);
      }
     .fb--small {
         height: 50px;
@@ -99,8 +99,14 @@
 
 #fb__photo_btn_label + #fb__photo_upload:focus ,
 #fb__photo_btn_label:hover,
-#fb__submit:hover, .fb__form_buttons_container button:hover, .fb__btn:hover{
+#fb__submit:hover, .fb__form_buttons_container button:hover, .fb__btn:hover, .fb__btn:focus {
     background-color: $light-accent;
+
+}
+
+#fb__submit {
+    margin-bottom: 20px;
+    background-color: $main-color;
 }
 
 #fb__photo_upload {

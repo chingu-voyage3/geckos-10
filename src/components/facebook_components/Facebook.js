@@ -158,7 +158,7 @@ class FacebookFeed extends Component {
 
     render (){
         //check if access token has been set
-        if(typeof(this.state.FBaccessToken) == 'undefined' || FB == null){
+        if(typeof(this.state.FBaccessToken) === 'undefined' || FB === null){
             //if not set then redirect to logout
             return <Redirect to="/logout" />;
         }

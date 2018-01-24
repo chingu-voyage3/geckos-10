@@ -46,7 +46,7 @@ class App extends Component {
         version: "v2.11"
       });
       FB.AppEvents.logPageView();
-    }.bind(this);
+    };
 
     //Load SDK asynchronously
     (function (d, s, id) {

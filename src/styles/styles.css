@@ -571,7 +571,7 @@ p {
 
 #fb__post_form ::-webkit-input-placeholder {
   font-style: italic;
-  color: #7F645F; }
+  color: #af9995; }
 
 #fb__post_form .fb--small {
   height: 50px;
@@ -618,8 +618,12 @@ p {
 
 #fb__photo_btn_label + #fb__photo_upload:focus,
 #fb__photo_btn_label:hover,
-#fb__submit:hover, .fb__form_buttons_container button:hover, .fb__btn:hover {
+#fb__submit:hover, .fb__form_buttons_container button:hover, .fb__btn:hover, .fb__btn:focus {
   background-color: #C9BDB4; }
+
+#fb__submit {
+  margin-bottom: 20px;
+  background-color: #D47E68; }
 
 #fb__photo_upload {
   width: 0.1px;
