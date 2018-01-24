@@ -4,16 +4,14 @@ class CurrentWeather extends Component {
   render() {
     return (
       <div className="currentWeatherDiv">
-        <div className="iconAndTemp">
-          <img src={"http://openweathermap.org/img/w/" + this.props.currentWeatherIcon + ".png"} />
-          <p>{this.props.currentTemp}°F</p>
+        <div className="iconTemp">
+          <img className="icon" src={"http://openweathermap.org/img/w/" + this.props.currentWeatherIcon + ".png"} />
+          <h2 className="currentTemp">{this.props.currentTemp}°F</h2>
         </div>
-        <div className="descriptionAndMinMax">
-          <p>{this.props.currentWeatherDescription}</p>
-          <p>Low: {this.props.currentMinTemp}°F</p>
-          <p>High: {this.props.currentMaxTemp}°F</p>
-        </div>
-        <p>{this.props.cityName}</p>
+        {/*<p className="description">{this.props.currentWeatherDescription}</p>
+        <p>Low: {this.props.currentMinTemp}°F</p>
+        <p>High: {this.props.currentMaxTemp}°F</p>
+    <p className="city">{this.props.cityName}</p>*/}
       </div>
     );
   }

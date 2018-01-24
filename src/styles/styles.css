@@ -503,12 +503,34 @@ p {
   left: 50%; }
 
 .currentWeatherDiv {
+  margin: 30px; }
+
+.iconTemp {
   display: flex;
-  flex-wrap: nowrap;
-  justify-content: space-around; }
+  justify-content: space-around;
+  margin: auto 25%; }
 
-.iconAndTemp {
-  flex: 1 1 fit-content; }
+.iconTemp > * {
+  flex: 0 1 50%;
+  align-self: center;
+  text-align: center; }
 
-.descriptionAndMinMax {
-  flex: 1 1 fit-content; }
+.icon {
+  width: 100%; }
+
+/*
+.currentTemp {
+  flex: 1 1 10em;
+}
+
+.description {
+  flex: 1 1 10em;
+}
+
+.minMax {
+  flex: 1 1 10em;
+}
+
+.city {
+  flex: 1 1 10em;
+}*/
