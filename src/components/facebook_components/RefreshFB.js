@@ -26,7 +26,7 @@ RefreshFB.propTypes = {
     refreshCallback: PropTypes.func,
     refreshTimeStamp: PropTypes.oneOfType([
         PropTypes.string,
-        PropTypes.instanceOf(Date)
+        PropTypes.number
       ]),
 }
 
