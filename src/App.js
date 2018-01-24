@@ -40,7 +40,7 @@ class App extends Component {
       FB.init({
         appId: "1186050748193429",
         //With xfbml set to true, the SDK will parse your page's DOM to find and initialize any social plugins that have been added using XFBML. If you're not using social plugins on the page, setting xfbml to false will improve page load times.
-        xfbml: true,
+        xfbml: false,
         cookie: true,
         fileUpload: true,
         version: "v2.11"
