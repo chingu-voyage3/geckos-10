@@ -1,6 +1,6 @@
 /*global FB*/
 import React, { Component } from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import { app } from "./store/store";
 import { Spinner } from "@blueprintjs/core";
 
@@ -64,16 +64,13 @@ class App extends Component {
   componentWillMount() {
     this.initFBSDK();
     this.removeAuthListener = app.auth().onAuthStateChanged(user => {
-      
       if (user) {
         //console.log(user);
         var loggedInWithFB = false;
         user.providerData.forEach(function (profile) {
-
           if (profile.providerId === "facebook.com") {
             loggedInWithFB = true;
           }
-
         });
         const cookies = new Cookies();
         const accessToken = cookies.get("FBaccessToken");
@@ -118,11 +115,27 @@ class App extends Component {
       );
     }
 
+    function redirectForLogin(state, location) {
+      if (!state.authenticated && location.pathname !== "/login") {
+        return <Redirect to="/login" />;
+      } else if (state.authenticated && location.pathname === "/login") {
+        return <Redirect to="/" />;
+      } else {
+        return "";
+      }
+    }
+
     return (
       <BrowserRouter basename="/geckos-10">
         <div className="app">
           <Header {...this.state} />
           <div className="appMain">
+            <Route
+              path="/"
+              render={({ location }) => {
+                return redirectForLogin(this.state, location);
+              }}
+            />
             <Switch>
               <Route
                 path="/social"
