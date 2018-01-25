@@ -3,6 +3,9 @@ import { reactReduxFirebase } from "react-redux-firebase";
 import firebase from "firebase";
 import { rootReducer } from "../reducers/index";
 import thunk from "redux-thunk";
+import Cookies from "universal-cookie";
+
+export const cookies = new Cookies();
 
 export const firebaseConfig = {
   apiKey: "AIzaSyBJlE_NH1WuT-7lrGNpoE-3snfzV_BCaIU",
