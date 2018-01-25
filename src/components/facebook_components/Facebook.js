@@ -165,23 +165,40 @@ class FacebookFeed extends Component {
     });
   }
 
-  authWithFacebook() {
-    app
-      .auth()
-      .currentUser.linkWithPopup(facebookProvider)
-      .then((result, error) => {
-        if (!error) {
-          const accessToken = result.credential.accessToken;
+  handleFBResult = result => {
+    const accessToken = result.credential.accessToken;
 
-          const cookies = new Cookies();
-          cookies.set("FBaccessToken", accessToken);
-          this.setState({
-            FBauthenticated: true,
-            FBaccessToken: accessToken
-          });
-          this.forceUpdate();
+    cookies.set("FBaccessToken", accessToken);
+    this.setState({
+      FBauthenticated: true,
+      FBaccessToken: accessToken
+    });
+    this.forceUpdate();
+  };
+
+  authWithFacebook() {
+    let FBconnected = false;
+    app.auth().currentUser.providerData.forEach(function (profile) {
+      if (profile.providerId === "facebook.com") {
+        FBconnected = true;
+      }
+    });
+    if (FBconnected) {
+      app.auth().signInWithPopup(facebookProvider).then((result, error) => {
+        if (!error) {
+          this.handleFBResult(result);
         }
       });
+    } else {
+      app
+        .auth()
+        .currentUser.linkWithPopup(facebookProvider)
+        .then((result, error) => {
+          if (!error) {
+            this.handleFBResult(result);
+          }
+        });
+    }
   }
   render() {
     //check if access token has been set
