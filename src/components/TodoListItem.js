@@ -32,7 +32,7 @@ class TodoListItem extends Component {
           outline: "none"
         }}
       >
-        {"\u270E"}
+        <i className="fa fa-pencil" aria-hidden="true" title="Edit" />
       </button>
       : false;
 
@@ -46,7 +46,7 @@ class TodoListItem extends Component {
           outline: "none"
         }}
       >
-        {"\u274C"}
+        <i className="fa fa-times" aria-hidden="true" title="Delete" />
       </button>
       : false;
 
@@ -61,12 +61,22 @@ class TodoListItem extends Component {
           float: "right"
         }}
       >
-        {this.props.displayName === "Not Done" ? "\u21E8" : "\u21E6"}
+        {this.props.displayName === "Not Done"
+          ? <i
+            className="fa fa-arrow-right"
+            aria-hidden="true"
+            title="Move Right"
+          />
+          : <i
+            className="fa fa-arrow-left"
+            aria-hidden="true"
+            title="Move Left"
+          />}
       </button>
     );
 
     return (
-      <section className="todoListItem">
+      <section className={this.props.addNewTodo ? "editing" : "todoListItem"}>
         {editButton}
         {commentTxt}
         {deleteButton}
@@ -83,7 +93,8 @@ TodoListItem.propTypes = {
   beginEditTodo: PropTypes.func,
   removeTodo: PropTypes.func,
   moveTodo: PropTypes.func,
-  id: PropTypes.string
+  id: PropTypes.string,
+  addNewTodo: PropTypes.bool
 };
 
 export default TodoListItem;

@@ -1,3 +1,32 @@
 .appHeader {
-  height: 5vh;
+  height: 50px;
+  color: $light-accent;
+  background-color: $dark-shade;
+  padding: 5px;
+
+  a {
+    color: $light-accent;
+  }
+
+  .active {
+    color: $dark-accent;
+  }
+
+  a:hover {
+    color: $main-color;
+  }
+}
+
+.pt-icon-log-out {
+  color: $light-accent;
+  margin: 10px 5px 5px 15px;
+}
+
+
+.pt-icon-log-out:hover {
+  color: $dark-accent;
+}
+
+.loginStyles {
+  background: white;
 }

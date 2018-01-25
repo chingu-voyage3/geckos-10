@@ -11,7 +11,7 @@ class Header extends Component {
           ? <div>
             <Link
               to="/logout"
-              className="pt-button pt-minimal pt-icon-log-out"
+              className="pt-icon-log-out"
               aria-label="Logout"
             />Logged in as {name}
           </div>

@@ -1,3 +1,4 @@
+@import url(../../node_modules/react-big-calendar/lib/css/react-big-calendar.css);
 html {
   box-sizing: border-box; }
 
@@ -453,15 +454,25 @@ p {
 
 .app {
   display: grid;
-  grid-template-rows: 5vh 1fr 200px;
+  grid-template-rows: 5vh 1fr;
   height: 100%; }
+
+.appFooter {
+  background-color: #7F645F; }
+  .appFooter a {
+    color: #C9BDB4; }
+  .appFooter .active {
+    color: #D47E68; }
+  .appFooter a:hover {
+    color: #C5AE8A; }
 
 .navList {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); }
+  grid-template-columns: repeat(4, 1fr);
+  align-items: center; }
 
-.appFooter .navItem {
-  margin: auto; }
+.navItem {
+  padding: 20px 10vw; }
 
 .navItem-1 {
   grid-column: 1/1; }
@@ -476,7 +487,26 @@ p {
   grid-column: 4/4; }
 
 .appHeader {
-  height: 5vh; }
+  height: 50px;
+  color: #C9BDB4;
+  background-color: #7F645F;
+  padding: 5px; }
+  .appHeader a {
+    color: #C9BDB4; }
+  .appHeader .active {
+    color: #C5AE8A; }
+  .appHeader a:hover {
+    color: #D47E68; }
+
+.pt-icon-log-out {
+  color: #C9BDB4;
+  margin: 10px 5px 5px 15px; }
+
+.pt-icon-log-out:hover {
+  color: #C5AE8A; }
+
+.loginStyles {
+  background: white; }
 
 .loginStyles {
   width: 90%;
@@ -484,7 +514,10 @@ p {
   margin: 20px auto;
   border: 1px solid #ddd;
   border-radius: 5px;
-  padding: 10px; }
+  padding: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); }
+  .loginStyles button + button {
+    margin-top: 10px; }
 
 .loginStyles input,
 .loginStyles button {
@@ -501,6 +534,183 @@ p {
   position: absolute;
   top: 25%;
   left: 50%; }
+
+/******* Social Media *******/
+#social-media {
+  background-color: #F1F3EE;
+  padding: 10px;
+  min-height: -webkit-calc(100vh - 150px); }
+
+/******* Facebook *******/
+#fb {
+  margin: 30px;
+  display: grid;
+  grid-template-columns: 250px auto;
+  grid-template-rows: auto 50px; }
+  #fb h1, #fb h2, #fb h3 {
+    color: #D47E68;
+    text-align: left; }
+  #fb .fb__spinner {
+    position: absolute;
+    top: 25%;
+    left: 50%; }
+
+/******* Sidebar *******/
+#fb__sidebar {
+  position: fixed;
+  width: 200px; }
+
+#fb__post_form textarea {
+  resize: none;
+  border-radius: 5px;
+  border: white;
+  outline: none;
+  padding: 5px;
+  transition: all 0.2s linear;
+  -webkit-transition: all 0.2s linear; }
+
+#fb__post_form ::-webkit-input-placeholder {
+  font-style: italic;
+  color: #af9995; }
+
+#fb__post_form .fb--small {
+  height: 50px;
+  width: 160px; }
+
+#fb__post_form .fb--big {
+  height: 200px;
+  width: 250px; }
+
+#fb__post_form .fb--show {
+  display: block; }
+
+#fb__post_form .fb--hide {
+  display: none; }
+
+#fb__refresh_checkgroup {
+  color: #7F645F;
+  font-style: italic;
+  font-size: 11px;
+  display: grid;
+  grid-template: auto 0 / 15px auto;
+  margin: 5px 0; }
+  #fb__refresh_checkgroup label {
+    margin: 0 0 0 5px;
+    padding: 0; }
+
+.fb__refresh_date {
+  color: #7F645F;
+  font-style: italic;
+  font-size: 11px;
+  margin: 0 0 20px 0; }
+
+#fb__photo_btn_label, #fb__submit, .fb__btn, .fb__form_buttons_container button {
+  color: white;
+  background-color: #C5AE8A;
+  display: inline-block;
+  cursor: pointer;
+  width: 150px;
+  height: 25px;
+  padding: 5px;
+  margin: 5px 0;
+  text-align: center;
+  border-radius: 5px; }
+
+#fb__photo_btn_label + #fb__photo_upload:focus,
+#fb__photo_btn_label:hover,
+#fb__submit:hover, .fb__form_buttons_container button:hover, .fb__btn:hover, .fb__btn:focus {
+  background-color: #C9BDB4; }
+
+#fb__submit {
+  margin-bottom: 20px;
+  background-color: #D47E68; }
+
+#fb__photo_upload {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1; }
+
+/******* Body *******/
+#fb__feed_container {
+  grid-column: 2 / span 1;
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1fr minmax(200px, 900px) 1fr;
+  grid-auto-rows: minmax(100px, auto);
+  grid-gap: 20px; }
+  #fb__feed_container .fb__feed_item {
+    background-color: white;
+    color: #7F645F;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    position: relative;
+    overflow: auto;
+    grid-column: 2 / span 1;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); }
+    #fb__feed_container .fb__feed_item a {
+      color: #C5AE8A; }
+    #fb__feed_container .fb__feed_item a:hover {
+      color: #D47E68; }
+    #fb__feed_container .fb__feed_item .fb__post_header {
+      text-align: left;
+      color: #D47E68; }
+    #fb__feed_container .fb__feed_item .fb__post_body {
+      margin: 0;
+      padding: 0; }
+    #fb__feed_container .fb__feed_item .fb__post_story {
+      font-weight: bold; }
+    #fb__feed_container .fb__feed_item .fb__content_box {
+      border: 1px solid #C9BDB4;
+      border-radius: 4px;
+      padding: 5px; }
+    #fb__feed_container .fb__feed_item img {
+      margin: 5px 0 5px 0;
+      max-width: 100%;
+      height: auto; }
+    #fb__feed_container .fb__feed_item .fb__post_footer {
+      width: auto;
+      text-align: right;
+      margin: 5px 0 0 0;
+      color: #C9BDB4; }
+    #fb__feed_container .fb__feed_item .fb__post_date {
+      color: #C9BDB4;
+      font-size: 11px;
+      font-style: italic;
+      margin: 5px 0 10px 0; }
+      #fb__feed_container .fb__feed_item .fb__post_date a {
+        color: #C9BDB4; }
+    #fb__feed_container .fb__feed_item .fb__post_message {
+      margin: 15px 5px;
+      font-size: 14px; }
+
+.fb--not-logged-in {
+  display: grid;
+  grid-template-columns: auto 430px auto; }
+
+.fb--login {
+  grid-column: 2 / span 1;
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 5px;
+  padding: 10px;
+  text-align: center;
+  /* width: 50vw;
+    min-width: 430px; */
+  margin-top: 50px; }
+  .fb--login h2 {
+    color: #D47E68; }
+  .fb--login button {
+    margin-top: 20px; }
+
+/******* Footer *******/
+#fb__footer {
+  grid-column: 1 / -1;
+  text-align: center;
+  margin-top: 20px; }
 
 .calendarComponent button a {
   color: #fff; }
@@ -528,35 +738,145 @@ p {
 .buttons-inline {
   display: inline; }
 
+.rbc-month-view, .rbc-time-view {
+  background: white;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); }
+
+.rbc-agenda-view > table {
+  background: white;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px; }
+
+.rbc-agenda-content > table {
+  background: white;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px; }
+
+.rbc-today {
+  background-color: #F1F3EE; }
+
+.rbc-toolbar-label {
+  color: #D47E68;
+  font-weight: bold; }
+
+.rbc-btn-group button, .calendar-buttons button {
+  background-color: #C5AE8A;
+  color: white; }
+
+.rbc-btn-group button:hover, .rbc-toolbar button:active:hover, .rbc-toolbar button.rbc-active:hover, .rbc-toolbar button:active:focus, .rbc-toolbar button.rbc-active:focus, .calendar-buttons button:hover {
+  background-color: #C9BDB4;
+  color: white;
+  outline: none; }
+
+.rbc-toolbar button:active, .rbc-toolbar button.rbc-active {
+  background-color: #D47E68; }
+
+.rbc-event {
+  background-color: #D47E68; }
+
+.rbc-event.rbc-selected {
+  background-color: #a7482f; }
+
+.rbc-header {
+  color: #7F645F; }
+
+.rbc-date-cell a {
+  color: #7F645F; }
+
+/**Add Event Page / Edit Styles**/
+.cal-add-event h3, .pt-popover-content-sizing h3 {
+  text-align: center;
+  color: #D47E68; }
+
+.cal-add-event label, .pt-popover-content-sizing label {
+  color: #7F645F; }
+
+.cal-add-event button, .pt-popover-content-sizing button {
+  margin-top: 20px; }
+
+.cal-add-event .rtrn-cal-btn, .pt-popover-content-sizing .rtrn-cal-btn {
+  margin-left: 50px;
+  background-color: #C5AE8A;
+  font-size: 16px;
+  color: white;
+  padding: 5px;
+  border-radius: 5px; }
+
+.cal-add-event .rtrn-cal-btn:hover, .pt-popover-content-sizing .rtrn-cal-btn:hover {
+  background-color: #C9BDB4;
+  text-decoration: none; }
+
+.cal-end-label {
+  padding-top: 10px; }
+
+/* More popup*/
+.cal-more-content {
+  color: #7F645F; }
+  .cal-more-content .more-title {
+    color: #D47E68; }
+  .cal-more-content .more-location {
+    font-style: italic;
+    color: #C9BDB4; }
+  .cal-more-content .more-desc {
+    font-style: italic; }
+  .cal-more-content .cal-more-start-end {
+    font-weight: bold;
+    color: #C5AE8A; }
+
 .todoTab {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   width: 100%;
   height: 100%;
   padding: 35px;
-  grid-column-gap: 35px; }
+  grid-column-gap: 35px;
+  background-color: #F1F3EE; }
 
 .todoList {
   line-height: 1.5;
   font-weight: bold;
   display: grid;
   grid-template-rows: 40px repeat(10, 1fr);
-  border: 1px solid lightgray;
-  background: darkgray; }
+  background: white;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  align-items: center; }
 
 .todoList header {
-  padding: 10px 0 0 15px; }
+  padding: 10px 0 0 15px;
+  color: #D47E68;
+  font-size: 18px; }
 
 .todoList .todoListItem {
-  border: 1px solid lightgray;
-  border-bottom: 1px solid darkgray;
-  background: white;
-  padding: 10px 0 0 15px;
+  border: 1px solid #C9BDB4;
+  border-radius: 5px;
+  padding: 5px 0 5px 15px;
   margin-left: 20px;
-  margin-right: 20px; }
+  margin-right: 20px;
+  color: #7F645F; }
+
+.todoList .editing {
+  border-radius: 5px;
+  padding: 5px 0 5px 15px;
+  margin-left: 20px;
+  margin-right: 20px;
+  color: #7F645F; }
+
+.todoList .todoListItem:hover {
+  background: #F1F3EE; }
+
+.todoListItem button {
+  color: #C5AE8A; }
 
 .my-popover .pt-popover-content {
   max-height: 20vh;
   overflow-y: auto;
   height: 20vh;
   width: 20vh; }
+
+.appMain {
+  overflow: scroll;
+  padding: 0;
+  margin: 0;
+  background: #F1F3EE; }

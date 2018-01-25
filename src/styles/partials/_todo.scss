@@ -5,6 +5,7 @@
   height: 100%;
   padding: 35px;
   grid-column-gap: 35px;
+  background-color: $light-shade;
 }
 
 .todoList {
@@ -12,19 +13,40 @@
   font-weight: bold;
   display: grid;
   grid-template-rows: 40px repeat(10, 1fr);
-  border: 1px solid lightgray;
-  background: darkgray;
+  background: white;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  align-items: center;
 }
 
 .todoList header {
   padding: 10px 0 0 15px;
+  color: $main-color;
+  font-size: 18px;
 }
 
 .todoList .todoListItem {
-  border: 1px solid lightgray;
-  border-bottom: 1px solid darkgray;
-  background: white;
-  padding: 10px 0 0 15px;
+  border: 1px solid $light-accent;
+  border-radius: 5px;
+  padding: 5px 0 5px 15px;
   margin-left: 20px;
   margin-right: 20px;
+  color: $dark-shade;
+  
+}
+
+.todoList .editing {
+  border-radius: 5px;
+  padding: 5px 0 5px 15px;
+  margin-left: 20px;
+  margin-right: 20px;
+  color: $dark-shade;
+}
+
+.todoList .todoListItem:hover {
+  background: $light-shade;
+}
+
+.todoListItem button {
+  color: $dark-accent;
 }

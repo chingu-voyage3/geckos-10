@@ -95,7 +95,7 @@ class EditEventModal extends Component {
                 <input onChange={this.changeText} className='pt-input' name='startTime' type='time' value={this.props.currentEvent.startTime} required />
               </div>
               <div>
-                <label className='pt-label'>End
+                <label className='pt-label cal-end-label'>End
           </label>
                 <input onChange={this.changeText} className='pt-input' name='endDate' type='date' value={this.props.currentEvent.endDate} required />
                 <input onChange={this.changeText} className='pt-input' name='endTime' type='time' value={this.props.currentEvent.endTime} required />

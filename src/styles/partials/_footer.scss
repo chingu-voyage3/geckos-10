@@ -1,10 +1,27 @@
+.appFooter {
+  background-color: $dark-shade;
+
+  a {
+    color: $light-accent;
+  }
+
+  .active {
+    color: $main-color;
+  }
+
+  a:hover {
+    color: $dark-accent;
+  }
+}
+
 .navList {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  align-items: center;
 }
 
-.appFooter .navItem {
-  margin: auto;
+.navItem {
+  padding: 20px 10vw;
 }
 
 .navItem-1 {

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import moment from 'moment'
 import BigCalendar from 'react-big-calendar';
 import { Link, Redirect } from 'react-router-dom';
-import 'react-big-calendar/lib/css/react-big-calendar.css';
 import { firebase } from '@firebase/app';
 import PopoverModal from './Popover';
 import EditEventModal from './EditEventModal';

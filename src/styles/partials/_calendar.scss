@@ -30,3 +30,115 @@
 .buttons-inline {
   display: inline;
 }
+
+.rbc-month-view, .rbc-time-view {
+  background: white;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.rbc-agenda-view > table {
+  background: white;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.rbc-agenda-content > table {
+  background: white;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  
+}
+
+.rbc-today {
+  background-color: $light-shade;
+}
+
+.rbc-toolbar-label {
+  color: $main-color;
+  font-weight: bold;
+}
+
+.rbc-btn-group button, .calendar-buttons button {
+  background-color: $dark-accent;
+  color: white;
+}
+
+.rbc-btn-group button:hover, .rbc-toolbar button:active:hover, .rbc-toolbar button.rbc-active:hover, .rbc-toolbar button:active:focus, .rbc-toolbar button.rbc-active:focus, .calendar-buttons button:hover {
+  background-color: $light-accent;
+  color: white;
+  outline: none;
+}
+
+.rbc-toolbar button:active, .rbc-toolbar button.rbc-active {
+  background-color: $main-color;
+}
+
+.rbc-event {
+  background-color: $main-color;
+}
+
+.rbc-event.rbc-selected {
+  background-color: darken($main-color, 20%);
+}
+
+.rbc-header {
+  color: $dark-shade;
+}
+
+.rbc-date-cell a {
+  color: $dark-shade;
+}
+/**Add Event Page / Edit Styles**/
+
+.cal-add-event, .pt-popover-content-sizing {
+
+  h3 {
+    text-align: center;
+    color: $main-color;
+  }
+  label {
+    color: $dark-shade;
+  }
+  button {
+    margin-top: 20px;
+  }
+  .rtrn-cal-btn {
+    margin-left: 50px;
+    background-color: $dark-accent;
+    font-size: 16px;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+  }
+  .rtrn-cal-btn:hover {
+    background-color: $light-accent;
+    text-decoration: none;
+  }
+}
+
+.cal-end-label {
+  padding-top: 10px;
+}
+
+
+/* More popup*/
+.cal-more-content {
+
+  color: $dark-shade;
+  
+  .more-title {
+    color: $main-color;
+  }
+  .more-location {
+    font-style: italic;
+    color: $light-accent;
+  }
+  .more-desc {
+    font-style: italic;
+  }
+  .cal-more-start-end {
+    font-weight: bold;
+    color: $dark-accent;
+  }
+}

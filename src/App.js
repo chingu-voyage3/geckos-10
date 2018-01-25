@@ -1,50 +1,95 @@
+/*global FB*/
 import React, { Component } from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
-import { app } from './store/store';
-import { Spinner } from '@blueprintjs/core';
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
+import { app, cookies } from "./store/store";
+import { Spinner } from "@blueprintjs/core";
 
-
-
-import Login from './components/Login';
-import Logout from './components/Logout';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import AddEvent from './components/AddEventForm';
+import Login from "./components/Login";
+import Logout from "./components/Logout";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import AddEvent from "./components/AddEventForm";
 // import EventList from './containers/EventList';
-import Calendar from './components/Calendar';
+import Calendar from "./components/Calendar";
 import BasicTodoApp from "./containers/BasicTodoApp";
+
+import SocialMedia from "./components/SocialMedia";
 
 class App extends Component {
   constructor() {
     super();
+    this.initFBSDK = this.initFBSDK.bind(this);
     this.state = {
       authenticated: false,
       loading: true,
-      email: '',
-      name: '',
-      uid: '',
-    }
+      email: "",
+      name: "",
+      uid: "",
+      FBauthenticated: false,
+      FBaccessToken: ""
+    };
   }
 
+  initFBSDK() {
+    //The following code will give the basic version of the SDK where the options are set to their most common defaults.
+    //You should insert it directly after the opening <body> tag on each page you want to load it:
 
+    //initialize the Javascript SDK
+    window.fbAsyncInit = function () {
+      FB.init({
+        appId: "1186050748193429",
+        //With xfbml set to true, the SDK will parse your page's DOM to find and initialize any social plugins that have been added using XFBML. If you're not using social plugins on the page, setting xfbml to false will improve page load times.
+        xfbml: false,
+        cookie: true,
+        version: "v2.11"
+      });
+      FB.AppEvents.logPageView();
+    };
+
+    //Load SDK asynchronously
+    (function (d, s, id) {
+      var js,
+        fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {
+        return;
+      }
+      js = d.createElement(s);
+      js.id = id;
+      js.src = "https://connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    })(document, "script", "facebook-jssdk");
+  }
 
   componentWillMount() {
-    this.removeAuthListener = app.auth().onAuthStateChanged((user) => {
+    this.initFBSDK();
+    this.removeAuthListener = app.auth().onAuthStateChanged(user => {
       if (user) {
+        //console.log(user);
+        var loggedInWithFB = false;
+        user.providerData.forEach(function (profile) {
+          if (profile.providerId === "facebook.com") {
+            loggedInWithFB = true;
+          }
+        });
+        const accessToken = cookies.get("FBaccessToken");
         this.setState({
           authenticated: true,
           loading: false,
-          name: user.email,
-          uid: user.uid
-        })
+          name: !user.email ? user.providerData[0].email : user.email,
+          uid: user.uid,
+          FBauthenticated: loggedInWithFB,
+          FBaccessToken: accessToken
+        });
       } else {
         this.setState({
           authenticated: false,
           loading: false,
-        })
+          email: "",
+          name: "",
+          FBauthenticated: false
+        });
       }
-    })
-
+    });
   }
 
   componentWillUnMount() {
@@ -54,25 +99,55 @@ class App extends Component {
   render() {
     if (this.state.loading === true) {
       return (
-        <div style={{ textAlign: "center", position: "absolute", top: "25%", left: "50%" }}>
+        <div
+          style={{
+            textAlign: "center",
+            position: "absolute",
+            top: "25%",
+            left: "50%"
+          }}
+        >
           <h3>Loading...</h3>
           <Spinner />
         </div>
-      )
+      );
     }
+
+    function redirectForLogin(state, location) {
+      if (!state.authenticated && location.pathname !== "/login") {
+        return <Redirect to="/login" />;
+      } else if (state.authenticated && location.pathname === "/login") {
+        return <Redirect to="/" />;
+      } else {
+        return "";
+      }
+    }
+
     return (
       <BrowserRouter basename="/geckos-10">
         <div className="app">
           <Header {...this.state} />
-          <div>
+          <div className="appMain">
+            <Route
+              path="/"
+              render={({ location }) => {
+                return redirectForLogin(this.state, location);
+              }}
+            />
             <Switch>
-              {/* <Route path="/social" component="" /> */}
-              <Route exact path="/calendar" render={() => (
-                <Calendar {...this.state} />
-              )} />
-              <Route path="/calendar/new" render={() => (
-                <AddEvent {...this.state} />
-              )} />
+              <Route
+                path="/social"
+                component={() => <SocialMedia {...this.state} />}
+              />
+              <Route
+                exact
+                path="/calendar"
+                render={() => <Calendar {...this.state} />}
+              />
+              <Route
+                path="/calendar/new"
+                render={() => <AddEvent {...this.state} />}
+              />
 
               {/* <Route path="/weather" component="" /> */}
               <Route exact path="/todo" component={BasicTodoApp} />
@@ -86,6 +161,5 @@ class App extends Component {
     );
   }
 }
-
 
 export default App;
