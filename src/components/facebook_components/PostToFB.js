@@ -102,7 +102,9 @@ class PostToFB extends Component {
           });
 
           //refresh the feed after making a new post is user has checked the box
-          this.state.refreshCheck ? this.props.refreshCallback() : "";
+          if (this.state.refreshCheck) {
+            this.props.refreshCallback();
+          }
         } else {
           alert(response.error.message);
         }
