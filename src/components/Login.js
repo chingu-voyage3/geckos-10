@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import { Toaster, Intent } from "@blueprintjs/core";
-import { app, googleProvider, facebookProvider } from "../store/store";
-import Cookies from "universal-cookie";
+import { app, googleProvider, facebookProvider, cookies } from "../store/store";
 
 class Login extends Component {
   constructor(props) {
@@ -44,7 +43,6 @@ class Login extends Component {
         // console.log(calendarKey);
         const accessToken = result.credential.accessToken;
 
-        const cookies = new Cookies();
         cookies.set("FBaccessToken", accessToken);
         this.setState({
           redirect: true

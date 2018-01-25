@@ -18,8 +18,7 @@ import FBfeedItem from "./FBfeedItem";
 import PostToFB from "./PostToFB";
 import RefreshFB from "./RefreshFB";
 import { Redirect } from "react-router-dom";
-import { app, facebookProvider } from "../../store/store";
-import Cookies from "universal-cookie";
+import { app, facebookProvider, cookies } from "../../store/store";
 
 class FacebookFeed extends Component {
   constructor(props) {
@@ -54,14 +53,19 @@ class FacebookFeed extends Component {
     // Try to load from cookie as well
     if (
       this.state.FBauthenticated === false ||
-      this.state.FBaccessToken === false
+      typeof this.state.FBaccessToken === "undefined"
     ) {
-      const cookies = new Cookies();
       const accessToken = cookies.get("FBaccessToken");
-      this.setState({
-        FBauthenticated: true,
-        FBaccessToken: accessToken
-      });
+      if (accessToken) {
+        this.setState({
+          FBauthenticated: true,
+          FBaccessToken: accessToken
+        });
+      } else {
+        this.setState({
+          FBauthenticated: false
+        });
+      }
     }
   }
 
@@ -181,7 +185,7 @@ class FacebookFeed extends Component {
   }
   render() {
     //check if access token has been set
-    if (typeof this.state.FBaccessToken === "undefined" || FB === null) {
+    if (FB === null) {
       //if not set then redirect to logout
       return <Redirect to="/" />;
     }

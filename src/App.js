@@ -1,7 +1,7 @@
 /*global FB*/
 import React, { Component } from "react";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
-import { app } from "./store/store";
+import { app, cookies } from "./store/store";
 import { Spinner } from "@blueprintjs/core";
 
 import Login from "./components/Login";
@@ -14,7 +14,6 @@ import Calendar from "./components/Calendar";
 import BasicTodoApp from "./containers/BasicTodoApp";
 
 import SocialMedia from "./components/SocialMedia";
-import Cookies from "universal-cookie";
 
 class App extends Component {
   constructor() {
@@ -72,7 +71,6 @@ class App extends Component {
             loggedInWithFB = true;
           }
         });
-        const cookies = new Cookies();
         const accessToken = cookies.get("FBaccessToken");
         this.setState({
           authenticated: true,
