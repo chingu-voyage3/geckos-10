@@ -687,6 +687,25 @@ p {
       margin: 15px 5px;
       font-size: 14px; }
 
+.fb--not-logged-in {
+  display: grid;
+  grid-template-columns: auto 430px auto; }
+
+.fb--login {
+  grid-column: 2 / span 1;
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 5px;
+  padding: 10px;
+  text-align: center;
+  /* width: 50vw;
+    min-width: 430px; */
+  margin-top: 50px; }
+  .fb--login h2 {
+    color: #D47E68; }
+  .fb--login button {
+    margin-top: 20px; }
+
 /******* Footer *******/
 #fb__footer {
   grid-column: 1 / -1;

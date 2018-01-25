@@ -239,15 +239,18 @@ class FacebookFeed extends Component {
             </div>
           </div>
           : //if not authenticated
-          <div id="fb">
-            <button
-              className="pt-button pt-intent-primary"
-              onClick={() => this.authWithFacebook()}
-            >
-              {" "}Log In with Facebook
-              </button>
-            <h2>Log into Facebook to view your feed.</h2>
-          </div>}
+            <div className="fb--not-logged-in">
+                <div className="fb--login">
+                    <h2>Log into Facebook to view your feed.</h2>
+                    <button
+                    className="pt-button pt-intent-primary"
+                    onClick={() => this.authWithFacebook()}
+                    >
+                    Log In with Facebook
+                    </button>
+                </div>
+            </div>
+          }
       </div>
     );
   }
