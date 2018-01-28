@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
@@ -8,16 +9,23 @@ class Header extends Component {
     return (
       <header className="appHeader">
         {this.props.authenticated
-          ? <div>
+          ? 
+          <div>
             <Link
               to="/logout"
               className="pt-icon-log-out"
               aria-label="Logout"
             />Logged in as {name}
-          </div>
-          : <Link to="/login" className="pt-button pt-intent-primary">
-            Register or Log In
-            </Link>}
+          </div> 
+            : 
+          (//make sure login button doesn't show on login screen
+            window.location.pathname==="/geckos-10/login" ? 
+            ""
+            :
+            <Link to="/login" className="pt-button pt-intent-primary">
+              Register or Log In
+            </Link>
+          )}
       </header>
     );
   }
@@ -28,4 +36,4 @@ Header.propTypes = {
   name: PropTypes.string
 };
 
-export default Header;
+export default withRouter(Header);

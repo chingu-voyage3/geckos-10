@@ -1,16 +1,6 @@
 /*global FB*/
 //can also reference FB as window.FB
 
-/*ISSUES
-* Handle instances when user is not logged into facebook (?)
-* find user's locality for date, currently using en-us
-*/
-
-/*After asking for post permission:
-Submit for Login Review
-Some of the permissions below have not been approved for use by Facebook.
-Submit for review now or learn more. */
-
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Spinner } from "@blueprintjs/core";
